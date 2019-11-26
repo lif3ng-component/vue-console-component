@@ -1,0 +1,49 @@
+.{prefix}-pagination
+  overflow hidden
+  white-space nowrap
+  display: flex
+  > div
+    display: inline-block
+    height: pagination-height
+    line-height: pagination-height
+    box-sizing: border-box
+    color #99a4b0
+    + div
+      margin-left 20px
+  & &-size
+    flex 1
+    text-align right
+  & &-jumper
+    .{prefix}-input
+      >*
+        height: pagination-height
+        box-sizing: border-box   
+      &-inner
+        width: 56px
+        border-right: 0
+        text-align: center
+        padding: 5px
+  & &-pager
+    default-border()
+    border-radius: 4px
+    user-select: none
+    > div
+      display: inline-block
+      padding: 0 12px
+      position: relative
+      bottom: 2px
+      cursor: pointer
+      &.active
+        background: color-primary
+        color: #fff
+        cursor: default
+      &.disable
+        color: #ddd
+        cursor: default
+        .{prefix}-icon-point
+          color:#99a4b0
+      &:not(.active,.disable):hover
+        color: #888
+      + div
+        default-dir-border(left)
+

@@ -1,0 +1,43 @@
+.{prefix}-button
+  padding: 12px 14px
+  border-radius: 6px
+  border: 1px solid #ddd
+  font-size: 14px
+  line-height: 1
+  outline: none
+  cursor: pointer
+  background: #fff
+  & + &
+    margin-left: 20px
+  &&-primary
+    background color-primary
+    color: white
+    border-color color-primary
+    &:hover
+      background color-primary + 20%
+  &&-info
+    background color-info
+    color: white
+    &:hover
+      background color-info + 20%
+  &&-error
+    background color-error
+    color: white
+    &:hover
+      background color-error + 20%
+  
+  
+
+  i 
+    line-height: 1em
+    font-size inherit
+    &:first-child:not(:last-child)
+      margin-right: 5px
+  // for type in default primary info error warning
+  //   &{_pre}-{type}
+  //     background: {color-{type}}
+  // &.{prefix}-button-primary
+  //   background: color-primary
+  //   color: #fff
+  // &.{prefix}-button-info
+  //   background: color-info

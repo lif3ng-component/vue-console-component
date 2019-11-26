@@ -1,0 +1,42 @@
+.{prefix}-container
+  display: flex
+  align-items: stretch
+  &[children-names|=header]
+  &[children-names$=footer]
+    flex-direction: column
+  >.{prefix}-container
+    flex-grow: 1
+  .{prefix}-main
+    flex-grow: 1
+  .{prefix}-sider
+    width: 250px
+  .{prefix}-header,.{prefix}-footer
+    height: 60px
+
+.{prefix}-header-container
+  height: inherit
+  padding: 0 20px
+  user-select none
+  >.logo
+    float: left
+    height: inherit
+    img
+      position: relative;
+      top: 10%
+      height: 80%
+    .logo-text
+      margin-left: 15px
+      position relative
+      bottom 10%
+  >.links
+    float: right
+    height: inherit
+    > a
+      display: inline-block;
+      height: inherit;
+      cursor: pointer;
+      // line-height: 60px;
+      // padding: 0 30px
+      &:not(:first-child)
+        margin-left: 20px
+

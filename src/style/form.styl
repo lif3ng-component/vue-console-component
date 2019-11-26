@@ -1,0 +1,76 @@
+.{prefix}-
+  &form-area
+    border: 1px solid #ccc
+    border-radius: 5px
+    &.no-board
+      border-color: transparent
+    & + &
+      margin-top: 20px
+    & &-header
+      border-bottom: 1px solid #ccc
+      line-height: 40px
+      text-indent: 20px
+    & &-body
+      margin: 20px 0 0
+  &form
+    &[hide-label]
+      .{prefix}-
+        &input 
+          width 100%
+    & &-item
+      display: flex
+      margin-bottom 20px
+      &.has-error
+        input 
+          border-color color-error
+      &-label
+        width: 30%
+        line-height 40px
+        font-size 14px
+        text-align right
+        margin-right: 10px
+      &-field 
+        flex: 1
+        position relative
+        [class$='errormsg']
+          position absolute
+          color color-error
+          line-height 0 
+          font-size 10px
+          bottom -10px
+        &:first-child:last-child
+          >.{prefix}-input
+            width:100%
+        >span:first-child:last-child 
+          line-height: 40px
+      
+  &input
+    width 80%
+    box-sizing border-box
+    color #333
+    display: flex
+    button
+      &:last-child
+        border-left: none
+        border-top-left-radius: 0
+        border-bottom-left-radius: 0
+    input 
+      flex: 1
+      line-height 38px
+      border: 1px solid #ddd
+      border-radius 4px
+      padding 0 15px
+      &:not(:last-child)
+        // background:#ccc
+        border-top-right-radius: 0
+        border-bottom-right-radius: 0
+      
+      &:focus
+        outline none
+        // border none
+        border-color color-primary
+  &checkbox-wrapper
+    user-select none
+    cursor pointer
+    +&
+      margin-left 10px
