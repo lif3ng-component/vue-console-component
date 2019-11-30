@@ -21,6 +21,10 @@ import Dialog from "./components/Dialog";
 // directives
 import popper from "./components/popper/popper";
 import container from "./components/layout/container";
+// filters
+import filters from "./filters";
+// prototype function
+import $message from "./components/notice/messageFn";
 
 import "./style/index.styl";
 
@@ -54,7 +58,7 @@ const components = [
 const globalPrefix = prefix;
 
 const install = (Vue, options = {}) => {
-  const { prefix = globalPrefix } = options;
+  const { prefix = globalPrefix, formareaItemType, stringMap = {} } = options;
   Vue.prototype.prefix = prefix;
   components.forEach(component => {
     const { name } = component;
@@ -67,6 +71,21 @@ const install = (Vue, options = {}) => {
   Object.keys(directives).forEach(key => {
     Vue.directive(key, directives[key]);
   });
+
+  Object.keys(filters).forEach(key => {
+    if (key === "mapString") {
+      Vue.filter(key, filters[key].bind(Vue));
+      // Vue.filter(key, function (...args) { return filters[key].call(this, ...args); });
+    } else {
+      Vue.filter(key, filters[key].bind(filters));
+    }
+  });
+
+  Vue.prototype.$message = $message;
+  Vue.prototype.$STRING_MAP = stringMap;
+  Vue.prototype.$default = {
+    formarea: { type: formareaItemType || "input" }
+  };
 };
 
 const exportResult = {
