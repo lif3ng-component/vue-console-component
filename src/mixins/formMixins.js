@@ -5,36 +5,37 @@ export const formCollectMixin = {
   // },
   provide() {
     return {
-      reportFormComponent: this.pushFormComponents,
+      reportFormComponent: this.pushFormComponents
     };
   },
   data() {
     return {
-      formComponents: [],
+      formComponents: []
     };
   },
   computed: {
     formValidate() {
-      console.log('formValidate by formMixins', this.formComponents.length);
-      return () => Promise.all(this.formComponents.map(({ validate }) => validate()));
-    },
+      console.log("formValidate by formMixins", this.formComponents.length);
+      return () =>
+        Promise.all(this.formComponents.map(({ validate }) => validate()));
+    }
   },
   methods: {
     pushFormComponents(component) {
-      console.log('get form by formMixins');
+      console.log("get form by formMixins");
       this.formComponents.push(component);
-    },
-  },
+    }
+  }
 };
 
 // 上报 form component(this)
 export const formReportMixin = {
   inject: {
-    reportFormComponent: { default: null },
+    reportFormComponent: { default: null }
   },
   mounted() {
     if (this.reportFormComponent) {
       this.reportFormComponent(this);
     }
-  },
+  }
 };

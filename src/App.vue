@@ -2,6 +2,10 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <p-pagination :total="88" :current-page.sync="page" />
+    <p-container>
+      <p-header>a</p-header>
+      <p-main>x</p-main>
+    </p-container>
   </div>
 </template>
 

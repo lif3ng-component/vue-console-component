@@ -8,6 +8,8 @@ import HeaderContainer from "./components/layout/HeaderContainer.vue";
 import Footer from "./components/layout/Footer.vue";
 import Sider from "./components/layout/Sider.vue";
 import Main from "./components/layout/Main.vue";
+import Menu from "./components/nav/Menu";
+import Breadcrumb from "./components/nav/Breadcrumb";
 import "./style/index.styl";
 
 const components = [
@@ -20,7 +22,9 @@ const components = [
   HeaderContainer,
   Footer,
   Sider,
-  Main
+  Main,
+  Menu,
+  Breadcrumb
 ];
 
 const globalPrefix = prefix;

@@ -1,0 +1,21 @@
+.{prefix}-breadcrumb
+  background: #eeeeee
+  color: #333333
+  height: 60px
+  line-height: 60px
+  padding: 0 20px
+  user-select: none
+  & &-item
+    display: inline-block
+    span.link
+      color: color-primary - 20%
+      cursor: pointer
+    i
+      line-height: 58px
+      color: #999
+      padding: 0 5px
+    & + &
+      margin-left 10px
+    &:last-child
+      i 
+        display: none

@@ -1,53 +1,53 @@
-import schema from 'async-validator';
-import { formReportMixin } from '@/mixins/formMixins';
+import schema from "async-validator";
+import { formReportMixin } from "@/mixins/formMixins";
 
 export default {
-  name: 'Form',
+  name: "Form",
   mixins: [formReportMixin],
   props: {
     value: Object,
     rules: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     hideLabel: {
       type: Boolean,
-      default: false,
+      default: false
     },
     enterSubmit: {
       type: Boolean,
-      default: false,
+      default: false
     },
     submitFn: {
-      type: Function,
-    },
+      type: Function
+    }
   },
 
   provide() {
     return {
       errObj: this.errObj,
       validateField: this.validateField,
-      hideLabel: this.hideLabel,
+      hideLabel: this.hideLabel
     };
   },
   data() {
     const initErrObj = {};
     for (const key in this.rules) {
-      initErrObj[key] = '';
+      initErrObj[key] = "";
     }
     return {
       validator: null,
-      errObj: initErrObj,
+      errObj: initErrObj
     };
   },
   mounted() {
-    console.log('form mounted');
+    console.log("form mounted");
     this.validator = new schema(this.rules);
     console.log(this.$el.outerHTML);
   },
   methods: {
     handleKeyup({ keyCode }) {
-      console.log('handleKeyup', keyCode);
+      console.log("handleKeyup", keyCode);
       if (keyCode === 13 && this.enterSubmit && this.submitFn) {
         this.submitFn();
       }
@@ -60,7 +60,7 @@ export default {
       new schema(fieldRules)
         .validate(this.value)
         .then(() => {
-          this.errObj[field] = '';
+          this.errObj[field] = "";
         })
         .catch(({ fields }) => {
           console.log(`validate field [${field}]`, fields);
@@ -69,14 +69,15 @@ export default {
     },
     validate() {
       console.log(this.validator);
-      return this.validator.validate(this.value)
+      return this.validator
+        .validate(this.value)
         .then(() => {
           for (const propName in this.errObj) {
-            this.errObj[propName] = '';
+            this.errObj[propName] = "";
           }
         })
-        .catch((e) => {
-          console.log('catch in Form', e);
+        .catch(e => {
+          console.log("catch in Form", e);
           const { fields } = e;
           console.log(fields);
           const newErrObj = {};
@@ -88,20 +89,24 @@ export default {
 
           for (const propName in this.errObj) {
             if ({}.hasOwnProperty.call(this.errObj, propName)) {
-              this.errObj[propName] = newErrObj[propName] || '';
+              this.errObj[propName] = newErrObj[propName] || "";
             }
           }
           // this.errObj = newErrObj;
           // Object.assign(this.errObj,newErrObj)
           throw e;
         });
-    },
+    }
   },
   render() {
     return (
-      <div class={`${prefix}-form`} hide-label={this.hideLabel} onKeyup={this.handleKeyup}>
-        { this.$slots.default }
+      <div
+        class={`${prefix}-form`}
+        hide-label={this.hideLabel}
+        onKeyup={this.handleKeyup}
+      >
+        {this.$slots.default}
       </div>
     );
-  },
+  }
 };

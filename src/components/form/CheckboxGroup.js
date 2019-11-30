@@ -1,26 +1,20 @@
 export default {
-  name: 'CheckboxGroup',
+  name: "CheckboxGroup",
   prop: {
     value: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
-      innerValue: this.value || [],
+      innerValue: this.value || []
     };
   },
   methods: {
-    handleCheckboxItemToggle() {
-
-    },
+    handleCheckboxItemToggle() {}
   },
   render() {
-    return (
-      <div class={`${prefix}-checkbox-group`}>
-        {this.$slots.default}
-      </div>
-    );
-  },
+    return <div class={`${prefix}-checkbox-group`}>{this.$slots.default}</div>;
+  }
 };

@@ -1,10 +1,9 @@
-
 <script>
 export default {
-  name: 'Main',
+  name: "Main",
 
   render() {
     return <div class={`${prefix}-main`}>{this.$slots.default}</div>;
-  },
+  }
 };
 </script>
