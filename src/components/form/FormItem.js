@@ -20,15 +20,12 @@ export default {
     }
   },
 
-  mounted() {
-    console.log("form item mounted");
-  },
+  mounted() {},
   methods: {
     emitBlur() {
       this.validateField(this.prop);
     },
     emitChange() {
-      console.log("emit change");
       if (this.hasError) {
         this.validateField(this.prop);
       }
@@ -36,8 +33,6 @@ export default {
   },
   computed: {
     hasError() {
-      console.log(this.prop, this.errObj[this.prop]);
-      console.log(JSON.stringify(this.errObj));
       return !!this.errObj[this.prop];
     }
   },

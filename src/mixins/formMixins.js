@@ -15,14 +15,12 @@ export const formCollectMixin = {
   },
   computed: {
     formValidate() {
-      console.log("formValidate by formMixins", this.formComponents.length);
       return () =>
         Promise.all(this.formComponents.map(({ validate }) => validate()));
     }
   },
   methods: {
     pushFormComponents(component) {
-      console.log("get form by formMixins");
       this.formComponents.push(component);
     }
   }
