@@ -183,7 +183,7 @@ export default {
     },
     renderTpl(value, tpl) {
       // console.log({value,tpl})
-      return tpl.replace(/\{\{([\w\.]+?)\}\}/g, (_, propStr) => {
+      return tpl.replace(/\{\{([\w.]+?)\}\}/g, (_, propStr) => {
         if (propStr.indexOf(".") === -1) {
           return typeof value[propStr] === "undefined" ? "" : value[propStr];
         }

@@ -84,6 +84,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.props, JSON.stringify(this.$props));
     if (this.currentPage > this.totalPage || this.currentPage < 0) {
       this.$emit("update:current-page", this.total === 0 ? 0 : 1);
     }

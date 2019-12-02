@@ -1,0 +1,16 @@
+msgColorFn(color)
+  background: color + 50%
+  color: color - 30%
+
+.{prefix}-message
+  position: fixed
+  top: 60px
+  height: 60px
+  line-height: 60px
+  left: 0
+  right 0
+  text-align: center
+  &&-success
+    msgColorFn(color-primary)
+  &&-error
+    msgColorFn(color-error)

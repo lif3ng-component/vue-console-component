@@ -2,11 +2,19 @@
   border-collapse: collapse
   overflow-x auto
   text-align center
+  default-border()
+  default-border-radius()
+  + .{prefix}-pagination
+    margin-top:20px
+  table
+    border-collapse: collapse
   td,th
-    border: 1px solid #bbb
     line-height: 40px;
     a
       color: color-primary
       cursor: pointer
   th
-    background: color-primary + 50%
+    background: header-background
+    font-weight: normal
+  tr:nth-child(2n+1)
+    background: table-row-color
