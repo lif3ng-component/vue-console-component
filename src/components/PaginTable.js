@@ -23,7 +23,7 @@ export default {
         if (this.paginSizeOptions.includes(this.$default.paginSize)) {
           return this.$default.paginSize;
         }
-        return this.sizeOptions[0];
+        return this.paginSizeOptions[0];
       }
     },
     queryObj: {
