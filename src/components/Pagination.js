@@ -17,11 +17,18 @@ export default {
     },
     sizeOptions: {
       type: Array,
-      default: () => [10, 20, 30]
+      default() {
+        return this.$default.paginSizeOptions;
+      }
     },
     size: {
       type: Number,
-      default: 10
+      default() {
+        if (this.sizeOptions.includes(this.$default.paginSize)) {
+          return this.$default.paginSize;
+        }
+        return this.sizeOptions[0];
+      }
     },
     total: {
       type: Number,
@@ -84,7 +91,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.props, JSON.stringify(this.$props));
     if (this.currentPage > this.totalPage || this.currentPage < 0) {
       this.$emit("update:current-page", this.total === 0 ? 0 : 1);
     }

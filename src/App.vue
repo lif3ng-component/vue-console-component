@@ -1,8 +1,19 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <p-pagination :total="88" :current-page.sync="page" />
-    <p-pagin-table :columns="columns" :loadFn="this.loadHandler" />
+
+    <p-pagination
+      :total="88"
+      :current-page.sync="page"
+      :size-options="[4, 5, 6]"
+    />
+    <p-pagination
+      :total="88"
+      :current-page.sync="page"
+      :size-options="[5, 10, 15]"
+      :size="10"
+    />
+    <!-- <p-pagin-table :columns="columns" :pagin-size-options="[3,4,5]" :loadFn="this.loadHandler" /> -->
   </div>
 </template>
 

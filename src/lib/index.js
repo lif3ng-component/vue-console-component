@@ -66,6 +66,8 @@ const install = (Vue, options = {}) => {
     prefix = globalPrefix,
     formareaItemType,
     paginArgsHandler,
+    paginSize,
+    paginSizeOptions,
     stringMap = {}
   } = options;
   Vue.prototype.prefix = prefix;
@@ -94,7 +96,9 @@ const install = (Vue, options = {}) => {
   Vue.prototype.$STRING_MAP = stringMap;
   Vue.prototype.$default = {
     formarea: { type: formareaItemType || defaultOptions.formareaItemType },
-    paginArgsHandler: paginArgsHandler || defaultOptions.paginArgsHandler
+    paginArgsHandler: paginArgsHandler || defaultOptions.paginArgsHandler,
+    paginSize: paginSize || defaultOptions.paginSize,
+    paginSizeOptions: paginSizeOptions || defaultOptions.paginSizeOptions
   };
 };
 

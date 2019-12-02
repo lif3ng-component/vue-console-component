@@ -11,6 +11,21 @@ export default {
     columns: {
       type: Array
     },
+    paginSizeOptions: {
+      type: Array,
+      default() {
+        return this.$default.paginSizeOptions;
+      }
+    },
+    paginSize: {
+      type: Number,
+      default() {
+        if (this.paginSizeOptions.includes(this.$default.paginSize)) {
+          return this.$default.paginSize;
+        }
+        return this.sizeOptions[0];
+      }
+    },
     queryObj: {
       type: Object,
       default: () => ({})
@@ -22,7 +37,8 @@ export default {
   data() {
     return {
       page: 0,
-      size: 10,
+      size: this.paginSize,
+      sizeOptions: this.paginSizeOptions,
       total: 0,
       tableData: [],
       sortArgs: {}
@@ -66,6 +82,8 @@ export default {
         <Pagination
           currentPage={this.page}
           total={this.total}
+          size={this.size}
+          sizeOptions={this.sizeOptions}
           on={{
             "update:current-page": this.handlePageChange
           }}
