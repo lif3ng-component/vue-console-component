@@ -55,7 +55,6 @@ export default {
         .catch(() => {});
     },
     handlePageChange(page) {
-      console.log("handlePageChange", page);
       this.page = page;
       this.doRequest();
     }

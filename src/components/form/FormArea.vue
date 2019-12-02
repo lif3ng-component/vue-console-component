@@ -137,20 +137,17 @@ export default {
   mounted() {
     this.clipboard = new Clipboard(this.$el.querySelectorAll(".copy-btn"), {
       target(btn) {
-        console.log(btn);
         return btn.previousSibling;
       }
     });
     this.clipboard.on("success", e => {
-      console.log("copy success", e);
       e.clearSelection();
       if (this.$message) {
         this.$message("已复制到剪切板");
       }
     });
-    this.clipboard.on("error", e => {
-      console.log("copy error", e);
-    });
+    // this.clipboard.on("error", e => {
+    // });
   },
   destroyed() {
     this.clipboard.destroy();
@@ -177,8 +174,7 @@ export default {
       if (e.target.tagName !== "BUTTON") {
         e.target.parentElement.click();
       } else {
-        const input = e.target.previousSibling;
-        console.log(input.value);
+        // const input = e.target.previousSibling;
       }
     },
     renderTpl(value, tpl) {
@@ -189,11 +185,9 @@ export default {
         }
         const propsArr = propStr.split(".");
         let innerValue = value;
-        console.log({ innerValue, propsArr });
         while (propsArr.length && innerValue) {
           const prop = propsArr.shift();
           innerValue = innerValue[prop];
-          console.log({ innerValue });
         }
         return innerValue || "";
       });

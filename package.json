@@ -9,7 +9,7 @@
   "main": "lib/lib.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:lib": "vue-cli-service build --target lib --name lib ./src/lib.js",
+    "build:lib": "vue-cli-service build --target lib --name lib ./src/lib/index.js",
     "test": "vue-cli-service test:unit --watch",
     "cov": "vue-cli-service test:unit --coverage",
     "lint": "vue-cli-service lint --fix"
