@@ -1,8 +1,9 @@
 import Table from "./Table";
 import Pagination from "./Pagination";
-
+import { reportQueryFnMixin } from "../mixins/tableMixins";
 export default {
   name: "PaginTable",
+  mixins: [reportQueryFnMixin],
   components: {
     Table,
     Pagination
@@ -48,14 +49,14 @@ export default {
     this.doRequest();
   },
   methods: {
-    doRequest() {
+    doRequest(isQuery) {
       const page = this.page;
       this.loadFn({
         // 查询参数
         ...this.queryObj,
         // 分页参数
         ...this.$default.paginArgsHandler({
-          page: this.page || 1,
+          page: isQuery ? 1 : this.page || 1,
           size: this.size
         })
         // 排序参数 todo
@@ -64,7 +65,7 @@ export default {
           // 渲染表格
           this.total = total;
           this.tableData = list;
-          if (total > 0 && page === 0) {
+          if (total > 0 && (page === 0 || isQuery)) {
             this.page = 1;
           }
         })

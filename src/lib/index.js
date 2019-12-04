@@ -9,7 +9,9 @@ import Sider from "@/components/layout/Sider.vue";
 import Main from "@/components/layout/Main.vue";
 import Menu from "@/components/nav/Menu";
 import Breadcrumb from "@/components/nav/Breadcrumb";
+import TableHeader from "@/components/TableHeader";
 import Table from "@/components/Table.vue";
+import SearchInput from "@/components/SearchInput";
 import PaginTable from "@/components/PaginTable";
 import DropdownMenu from "@/components/popper/DropdownMenu";
 import Form from "@/components/form/Form";
@@ -26,6 +28,9 @@ import container from "@/components/layout/container";
 import filters from "@/filters";
 // prototype function
 import $message from "@/components/notice/messageFn";
+// mixins
+import { formCollectMixin } from "@/mixins/formMixins";
+import { paginTableOuterMixin } from "@/mixins/tableMixins";
 
 import defaultOptions from "./defaultOptions";
 
@@ -49,6 +54,8 @@ const components = [
   Menu,
   Breadcrumb,
   Table,
+  TableHeader,
+  SearchInput,
   PaginTable,
   DropdownMenu,
   Form,
@@ -107,3 +114,8 @@ const exportResult = {
 };
 
 export default exportResult;
+
+export const mixins = {
+  formCollectMixin,
+  paginTableOuterMixin
+};

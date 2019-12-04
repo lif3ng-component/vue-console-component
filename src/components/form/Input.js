@@ -32,6 +32,9 @@ export default {
     },
     handleBlur() {
       this.emitBlur && this.emitBlur();
+    },
+    handleKeyup(e) {
+      this.$emit("keyup", e);
     }
   },
   render() {
@@ -42,6 +45,7 @@ export default {
           spellcheck="false"
           onInput={this.handleInput}
           onBlur={this.handleBlur}
+          onKeyup={this.handleKeyup}
           value={this.value}
           class={`${prefix}-input-inner`}
         ></input>

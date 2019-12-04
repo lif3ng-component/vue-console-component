@@ -1,5 +1,8 @@
 <template>
   <div :class="`${prefix}-table`">
+    <template v-if="$slots.header">
+      <slot name="header" />
+    </template>
     <table style="width:100%">
       <tr>
         <th v-for="(column, index) in columns" :key="index">
