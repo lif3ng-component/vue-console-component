@@ -10,6 +10,7 @@
     flex-grow: 1
   .{prefix}-sider
     width: 250px
+    overflow-y: auto
   .{prefix}-header,.{prefix}-footer
     height: 60px
 
@@ -17,6 +18,11 @@
   height: inherit
   padding: 0 20px
   user-select none
+  &[top]
+    background header-top-color
+    :not(.{prefix}-dropdown-menu)
+      color:white
+
   >.logo
     float: left
     height: inherit
