@@ -4,6 +4,7 @@
       {{ title || "基本信息" }}
     </div>
     <div :class="`${prefix}-form-area-body`">
+      <slot />
       <component
         :is="`${prefix}-form`"
         v-model="value"
