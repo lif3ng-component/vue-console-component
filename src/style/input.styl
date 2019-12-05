@@ -1,0 +1,38 @@
+.{prefix}-input
+  width 80%
+  
+  box-sizing border-box
+  color #333
+  display: flex
+  position: relative
+  & &-inner-icon-after
+    position: absolute
+    right: 10px
+    top: 50%
+    transform: translateY(-50%)
+  button
+    &:last-child
+      border-left: none
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0
+  & &-inner   // input
+    flex: 1
+    line-height 38px
+    background: input-background
+    border: 1px solid #ddd
+    default-border-radius()
+    padding 0 15px
+
+    &.has-after-icon
+      padding-right: 34px
+
+    &:not(:last-child)
+      // background:#ccc
+      border-top-right-radius: 0
+      border-bottom-right-radius: 0
+    
+    &:focus
+      outline none
+      // border none
+      border-color color-primary
+      box-shadow: 0 0 5px color-primary

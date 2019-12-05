@@ -3,7 +3,9 @@
     <div :class="`${prefix}-form-area-header`" v-if="!noBoard">
       {{ title || "基本信息" }}
     </div>
-    <div :class="`${prefix}-form-area-body`">
+    <div
+      :class="`${prefix}-form-area-body ${$slots.default ? 'use-slot' : ''}`"
+    >
       <slot />
       <component
         :is="`${prefix}-form`"

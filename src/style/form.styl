@@ -1,17 +1,23 @@
 .{prefix}-
   &form-area
-    border: 1px solid #ccc
-    border-radius: 5px
+    default-border()
+    default-border-radius()
     &.no-board
       border-color: transparent
     & + &
       margin-top: 20px
     & &-header
-      border-bottom: 1px solid #ccc
-      line-height: 40px
-      text-indent: 20px
+      default-dir-border(bottom)
+      line-height: 55px
+      text-indent: 30px
+      background: header-background
     & &-body
-      margin: 20px 0 0
+      padding: 20px 0 0
+      background: second-background
+      .{prefix}-input
+        background: #fff
+      &.use-slot
+        padding 20px 30px
   &form
     &[hide-label]
       .{prefix}-
@@ -44,31 +50,6 @@
         >span:first-child:last-child 
           line-height: 40px
       
-  &input
-    width 80%
-    box-sizing border-box
-    color #333
-    display: flex
-    button
-      &:last-child
-        border-left: none
-        border-top-left-radius: 0
-        border-bottom-left-radius: 0
-    input 
-      flex: 1
-      line-height 38px
-      border: 1px solid #ddd
-      default-border-radius()
-      padding 0 15px
-      &:not(:last-child)
-        // background:#ccc
-        border-top-right-radius: 0
-        border-bottom-right-radius: 0
-      
-      &:focus
-        outline none
-        // border none
-        border-color color-primary
   &checkbox-wrapper
     user-select none
     cursor pointer

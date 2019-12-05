@@ -28,6 +28,8 @@
       :pagin-size-options="[3, 4, 5]"
       :loadFn="this.loadHandler"
     />
+
+    <p-form-area>xx</p-form-area>
   </div>
 </template>
 

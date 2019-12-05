@@ -6,6 +6,11 @@ export default {
     type: String
   },
   render() {
-    return <i class={`${prefix}-icons ${prefix}-icon-${this.type}`}></i>;
+    return (
+      <i
+        onClick={() => this.$emit("click")}
+        class={`${prefix}-icons ${prefix}-icon-${this.type}`}
+      ></i>
+    );
   }
 };

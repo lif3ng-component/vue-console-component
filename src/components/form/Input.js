@@ -1,3 +1,4 @@
+import Icon from "../Icon";
 export default {
   name: "Input",
   // todo v-model
@@ -5,7 +6,7 @@ export default {
   //   prop:'value',
   //   event:'input'
   // },
-  props: ["value"],
+  props: ["value", "iconBefore", "iconAfter", "iconAfterCanClick"],
   // inject: ["emitBlur", "emitChange"],
   inject: {
     emitBlur: {
@@ -24,6 +25,7 @@ export default {
   //     this.$emit('input',e.target.value)
   //   }
   // },
+  mounted() {},
   methods: {
     handleInput(e) {
       // v-model
@@ -40,6 +42,22 @@ export default {
   render() {
     return (
       <div class={`${prefix}-input`}>
+        {this.iconBefore && (
+          <Icon
+            class={`${prefix}-input-inner-icon-before`}
+            type={this.iconBefore}
+          />
+        )}
+        {this.iconAfter && (
+          <Icon
+            class={{
+              [`${prefix}-input-inner-icon-after`]: true,
+              "cursor-pointer": this.iconAfterCanClick
+            }}
+            type={this.iconAfter}
+            onClick={() => this.$emit("icon-after-click")}
+          />
+        )}
         <input
           attrs={this.$attrs}
           spellcheck="false"
@@ -47,8 +65,13 @@ export default {
           onBlur={this.handleBlur}
           onKeyup={this.handleKeyup}
           value={this.value}
-          class={`${prefix}-input-inner`}
+          class={{
+            [`${prefix}-input-inner`]: true,
+            "has-after-icon": this.iconAfter,
+            "has-before-icon": this.iconBefore
+          }}
         ></input>
+
         {this.$slots.append}
       </div>
     );

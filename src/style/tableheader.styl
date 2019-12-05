@@ -1,15 +1,17 @@
 .{prefix}-table-header
   display: flex
   height: 40px
+  padding: 5px 0
   overflow: hidden
   .expend-area
     flex: 1
     line-height: 40px
     user-select: none
   .{prefix}-search-input
-    width: 200px
+    width: 300px
     margin-right: 2px
-    
+    .cursor-pointer
+      cursor: pointer
   + .{prefix}-table
   + .{prefix}-pagintable
     margin-top: 20px

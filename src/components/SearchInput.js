@@ -24,9 +24,14 @@ export default {
         class={`${prefix}-search-input`}
         {...{
           attrs: this.$attrs,
-          on: { ...this.$listeners }
+          on: {
+            ...this.$listeners,
+            "icon-after-click": () => this.$emit("submit", this.$attrs.value)
+          }
         }}
         onKeyup={this.handleEnter}
+        iconAfter="search"
+        iconAfterCanClick
       />
     );
   }
