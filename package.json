@@ -1,6 +1,6 @@
 {
   "name": "lif3ng-console-vue-component",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "author": "lif3ng<lif3ng@icloud.com>",
   "files": [
     "lib",
