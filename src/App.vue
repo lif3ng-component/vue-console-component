@@ -30,6 +30,8 @@
     />
 
     <p-form-area>xx</p-form-area>
+    <a v-popper>x</a>
+    <p-dropdown-menu :items="[{ text: 'xx' }]" />
   </div>
 </template>
 

@@ -2,18 +2,19 @@
   &form-area
     default-border()
     default-border-radius()
-    background: header-background
+    background: second-background
     &.no-board
       border-color: transparent
+      background: transparent
     & + &
       margin-top: 20px
     & &-header
       default-dir-border(bottom)
       line-height: 55px
       text-indent: 30px
+      background: header-background
     & &-body
       padding: 20px 0 0
-      background: second-background
       .{prefix}-input
         background: #fff
       &.use-slot

@@ -1,5 +1,7 @@
 .{prefix}-dropdown-menu
-  border 1px solid #cccccc
+  default-border()
+  default-border-radius()
+  padding: 5px 0
   user-select: none
   background: #fff
   & &-split
@@ -8,10 +10,12 @@
     &:first-child,&:last-child
       border none
   & &-item
+    color: color-second
     padding 0 20px
     height 30px
     line-height 30px
     text-align center
     cursor pointer
     &:hover
-      color: blue
+      color: color-primary
+      background: color-primary + 90%
