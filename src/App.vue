@@ -48,7 +48,7 @@ export default {
       columns: [
         {
           prop: "c1",
-          label: "column1",
+          label: "column1"
           // click:()=>{}
         },
         // {
