@@ -11,8 +11,11 @@ export default {
         "popper element must be next element with an element with v-popper"
       );
     }
-    document.body.append(popEle);
-    new Popper(refEle, popEle, {
+    setTimeout(() => {
+      document.body.append(popEle);
+      instance.scheduleUpdate();
+    }, 500);
+    const instance = new Popper(refEle, popEle, {
       positionFixed: true,
       placement: "bottom-start",
       modifiers: {

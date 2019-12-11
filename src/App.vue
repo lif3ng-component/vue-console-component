@@ -35,6 +35,14 @@
     <p-dropdown-menu :items="[{ text: 'xx' }]" /> -->
     <p-input />
     <p-select :optionList="optionList" v-model="selectV2" />
+    <p-dialog>
+      <p-form-area
+        no-border
+        :items="areaItems"
+        v-model="areaData"
+        :rules="{ a: ['required'], c: ['required'] }"
+      />
+    </p-dialog>
   </div>
 </template>
 
@@ -48,7 +56,7 @@ export default {
     return {
       page: 1,
       queryObj: {},
-      areaData: { a: 1, b: 2, c: 3 },
+      areaData: { a: 1, b: 2, c: "" },
       optionList: [
         { id: 2, name: "abc" },
         { id: 4, name: "asd" }

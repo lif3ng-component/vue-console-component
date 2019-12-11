@@ -3,9 +3,12 @@
     default-border()
     default-border-radius()
     background: second-background
-    &.no-board
+    &.no-border
       border-color: transparent
       background: transparent
+      .{prefix}-
+        &input-inner
+          background: #ccc
     & + &
       margin-top: 20px
     & &-header
@@ -19,6 +22,11 @@
         background: #fff
       &.use-slot
         padding 20px 30px
+
+    &.no-border &-body
+      padding: 20px 0 0
+      .{prefix}-input-inner
+        background: input-background
   &form
     &[hide-label]
       .{prefix}-
@@ -30,7 +38,7 @@
       &.has-error
         input 
           border-color color-error
-          shadow(error-color)
+          shadow(color-error)
       &-label
         width: 30%
         line-height 40px

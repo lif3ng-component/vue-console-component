@@ -53,7 +53,12 @@ export default {
   render() {
     return (
       <div class={`${prefix}-select`}>
-        <Input v-popper="select" value={this.showText} readonly />
+        <Input
+          v-popper="select"
+          value={this.showText}
+          readonly
+          iconAfter="caret-down"
+        />
         <div class={`${prefix}-select-options`}>
           {this.optionList.map(
             ({ [this.labelName]: label, [this.valueName]: value }) => (

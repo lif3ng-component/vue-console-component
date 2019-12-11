@@ -1,6 +1,6 @@
 <template>
-  <div :class="`${prefix}-form-area ${noBoard ? 'no-board' : ''}`">
-    <div :class="`${prefix}-form-area-header`" v-if="!noBoard">
+  <div :class="`${prefix}-form-area ${noBorder ? 'no-border' : ''}`">
+    <div :class="`${prefix}-form-area-header`" v-if="!noBorder">
       {{ title || "基本信息" }}
     </div>
     <div
@@ -80,7 +80,7 @@ import Clipboard from "clipboard";
 export default {
   name: "FormArea",
   props: {
-    noBoard: {
+    noBorder: {
       type: Boolean,
       default: false
     },

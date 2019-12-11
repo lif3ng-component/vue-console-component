@@ -10,8 +10,10 @@ export default {
   // inject: ["emitBlur", "emitChange"],
   inject: {
     emitBlur: {
-      default: null,
-      emitChange: null
+      default: null
+    },
+    emitChange: {
+      default: null
     }
   },
   // data(){
