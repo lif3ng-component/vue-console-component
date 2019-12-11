@@ -2,6 +2,7 @@ const path = require('path')
 const os = require('os')
 const fs = require('fs')
 const dotenv = require('dotenv')
+const pkg = require('../../package')
 
 const { prefix } = dotenv.config({ path: path.resolve(__dirname,'../../.env')}).parsed
 
@@ -21,6 +22,8 @@ fs.writeFileSync(path.join(__dirname,'demosComponents.json'),JSON.stringify(demo
 
 // process.exit(0)
 module.exports = {
+  title:pkg.name,
+  description:'Console 端组件库',
   plugins:[
     [
       'vuepress-plugin-container',
@@ -76,6 +79,7 @@ module.exports = {
     config.module
       .rule("docs-mark-open")
       .test(/\.*$/)
+      .pre()
       .include.add(path.resolve(__dirname, "demos"))
       .end()
       .use("string-replace-loader")
@@ -89,6 +93,7 @@ module.exports = {
       config.module
       .rule("docs-mark-close")
       .test(/\.*$/)
+      .pre()
       .include.add(path.resolve(__dirname, "demos"))
       .end()
       .use("string-replace-loader")
