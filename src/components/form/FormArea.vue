@@ -26,6 +26,14 @@
             v-model="value[item.prop]"
           />
           <component
+            v-else-if="item.type === 'select'"
+            :is="`${prefix}-select`"
+            v-model="value[item.prop]"
+            :optionList="item.optionList"
+            :valueName="item.valueName"
+            :labelName="item.labelName"
+          />
+          <component
             v-else-if="item.type === 'copyInput'"
             :is="`${prefix}-input`"
             readonly

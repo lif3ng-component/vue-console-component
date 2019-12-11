@@ -30,8 +30,11 @@
     />
 
     <p-form-area>xx</p-form-area>
-    <a v-popper>x</a>
-    <p-dropdown-menu :items="[{ text: 'xx' }]" />
+    <p-form-area :items="areaItems" v-model="areaData" />
+    <!-- <a v-popper>x</a>
+    <p-dropdown-menu :items="[{ text: 'xx' }]" /> -->
+    <p-input />
+    <p-select :optionList="optionList" v-model="selectV2" />
   </div>
 </template>
 
@@ -45,6 +48,35 @@ export default {
     return {
       page: 1,
       queryObj: {},
+      areaData: { a: 1, b: 2, c: 3 },
+      optionList: [
+        { id: 2, name: "abc" },
+        { id: 4, name: "asd" }
+      ],
+      selectV2: 4,
+      areaItems: [
+        { label: "a", type: "input", prop: "a" },
+        {
+          label: "b",
+          type: "select",
+          prop: "b",
+          optionList: [
+            { id: 2, name: 222 },
+            { id: 3, name: 333 }
+          ]
+        },
+        {
+          label: "custom valueName",
+          prop: "c",
+          type: "select",
+          optionList: [
+            { k: 2, namex: "22ccccc" },
+            { k: 3, namex: "33ccccc" }
+          ],
+          valueName: "k",
+          labelName: "namex"
+        }
+      ],
       columns: [
         {
           prop: "c1",

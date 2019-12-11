@@ -18,6 +18,7 @@ import Form from "@/components/form/Form";
 import FormArea from "@/components/form/FormArea";
 import FormItem from "@/components/form/FormItem";
 import Input from "@/components/form/Input";
+import Select from "@/components/form/Select";
 import Checkbox from "@/components/form/Checkbox";
 import CheckboxGroup from "@/components/form/CheckboxGroup";
 import Dialog from "@/components/Dialog";
@@ -44,6 +45,7 @@ const components = [
   Button,
   Icon,
   Input,
+  Select,
   Pagination,
   Container,
   Header,

@@ -1,0 +1,22 @@
+.{prefix}-select
+  position: relative
+  & &-options
+    background: second-background
+    width: 100%
+    outline: 1px solid #ccc
+    left: 0;
+    right: 0;
+
+.{prefix}-select-options
+  margin: 5px 0
+  padding: 5px 0
+  background: second-background
+  // width: 100%
+  default-border()
+  default-border-radius()
+  box-sizing: border-box
+  & &-item
+    padding: 5px 10px
+    cursor: pointer
+    &:hover
+      background: color-primary + 80%
