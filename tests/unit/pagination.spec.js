@@ -1,9 +1,23 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Pagination from "@/components/Pagination";
+import defaultOptions from "@/lib/defaultOptions";
+const { paginArgsHandler, paginSizeOptions, paginSize } = defaultOptions;
+
+let localVue;
+beforeEach(() => {
+  localVue = createLocalVue();
+  localVue.prototype.$default = {
+    paginArgsHandler,
+    paginSizeOptions,
+    paginSize
+  };
+});
 
 describe("pagination 分页", () => {
   it("render success", () => {
-    const wrapper = shallowMount(Pagination, {});
+    const wrapper = shallowMount(Pagination, {
+      localVue
+    });
     expect(wrapper.html()).toMatchInlineSnapshot(`
       <div class="t-pagination">
         <div class="t-pagination-pager">
@@ -28,7 +42,9 @@ describe("pagination 分页", () => {
   });
 
   it("init default props check", () => {
-    const wrapper = shallowMount(Pagination);
+    const wrapper = shallowMount(Pagination, {
+      localVue
+    });
     expect(wrapper.vm.$props.currentPage).toBe(1);
     expect(wrapper.vm.$props.sizeOptions).toEqual([10, 20, 30]);
     expect(wrapper.vm.$props.size).toBe(10);
@@ -40,7 +56,8 @@ describe("pagination 分页", () => {
     shallowMount(Pagination, {
       propsData: {
         layout: "nextx, prev"
-      }
+      },
+      localVue
     });
     expect(error.mock.calls[0][0]).toMatch("Invalid prop");
   });
@@ -50,7 +67,8 @@ describe("pagination 分页", () => {
     shallowMount(Pagination, {
       propsData: {
         layout: "jumper"
-      }
+      },
+      localVue
     });
     expect(error.mock.calls.length).toBe(0);
   });
@@ -76,10 +94,13 @@ describe("pagination 分页", () => {
   });
   describe("total = 5, 1 pages", () => {
     let wrapper;
-    wrapper = shallowMount(Pagination, {
-      propsData: {
-        total: 5
-      }
+    beforeEach(() => {
+      wrapper = shallowMount(Pagination, {
+        propsData: {
+          total: 5
+        },
+        localVue
+      });
     });
     it("page 1 active, other disable", () => {
       const itemsLen = wrapper.findAll(".t-pagination-pager > div").length;
@@ -96,7 +117,8 @@ describe("pagination 分页", () => {
       wrapper = shallowMount(Pagination, {
         propsData: {
           total: 15
-        }
+        },
+        localVue
       });
     });
 
