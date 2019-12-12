@@ -78,6 +78,12 @@ export default {
           ]
         },
         {
+          label: "a b template",
+          prop: "xxx",
+          type: "text",
+          template: "{{a}}----{{b}}"
+        },
+        {
           label: "custom valueName",
           prop: "c",
           type: "select",
@@ -95,6 +101,7 @@ export default {
           label: "column1"
           // click:()=>{}
         },
+        { prop: "c2", label: "c2", template: "{{c1}}--{{c1}}" },
         // {
         //   prop: "link",
         //   label: "some link",

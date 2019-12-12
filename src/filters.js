@@ -1,7 +1,9 @@
 import Vue from "vue";
 import moment from "moment";
+import renderTpl from "./utils/renderTpl";
 
 export default {
+  renderTpl,
   mapString(originStr, type) {
     return this.prototype.$STRING_MAP[type][originStr] || originStr;
   },

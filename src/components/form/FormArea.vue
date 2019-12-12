@@ -76,7 +76,7 @@
 </template>
 <script>
 import Clipboard from "clipboard";
-
+import renderTpl from "@/utils/renderTpl";
 export default {
   name: "FormArea",
   props: {
@@ -179,6 +179,7 @@ export default {
     }
   },
   methods: {
+    renderTpl,
     useFilter(origin, filter) {
       const [filtername, ...args] =
         typeof filter === "string" ? [filter] : filter;
@@ -191,21 +192,6 @@ export default {
       } else {
         // const input = e.target.previousSibling;
       }
-    },
-    renderTpl(value, tpl) {
-      // console.log({value,tpl})
-      return tpl.replace(/\{\{([\w.]+?)\}\}/g, (_, propStr) => {
-        if (propStr.indexOf(".") === -1) {
-          return typeof value[propStr] === "undefined" ? "" : value[propStr];
-        }
-        const propsArr = propStr.split(".");
-        let innerValue = value;
-        while (propsArr.length && innerValue) {
-          const prop = propsArr.shift();
-          innerValue = innerValue[prop];
-        }
-        return innerValue || "";
-      });
     }
   }
   // render() {

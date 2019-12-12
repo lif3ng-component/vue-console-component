@@ -14,6 +14,12 @@
           <template v-if="column.slot">
             <slot :name="`col-${column.prop}`" :row="row" :index="rowIndex" />
           </template>
+          <template v-else-if="column.template">
+            <!-- utils fn -->
+            {{ renderTpl(row, column.template) }}
+            <!-- filter -->
+            <!-- {{ row | renderTpl(column.template) }} -->
+          </template>
           <template v-else-if="column.click">
             <a @click="column.click(row)">
               {{ row[column.prop] }}
@@ -31,6 +37,8 @@
 </template>
 
 <script>
+import renderTpl from "@/utils/renderTpl";
+
 export default {
   name: "Table",
   props: {
@@ -48,6 +56,8 @@ export default {
       prefix
     };
   },
-  mounted() {}
+  methods: {
+    renderTpl
+  }
 };
 </script>
