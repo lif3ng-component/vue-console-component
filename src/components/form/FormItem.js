@@ -1,6 +1,6 @@
 export default {
   name: "FormItem",
-  inject: ["errObj", "hideLabel", "validateField"],
+  inject: ["errObj", "hideLabel", "validateField", "requiredMap"],
   provide() {
     return {
       emitBlur: this.emitBlur,
@@ -23,7 +23,9 @@ export default {
   mounted() {},
   methods: {
     emitBlur() {
-      this.validateField(this.prop);
+      setTimeout(() => {
+        this.validateField(this.prop);
+      }, 200);
     },
     emitChange() {
       if (this.hasError) {
@@ -39,7 +41,10 @@ export default {
   render() {
     return (
       <div
-        class={[`${prefix}-form-item`, { "has-error": this.hasError }]}
+        class={[
+          `${prefix}-form-item`,
+          { "has-error": this.hasError, required: this.requiredMap[this.prop] }
+        ]}
         data-field-name={this.prop}
       >
         {!this.hideLabel && (

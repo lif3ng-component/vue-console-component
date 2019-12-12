@@ -38,7 +38,14 @@
       &.has-error
         input 
           border-color color-error
-          shadow(color-error)
+          &:focus
+            shadow(color-error)
+      &.required
+        .{prefix}-form-item-label:before
+          content: '*'
+          color: color-error
+          margin-right: 5px
+        
       &-label
         width: 30%
         line-height 40px

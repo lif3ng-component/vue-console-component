@@ -100,11 +100,14 @@ export default {
   },
   data() {
     const propLabelMap = {};
-    const ruleWrapper = (rules, prop) => {
+    const propTypeMap = {};
+    const ruleWrapper = (rules, prop, type) => {
       const ruleMap = {
         required: {
           required: true,
-          message: `请输入${propLabelMap[prop]}`
+          message: `请${type === "select" ? "选择" : "输入"}${
+            propLabelMap[prop]
+          }`
         },
         email: {
           pattern: /^.+@.+\..+/,
@@ -129,15 +132,16 @@ export default {
         };
       });
     };
-    this.items.forEach(({ label, prop }) => {
+    this.items.forEach(({ label, prop, type }) => {
       if (prop && label) {
         propLabelMap[prop] = label;
+        propTypeMap[prop] = type;
       }
     });
 
     const innerRules = {};
     Object.keys(this.rules).forEach(prop => {
-      innerRules[prop] = ruleWrapper(this.rules[prop], prop);
+      innerRules[prop] = ruleWrapper(this.rules[prop], prop, propTypeMap[prop]);
     });
 
     return {

@@ -30,19 +30,23 @@
     />
 
     <p-form-area>xx</p-form-area>
-    <p-form-area :items="areaItems" v-model="areaData" />
+    <p-form-area
+      :items="areaItems"
+      v-model="areaData"
+      :rules="{ a: ['required'], c: ['required'] }"
+    />
     <!-- <a v-popper>x</a>
     <p-dropdown-menu :items="[{ text: 'xx' }]" /> -->
     <p-input />
     <p-select :optionList="optionList" v-model="selectV2" />
-    <p-dialog>
+    <!-- <p-dialog>
       <p-form-area
         no-border
         :items="areaItems"
         v-model="areaData"
         :rules="{ a: ['required'], c: ['required'] }"
       />
-    </p-dialog>
+    </p-dialog> -->
   </div>
 </template>
 

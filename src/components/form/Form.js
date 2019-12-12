@@ -27,27 +27,37 @@ export default {
     return {
       errObj: this.errObj,
       validateField: this.validateField,
-      hideLabel: this.hideLabel
+      hideLabel: this.hideLabel,
+      requiredMap: this.requiredMap
     };
   },
   data() {
     const initErrObj = {};
+    const requiredMap = {};
     for (const key in this.rules) {
       initErrObj[key] = "";
+      const requiredRule = this.rules[key].find(rule => {
+        if (typeof rule === "string") {
+          return rule === "required";
+        } else {
+          return rule.required;
+        }
+      });
+      if (requiredRule) {
+        requiredMap[key] = true;
+      }
     }
     return {
       validator: null,
-      errObj: initErrObj
+      errObj: initErrObj,
+      requiredMap
     };
   },
   mounted() {
-    console.log("form mounted");
     this.validator = new schema(this.rules);
-    console.log(this.$el.outerHTML);
   },
   methods: {
     handleKeyup({ keyCode }) {
-      console.log("handleKeyup", keyCode);
       if (keyCode === 13 && this.enterSubmit && this.submitFn) {
         this.submitFn();
       }
@@ -55,7 +65,6 @@ export default {
     validateField(field) {
       const rule = this.rules[field];
       const fieldRules = rule ? { [field]: rule } : {};
-      console.log({ fieldRules });
       // console.log(new schema(fieldRules))
       new schema(fieldRules)
         .validate(this.value)
@@ -63,12 +72,11 @@ export default {
           this.errObj[field] = "";
         })
         .catch(({ fields }) => {
-          console.log(`validate field [${field}]`, fields);
+          // console.log(`validate field [${field}]`, fields);
           this.errObj[field] = fields[field][0].message;
         });
     },
     validate() {
-      console.log(this.validator);
       return this.validator
         .validate(this.value)
         .then(() => {
@@ -77,15 +85,11 @@ export default {
           }
         })
         .catch(e => {
-          console.log("catch in Form", e);
           const { fields } = e;
-          console.log(fields);
           const newErrObj = {};
           for (const propName in fields) {
-            console.log(propName);
             newErrObj[propName] = fields[propName][0].message;
           }
-          console.log(newErrObj);
 
           for (const propName in this.errObj) {
             if ({}.hasOwnProperty.call(this.errObj, propName)) {
