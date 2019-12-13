@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-
+    <p-input icon-before="close" />
+    <p-input icon-after="close" />
     <!-- <p-pagination
       :total="88"
       :current-page.sync="page"

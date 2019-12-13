@@ -3,11 +3,16 @@
   color #333
   display: flex
   position: relative
-  & &-inner-icon-after
-    position: absolute
-    right: 10px
-    top: 50%
-    transform: translateY(-50%)
+  & &-inner-icon
+    &-after
+    &-before
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+    &-after
+      right: 10px
+    &-before
+      left: 10px
   button
     &:last-child
       border-left: none
@@ -23,6 +28,8 @@
 
     &.has-after-icon
       padding-right: 34px
+    &.has-before-icon
+      padding-left: 34px
 
     &:not(:last-child)
       // background:#ccc

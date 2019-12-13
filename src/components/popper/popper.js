@@ -17,7 +17,7 @@ export default {
     }, 500);
     const instance = new Popper(refEle, popEle, {
       positionFixed: true,
-      placement: "bottom-start",
+      placement: value === "bottom-end" ? value : "bottom-start",
       modifiers: {
         offset: "10, 10"
       },
