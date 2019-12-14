@@ -1,5 +1,20 @@
 <template>
   <div id="app">
+    <p-button @click="dialogVisible = true">dialog</p-button>
+    <p-dialog
+      ref="dialog"
+      v-if="dialogVisible"
+      title="title xx"
+      @submit="handleSubmit"
+      @close="dialogVisible = false"
+    >
+      <p-form-area
+        no-border
+        v-model="form"
+        :rules="rules"
+        :items="dymFormItems"
+      />
+    </p-dialog>
     <img alt="Vue logo" src="./assets/logo.png" />
     <p-input icon-before="close" />
     <p-input icon-after="close" />
@@ -39,7 +54,7 @@
     <!-- <a v-popper>x</a>
     <p-dropdown-menu :items="[{ text: 'xx' }]" /> -->
     <p-input />
-    <p-select :optionList="optionList" v-model="selectV2" />
+    <p-select preset="preset1" :optionList="optionList" v-model="selectV2" />
     <!-- <p-dialog>
       <p-form-area
         no-border
@@ -57,8 +72,32 @@ const { paginTableOuterMixin } = mixins;
 export default {
   name: "app",
   mixins: [paginTableOuterMixin],
+  computed: {
+    isA() {
+      return this.form.aOrb === "a";
+    }
+  },
   data() {
     return {
+      dialogVisible: false,
+      form: {},
+      rules: {
+        aOrb: ["required"],
+        a1: ["required"]
+      },
+      dymFormItems: [
+        {
+          prop: "aOrb",
+          label: "a or b",
+          type: "select",
+          optionList: [
+            { name: "a", id: "a" },
+            { name: "b", id: "b" }
+          ]
+        },
+        // {label:'a1',prop:'a1',type:'input',show:()=>this.form.aOrb==='a'}
+        { label: "a1", prop: "a1", type: "input", show: () => this.isA }
+      ],
       page: 1,
       queryObj: {},
       areaData: { a: 1, b: 2, c: "" },
@@ -76,7 +115,8 @@ export default {
           optionList: [
             { id: 2, name: 222 },
             { id: 3, name: 333 }
-          ]
+          ],
+          preset: "preset1"
         },
         {
           label: "a b template",
@@ -92,6 +132,7 @@ export default {
             { k: 2, namex: "22ccccc" },
             { k: 3, namex: "33ccccc" }
           ],
+
           valueName: "k",
           labelName: "namex"
         }
@@ -117,6 +158,12 @@ export default {
     };
   },
   methods: {
+    handleSubmit(data) {
+      console.log("handleSubmit", data);
+      this.$refs.dialog.formValidate().then(() => {
+        console.log("validate done ");
+      });
+    },
     handleQuery(x) {
       console.log("handleQuery", x);
     },

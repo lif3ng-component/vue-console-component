@@ -4,5 +4,8 @@ export default {
   paginArgsHandler: args => args,
 
   paginSizeOptions: [10, 20, 30],
-  paginSize: 10
+  paginSize: 10,
+
+  selectLabelName: "name",
+  selectValueName: "id"
 };

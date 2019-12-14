@@ -4,6 +4,20 @@ import { formReportMixin } from "@/mixins/formMixins";
 export default {
   name: "Form",
   mixins: [formReportMixin],
+  inject: {
+    // form area 注入的 get 闭包
+    getVisibleItemProps: {
+      default: null
+    }
+  },
+  computed: {
+    visiblePorps() {
+      if (this.getVisibleItemProps) {
+        return this.getVisibleItemProps();
+      }
+      return null;
+    }
+  },
   props: {
     value: Object,
     rules: {
@@ -85,7 +99,7 @@ export default {
           }
         })
         .catch(e => {
-          const { fields } = e;
+          const { fields, errors } = e;
           const newErrObj = {};
           for (const propName in fields) {
             newErrObj[propName] = fields[propName][0].message;
@@ -96,9 +110,27 @@ export default {
               this.errObj[propName] = newErrObj[propName] || "";
             }
           }
+          console.log(this.errObj);
+          // todo 可行 过滤掉不显示的item
+          console.log(this.visiblePorps);
+
+          if (this.visiblePorps) {
+            // 外层有 form area
+            const visiblePropsErrors = errors.filter(({ field }) => {
+              return this.visiblePorps.includes(field);
+            });
+            if (visiblePropsErrors.length > 0) {
+              throw e;
+            }
+          } else {
+            throw e;
+          }
           // this.errObj = newErrObj;
           // Object.assign(this.errObj,newErrObj)
-          throw e;
+          console.log("e", e);
+          // setTimeout(() => {
+          //   Promise.resolve("x");
+          // }, 1000);
         });
     }
   },

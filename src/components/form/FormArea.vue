@@ -14,7 +14,7 @@
         v-on="$listeners"
       >
         <component
-          v-for="(item, index) in formatItems"
+          v-for="(item, index) in visibleFormatItems"
           :key="index"
           :is="`${prefix}-form-item`"
           :prop="item.prop"
@@ -29,6 +29,7 @@
             v-else-if="item.type === 'select'"
             :is="`${prefix}-select`"
             v-model="value[item.prop]"
+            :preset="item.preset"
             :optionList="item.optionList"
             :valueName="item.valueName"
             :labelName="item.labelName"
@@ -79,6 +80,11 @@ import Clipboard from "clipboard";
 import renderTpl from "@/utils/renderTpl";
 export default {
   name: "FormArea",
+  provide() {
+    return {
+      getVisibleItemProps: () => this.visibleItemProps
+    };
+  },
   props: {
     noBorder: {
       type: Boolean,
@@ -176,6 +182,24 @@ export default {
           ...(type ? {} : { type: this.$default.formarea.type })
         };
       });
+    },
+    visibleFormatItems() {
+      return this.formatItems.filter(item => {
+        const { show, prop } = item;
+        if (show && typeof show === "function") {
+          if (show()) {
+            return true;
+          }
+          // clear hidden item prop value
+          delete this.value[prop];
+          return false;
+        } else {
+          return true;
+        }
+      });
+    },
+    visibleItemProps() {
+      return this.visibleFormatItems.map(({ prop }) => prop);
     }
   },
   methods: {

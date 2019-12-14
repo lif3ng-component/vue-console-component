@@ -10,13 +10,20 @@ export default {
       type: Array,
       default: () => []
     },
+    preset: {
+      type: String
+    },
     valueName: {
       type: String,
-      default: "id"
+      default() {
+        return this.$default.selectValueName;
+      }
     },
     labelName: {
       type: String,
-      default: "name"
+      default() {
+        return this.$default.selectLabelName;
+      }
     }
   },
   data() {
@@ -34,7 +41,10 @@ export default {
   },
   methods: {
     renderText() {
-      const option = this.optionList.find(({ [this.valueName]: value }) => {
+      const list = this.preset
+        ? this.$SELECT_OTPIONS_MAP[this.preset]
+        : this.optionList;
+      const option = list.find(({ [this.valueName]: value }) => {
         return value === this.value;
       });
       if (option) {
@@ -60,16 +70,17 @@ export default {
           iconAfter="caret-down"
         />
         <div class={`${prefix}-select-options`}>
-          {this.optionList.map(
-            ({ [this.labelName]: label, [this.valueName]: value }) => (
-              <div
-                onClick={() => this.handleSelect(value, label)}
-                class={`${prefix}-select-options-item`}
-              >
-                {label}
-              </div>
-            )
-          )}
+          {(this.preset
+            ? this.$SELECT_OTPIONS_MAP[this.preset]
+            : this.optionList
+          ).map(({ [this.labelName]: label, [this.valueName]: value }) => (
+            <div
+              onClick={() => this.handleSelect(value, label)}
+              class={`${prefix}-select-options-item`}
+            >
+              {label}
+            </div>
+          ))}
         </div>
       </div>
     );

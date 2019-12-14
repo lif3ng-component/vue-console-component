@@ -77,6 +77,9 @@ const install = (Vue, options = {}) => {
     paginArgsHandler,
     paginSize,
     paginSizeOptions,
+    selectValueName,
+    selectLabelName,
+    selectOptionsMap = {},
     stringMap = {}
   } = options;
   Vue.prototype.prefix = prefix;
@@ -102,12 +105,35 @@ const install = (Vue, options = {}) => {
   });
 
   Vue.prototype.$message = $message;
-  Vue.prototype.$STRING_MAP = stringMap;
+  const selectOptionsMapResult = {};
+  const stringMapFromSelectOptionsMap = {};
+
+  const labelName = selectLabelName || defaultOptions.selectLabelName;
+  const valueName = selectValueName || defaultOptions.selectValueName;
+  Object.keys(selectOptionsMap).forEach(k => {
+    selectOptionsMapResult[k] = selectOptionsMap[k].map(({ label, value }) => ({
+      [labelName]: label,
+      [valueName]: value
+    }));
+
+    stringMapFromSelectOptionsMap[k] = {};
+    selectOptionsMap[k].forEach(({ label, value }) => {
+      stringMapFromSelectOptionsMap[k][value] = label;
+    });
+  });
+  Vue.prototype.$SELECT_OTPIONS_MAP = selectOptionsMapResult;
+
+  Vue.prototype.$STRING_MAP = {
+    ...stringMapFromSelectOptionsMap,
+    ...stringMap
+  };
   Vue.prototype.$default = {
     formarea: { type: formareaItemType || defaultOptions.formareaItemType },
     paginArgsHandler: paginArgsHandler || defaultOptions.paginArgsHandler,
     paginSize: paginSize || defaultOptions.paginSize,
-    paginSizeOptions: paginSizeOptions || defaultOptions.paginSizeOptions
+    paginSizeOptions: paginSizeOptions || defaultOptions.paginSizeOptions,
+    selectLabelName: selectLabelName || defaultOptions.selectLabelName,
+    selectValueName: selectValueName || defaultOptions.selectValueName
   };
 };
 
