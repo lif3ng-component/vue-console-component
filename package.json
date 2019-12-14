@@ -9,7 +9,8 @@
     "cov": "vue-cli-service test:unit --coverage",
     "docs": "vuepress dev docs",
     "build:docs": "vuepress build docs",
-    "test": "vue-cli-service test:unit --watch"
+    "test": "vue-cli-service test:unit --watch",
+    "test:util": "vue-cli-service test:unit"
   },
   "main": "lib/lib.umd.js",
   "files": [
