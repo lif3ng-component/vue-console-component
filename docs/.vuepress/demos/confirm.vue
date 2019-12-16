@@ -12,6 +12,8 @@ export default {
         .catch(()=>{
           console.log('you canceled')
         })
+
+        
     }
   }
 }

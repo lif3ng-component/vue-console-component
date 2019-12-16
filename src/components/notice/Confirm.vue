@@ -14,29 +14,17 @@ export default {
     return {
       title: "确认",
       message: "",
-      confirmCb: null,
-      closeCb: null
+      resolve: null,
+      reject: null
     };
   },
   methods: {
-    setConfirmFn(fn) {
-      this.confirmCb = fn;
-      return {
-        catch: f => this.setCloseFn(f)
-      };
-    },
-    setCloseFn(fn) {
-      this.closeCb = fn;
-      return {
-        then: f => this.setConfirmFn(f)
-      };
-    },
     handleConfirm() {
-      this.confirmCb();
+      this.resolve();
       this.doDestroy();
     },
     handleClose() {
-      this.closeCb();
+      this.reject();
       this.doDestroy();
     },
     doDestroy() {
