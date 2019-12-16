@@ -8,7 +8,7 @@
       <span :class="{ link: item.routerName }" @click="handleClick(item)">{{
         item.text
       }}</span>
-      <nq-icon type="right" />
+      <component :is="`${prefix}-icon`" type="right" />
     </div>
   </div>
 </template>

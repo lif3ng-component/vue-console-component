@@ -28,7 +28,8 @@ import container from "@/components/layout/container";
 // filters
 import filters from "@/filters";
 // prototype function
-import $message from "@/components/notice/messageFn";
+import messageFn from "@/components/notice/messageFn";
+import confirmFn from "@/components/notice/confirmFn";
 // mixins
 import { formCollectMixin } from "@/mixins/formMixins";
 import { paginTableOuterMixin } from "@/mixins/tableMixins";
@@ -104,7 +105,9 @@ const install = (Vue, options = {}) => {
     }
   });
 
-  Vue.prototype.$message = $message;
+  Vue.prototype.$message = messageFn;
+  Vue.prototype.$confirm = confirmFn;
+
   const selectOptionsMapResult = {};
   const stringMapFromSelectOptionsMap = {};
 

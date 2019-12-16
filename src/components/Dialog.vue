@@ -50,7 +50,6 @@ export default {
   },
   mounted() {
     document.body.append(this.$el);
-    console.log(this.$parent);
     this.$nextTick(() => {
       if (this.$el === this.$parent.$el) {
         this.$parent.formValidate = this.formValidate;
