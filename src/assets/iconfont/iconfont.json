@@ -62,11 +62,25 @@
       "unicode_decimal": 59331
     },
     {
+      "icon_id": "4766918",
+      "name": "mail",
+      "font_class": "mail",
+      "unicode": "e7df",
+      "unicode_decimal": 59359
+    },
+    {
       "icon_id": "4766920",
       "name": "id card",
       "font_class": "idcard",
       "unicode": "e7de",
       "unicode_decimal": 59358
+    },
+    {
+      "icon_id": "4766960",
+      "name": "key",
+      "font_class": "key",
+      "unicode": "e7e1",
+      "unicode_decimal": 59361
     },
     {
       "icon_id": "4767011",
