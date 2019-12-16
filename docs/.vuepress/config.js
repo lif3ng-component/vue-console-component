@@ -23,7 +23,24 @@ fs.writeFileSync(path.join(__dirname,'demosComponents.json'),JSON.stringify(demo
 // process.exit(0)
 module.exports = {
   title:pkg.name,
-  description:'Console 端组件库',
+  description:'🛠️ Console 端组件库',
+  themeConfig:{
+    nav: [
+      { text: '指南', link: '/guide/' },
+      { text: '组件', link: '/component/' },
+      { text: '配置', link: '/config' },
+      // { text: '组件', link: 'https://google.com' },
+    ],
+    sidebar: {
+      '/component/':[
+        '',
+        'select',
+        'icon',
+        'table',
+        'confirm'
+      ]
+    }
+  },
   plugins:[
     [
       'vuepress-plugin-container',
@@ -77,6 +94,19 @@ module.exports = {
     });
 
     config.module
+      .rule("docs-pkg-name")
+      .test(/\.*$/)
+      .pre()
+      .include.add(path.resolve(__dirname, ".."))
+      .end()
+      .use("string-replace-loader")
+      .loader("string-replace-loader")
+      .options({
+        search: "pkgname",
+        replace: pkg.name,
+        flags: "g"
+      });
+    config.module
       .rule("docs-mark-open")
       .test(/\.*$/)
       .pre()
@@ -101,6 +131,19 @@ module.exports = {
       .options({
         search: "</d-",
         replace: `</${prefix}-`,
+        flags: "g"
+      });
+
+      config.module
+      .rule("icon")
+      .test(/\.*$/)
+      .include.add(path.resolve(__dirname, "../../src/assets/iconfont"))
+      .end()
+      .use("string-replace-loader")
+      .loader("string-replace-loader")
+      .options({
+        search: "pre-icon",
+        replace: `${prefix}-icon`,
         flags: "g"
       });
   },
