@@ -47,6 +47,8 @@ export default {
   },
   mounted() {
     this.doRequest();
+    console.log(this.$slots);
+    console.log(this.$scopedSlots);
   },
   methods: {
     doRequest(isQuery) {
@@ -74,19 +76,31 @@ export default {
     handlePageChange(page) {
       this.page = page;
       this.doRequest();
+    },
+    handleSizeChange(size) {
+      this.size = size;
+      if (this.total > 0) {
+        this.page = 1;
+        this.doRequest();
+      }
     }
   },
   render() {
     return (
       <div class={`${prefix}-pagintable`}>
-        <Table columns={this.columns} data={this.tableData} />
+        <Table
+          columns={this.columns}
+          data={this.tableData}
+          scopedSlots={this.$scopedSlots}
+        />
         <Pagination
           currentPage={this.page}
           total={this.total}
           size={this.size}
           sizeOptions={this.sizeOptions}
           on={{
-            "update:current-page": this.handlePageChange
+            "update:current-page": this.handlePageChange,
+            "update:size": this.handleSizeChange
           }}
         />
       </div>

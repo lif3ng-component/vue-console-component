@@ -1,6 +1,9 @@
 import Input from "./Input";
 export default {
   name: "Select",
+  model: {
+    event: "change"
+  },
   props: {
     value: {
       // type: String,
@@ -54,7 +57,7 @@ export default {
 
     handleSelect(id, label) {
       this.showText = label;
-      this.$emit("input", id);
+      this.$emit("change", id);
     }
   },
   mounted() {
@@ -65,6 +68,7 @@ export default {
       <div class={`${prefix}-select`}>
         <Input
           v-popper="select"
+          popper-class={this.$attrs["popper-class"] || ""}
           value={this.showText}
           readonly
           iconAfter="caret-down"

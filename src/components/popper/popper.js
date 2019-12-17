@@ -6,10 +6,19 @@ export default {
     // let popHover = 0;
     const refEle = el.$el || el;
     const popEle = el.nextElementSibling;
+
     if (!popEle) {
       throw new Error(
         "popper element must be next element with an element with v-popper"
       );
+    }
+
+    if (el.getAttribute("popper-style") && !popEle.getAttribute("style")) {
+      popEle.setAttribute("style", el.getAttribute("popper-style"));
+    }
+    if (el.getAttribute("popper-class")) {
+      // console.log(el, el.getAttribute("popper-class"));
+      popEle.classList.add(el.getAttribute("popper-class"));
     }
     setTimeout(() => {
       document.body.append(popEle);
@@ -33,6 +42,7 @@ export default {
         if (value === "select") {
           popper.style.width = window.getComputedStyle(reference).width;
         }
+        instance.scheduleUpdate();
       }
     });
 

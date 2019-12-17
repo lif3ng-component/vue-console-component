@@ -41,9 +41,11 @@
     <p-pagin-table
       :columns="columns"
       :queryObj="queryObj"
-      :pagin-size-options="[3, 4, 5]"
+      :pagin-size-options="[10, 20, 5]"
       :loadFn="this.loadHandler"
-    />
+    >
+      <template #col-oper="{row:{c1}}">--{{ c1 }}</template>
+    </p-pagin-table>
 
     <p-form-area>xx</p-form-area>
     <p-form-area
@@ -152,7 +154,8 @@ export default {
         // },
         {
           prop: "oper",
-          label: "oper"
+          label: "oper",
+          slot: true
         }
       ]
     };

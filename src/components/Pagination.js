@@ -1,6 +1,7 @@
 import Icon from "./Icon";
 import Button from "./Button";
 import Input from "./form/Input";
+import Select from "./form/Select";
 
 const MAX_PAGE = 5;
 export default {
@@ -46,8 +47,17 @@ export default {
     }
   },
   data() {
+    console.log(JSON.stringify(this.$props), this.sizeOptions);
+    const valueName = this.$default.selectValueName;
+    const labelName = this.$default.selectLabelName;
+    console.log({ labelName, valueName });
     return {
-      pageInputValue: ""
+      pageInputValue: "",
+      sizeSelectValue: this.size,
+      sizeSelectOptionList: this.sizeOptions.map(v => ({
+        [labelName]: v,
+        [valueName]: v
+      }))
     };
   },
   computed: {
@@ -123,6 +133,10 @@ export default {
         this.changePage(pageNumber);
       }
       this.pageInputValue = "";
+    },
+    changeSize(size) {
+      console.log("changeSize", size);
+      this.$emit("update:size", size);
     }
   },
   render() {
@@ -195,7 +209,13 @@ export default {
             case "size":
               return (
                 <div class={`${prefix}-pagination-size`}>
-                  每页显示{this.size}
+                  每页显示
+                  <Select
+                    popper-class="pagin-select-popper"
+                    optionList={this.sizeSelectOptionList}
+                    v-model={this.sizeSelectValue}
+                    onChange={this.changeSize}
+                  />
                 </div>
               );
             default:
