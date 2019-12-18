@@ -31,13 +31,30 @@ module.exports = {
       { text: '配置', link: '/config' },
       // { text: '组件', link: 'https://google.com' },
     ],
+    sidebarDepth: 2,
     sidebar: {
+      '/config':['/config'],
       '/component/':[
         '',
-        'select',
+        {
+          title: '表单',
+          children: [
+            'select',
+          ]
+        },
+        {
+          title: '表格',
+          children:[
+            'table',
+          ]
+        },
+        {
+          title: '全局方法',
+          children: [
+            'confirm'
+          ]
+        },
         'icon',
-        'table',
-        'confirm'
       ]
     }
   },
