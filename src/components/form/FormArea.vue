@@ -23,11 +23,13 @@
           <component
             v-if="item.type === 'input'"
             :is="`${prefix}-input`"
+            :attrs="item.attrs || item"
             v-model="value[item.prop]"
           />
           <component
             v-else-if="item.type === 'select'"
             :is="`${prefix}-select`"
+            :attrs="item.attrs || item"
             v-model="value[item.prop]"
             :preset="item.preset"
             :optionList="item.optionList"
@@ -108,10 +110,12 @@ export default {
     const propLabelMap = {};
     const propTypeMap = {};
     const ruleWrapper = (rules, prop, type) => {
+      const isletterFirst = /^[a-zA-Z]/.test(propLabelMap[prop]);
+      const letterPadding = isletterFirst ? " " : "";
       const ruleMap = {
         required: {
           required: true,
-          message: `请${type === "select" ? "选择" : "输入"}${
+          message: `请${type === "select" ? "选择" : "输入"}${letterPadding}${
             propLabelMap[prop]
           }`
         },

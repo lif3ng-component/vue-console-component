@@ -61,7 +61,7 @@ export default {
           />
         )}
         <input
-          attrs={this.$attrs}
+          attrs={this.$attrs ? this.$attrs.attrs || this.$attrs : {}}
           spellcheck="false"
           onInput={this.handleInput}
           onBlur={this.handleBlur}

@@ -110,10 +110,7 @@ export default {
               this.errObj[propName] = newErrObj[propName] || "";
             }
           }
-          console.log(this.errObj);
-          // todo 可行 过滤掉不显示的item
-          console.log(this.visiblePorps);
-
+          // 过滤掉不显示的item
           if (this.visiblePorps) {
             // 外层有 form area
             const visiblePropsErrors = errors.filter(({ field }) => {
@@ -125,12 +122,6 @@ export default {
           } else {
             throw e;
           }
-          // this.errObj = newErrObj;
-          // Object.assign(this.errObj,newErrObj)
-          console.log("e", e);
-          // setTimeout(() => {
-          //   Promise.resolve("x");
-          // }, 1000);
         });
     }
   },

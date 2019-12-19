@@ -57,7 +57,9 @@ export default {
 
     handleSelect(id, label) {
       this.showText = label;
-      this.$emit("change", id);
+      if (this.value !== id) {
+        this.$emit("change", id);
+      }
     }
   },
   mounted() {
@@ -68,6 +70,7 @@ export default {
       <div class={`${prefix}-select`}>
         <Input
           v-popper="select"
+          attrs={this.$attrs ? this.$attrs.attrs || this.$attrs : {}}
           popper-class={this.$attrs["popper-class"] || ""}
           value={this.showText}
           readonly
