@@ -1,6 +1,6 @@
 # Select 选择器
 
-:::demo select-1
+:::demo select-basic
 :::
 
 ## props

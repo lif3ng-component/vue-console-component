@@ -3,30 +3,30 @@
     <div class="preview">
       <component :is="src" />
     </div>
+    <a @click="getSandbox">debug in codesandbox</a>
     <component :is="`${src}-src`" ref="src" />
   </div>
 </template>
 <script>
+import {getSandboxUrl} from '../utils/sandbox'
 export default {
   props: ["src"],
   data() {
-    return { srcMounted: false };
-  },
-  mounted() {
-    // console.log(this.$el.innerHTML)
-    // setTimeout(()=>{
-    // console.log(this.$el.innerHTML)
-    // },100)
-    // const srcDom = this.$refs.src.$el
-    // const src = srcDom.textContent
-    // console.log({src})
+    return { srcMounted: false,srcContent:'' };
   },
   updated() {
     if (this.srcMounted) return;
     const srcComponent = this.$refs.src;
     if (srcComponent) {
       this.srcMounted = true;
-      const src = srcComponent.$el.textContent;
+      this.srcContent = srcComponent.$el.textContent;
+    }
+  },
+  methods:{
+    getSandbox(){
+      if(this.srcContent){
+        getSandboxUrl(this.srcContent)
+      }
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <d-select v-model="value" :optionList="optionList" />
+  <d-select v-model="value" :optionList="optionList" placeholder='abc' />
 </template>
 <script>
 export default {
@@ -8,6 +8,7 @@ export default {
       value:'',
       optionList:[
         {id:1,name:'label 1'},
+        {id:2,name:'label 2'},
       ]
     }
   }
