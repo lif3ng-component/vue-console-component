@@ -51,6 +51,12 @@ module.exports = {
           ]
         },
         {
+          title: '页面',
+          children:[
+            'page-login'
+          ]
+        },
+        {
           title: '全局方法',
           children: [
             'confirm'

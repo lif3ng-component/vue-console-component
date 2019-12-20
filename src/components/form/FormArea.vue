@@ -12,6 +12,7 @@
         v-model="value"
         :rules="innerRules"
         v-on="$listeners"
+        :hide-label="hideLabel"
       >
         <component
           v-for="(item, index) in visibleFormatItems"
@@ -88,6 +89,10 @@ export default {
     };
   },
   props: {
+    hideLabel: {
+      type: Boolean,
+      default: false
+    },
     noBorder: {
       type: Boolean,
       default: false

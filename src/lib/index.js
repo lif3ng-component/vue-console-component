@@ -22,6 +22,8 @@ import Select from "@/components/form/Select";
 import Checkbox from "@/components/form/Checkbox";
 import CheckboxGroup from "@/components/form/CheckboxGroup";
 import Dialog from "@/components/Dialog";
+// page
+import LoginPage from "@/components/page/LoginPage";
 // directives
 import popper from "@/components/popper/popper";
 import container from "@/components/layout/container";
@@ -66,7 +68,8 @@ const components = [
   FormArea,
   Checkbox,
   CheckboxGroup,
-  Dialog
+  Dialog,
+  LoginPage
 ];
 
 const globalPrefix = prefix;

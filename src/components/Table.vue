@@ -51,14 +51,14 @@ export default {
       default: () => []
     }
   },
-  computed:{
-    filteredColumns(){
-      return this.columns.filter(({show})=>{
-        if(show && !show()){
-          return false
+  computed: {
+    filteredColumns() {
+      return this.columns.filter(({ show }) => {
+        if (show && !show()) {
+          return false;
         }
-        return true
-      })
+        return true;
+      });
     }
   },
   methods: {
