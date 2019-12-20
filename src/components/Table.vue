@@ -5,12 +5,12 @@
     </template>
     <table style="width:100%">
       <tr>
-        <th v-for="(column, index) in columns" :key="index">
+        <th v-for="(column, index) in filteredColumns" :key="index">
           {{ column.label }}
         </th>
       </tr>
       <tr v-for="(row, rowIndex) in data" :key="rowIndex">
-        <td v-for="(column, index) in columns" :key="index">
+        <td v-for="(column, index) in filteredColumns" :key="index">
           <template v-if="column.slot">
             <slot :name="`col-${column.prop}`" :row="row" :index="rowIndex" />
           </template>
@@ -51,10 +51,15 @@ export default {
       default: () => []
     }
   },
-  data() {
-    return {
-      prefix
-    };
+  computed:{
+    filteredColumns(){
+      return this.columns.filter(({show})=>{
+        if(show && !show()){
+          return false
+        }
+        return true
+      })
+    }
   },
   methods: {
     renderTpl

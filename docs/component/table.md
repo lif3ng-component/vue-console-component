@@ -2,3 +2,6 @@
 
 :::demo demo-table
 :::
+
+:::demo table-toggle-column
+:::
