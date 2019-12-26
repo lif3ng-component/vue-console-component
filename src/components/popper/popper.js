@@ -1,5 +1,8 @@
 import Popper from "popper.js";
+import { throttle } from "lodash/fp";
 
+const refPopMap = new Map();
+const refPopperMap = new Map();
 export default {
   inserted(el, { value }) {
     // let refHover = 0;
@@ -7,6 +10,7 @@ export default {
     const refEle = el.$el || el;
     const popEle = el.nextElementSibling;
 
+    refPopMap.set(refEle, popEle);
     if (!popEle) {
       throw new Error(
         "popper element must be next element with an element with v-popper"
@@ -24,6 +28,13 @@ export default {
       document.body.append(popEle);
       instance.scheduleUpdate();
     }, 500);
+
+    const handleUpdate = ({ instance: { reference, popper } }) => {
+      if (value === "select") {
+        popper.style.width = window.getComputedStyle(reference).width;
+      }
+      instance.scheduleUpdate();
+    };
     const instance = new Popper(refEle, popEle, {
       positionFixed: true,
       placement: value === "bottom-end" ? value : "bottom-start",
@@ -31,6 +42,7 @@ export default {
         offset: "10, 10"
       },
       onCreate({ instance: { reference, popper } }) {
+        refPopperMap.set(reference, instance);
         if (value === "select") {
           popper.style.background = window.getComputedStyle(
             reference.querySelector("input")
@@ -38,17 +50,14 @@ export default {
           popper.style.width = window.getComputedStyle(reference).width;
         }
       },
-      onUpdate({ instance: { reference, popper } }) {
-        if (value === "select") {
-          popper.style.width = window.getComputedStyle(reference).width;
-        }
-        instance.scheduleUpdate();
-      }
+      onUpdate: throttle(100, handleUpdate)
     });
 
-    popEle.style.visibility = "hidden";
+    // popEle.style.visibility = "hidden";
 
     const show = () => {
+      instance.update();
+      // instance.enableEventListeners();
       popEle.style.visibility = "visible";
 
       refEle.removeEventListener("click", show);
@@ -57,6 +66,8 @@ export default {
       }, 10);
     };
     const hide = () => {
+      // instance.disableEventListeners();
+
       popEle.style.visibility = "hidden";
       document.body.removeEventListener("click", hide);
       setTimeout(() => {
@@ -64,6 +75,7 @@ export default {
       }, 10);
     };
 
+    hide();
     refEle.addEventListener("click", show);
 
     // refEle.addEventListener("mouseenter", () => {
@@ -89,5 +101,14 @@ export default {
     //     }
     //   }, 300);
     // });
+  },
+  unbind(el) {
+    console.log("unbind", el);
+    console.log(refPopMap.get(el));
+    const popEle = refPopMap.get(el);
+    document.body.removeChild(popEle);
+
+    const popperInstance = refPopperMap.get(el);
+    popperInstance.destroy();
   }
 };
