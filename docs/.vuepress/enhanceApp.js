@@ -1,5 +1,4 @@
 import lib from '../../src/lib'
-import '../../src/style/index.styl'
 import demoComponents from './demosComponents'
 
 export default({Vue})=>{
@@ -11,7 +10,7 @@ export default({Vue})=>{
   demoComponents.forEach((k)=>{
     Vue.component(k,()=>import(`@demo/${k}`))
     Vue.component(`${k}-src`, ()=>import(`!raw-loader!@demo/${k}`).then(({ default:str })=>{
-      console.log(str)
+      // console.log(str)
       return {
         render(){
           return <pre><code>{str}</code></pre>

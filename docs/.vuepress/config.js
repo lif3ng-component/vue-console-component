@@ -48,6 +48,7 @@ module.exports = {
           title: '表格',
           children:[
             'table',
+            'pagintable'
           ]
         },
         {
