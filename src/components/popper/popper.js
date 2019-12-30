@@ -103,8 +103,6 @@ export default {
     // });
   },
   unbind(el) {
-    console.log("unbind", el);
-    console.log(refPopMap.get(el));
     const popEle = refPopMap.get(el);
     document.body.removeChild(popEle);
 
