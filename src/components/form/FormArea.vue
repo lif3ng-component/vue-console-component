@@ -13,6 +13,7 @@
         :rules="innerRules"
         v-on="$listeners"
         :hide-label="hideLabel"
+        :enter-submit="enterSubmit"
       >
         <component
           v-for="(item, index) in visibleFormatItems"
@@ -109,7 +110,11 @@ export default {
       type: String,
       default: ""
     },
-    value: Object
+    value: Object,
+    enterSubmit: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     const propLabelMap = {};
