@@ -14,6 +14,7 @@
         v-on="$listeners"
         :hide-label="hideLabel"
         :enter-submit="enterSubmit"
+        :submit-fn="submitFn"
       >
         <component
           v-for="(item, index) in visibleFormatItems"
@@ -114,6 +115,9 @@ export default {
     enterSubmit: {
       type: Boolean,
       default: false
+    },
+    submitFn: {
+      type: Function
     }
   },
   data() {
