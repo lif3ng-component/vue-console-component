@@ -41,6 +41,13 @@
       "unicode_decimal": 59310
     },
     {
+      "icon_id": "4766440",
+      "name": "sever",
+      "font_class": "server",
+      "unicode": "e7b1",
+      "unicode_decimal": 59313
+    },
+    {
       "icon_id": "4766451",
       "name": "mobile",
       "font_class": "mobile",
