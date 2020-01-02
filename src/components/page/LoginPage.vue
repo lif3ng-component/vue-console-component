@@ -1,7 +1,9 @@
 <template>
   <div :class="`${prefix}-login-page`">
     <div :class="`${prefix}-form-container`">
-      <img v-if="logoSrc" :src="logoSrc" :class="`${prefix}-login-page-logo`" />
+      <div v-if="logoSrc" :class="`${prefix}-login-page-logo`">
+        <img :src="logoSrc" />
+      </div>
       <p
         v-if="logoText"
         :class="`${prefix}-login-page-logo-text`"
