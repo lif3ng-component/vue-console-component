@@ -6,21 +6,51 @@
   right 0
   background: #333
   background-size: cover
+  background-position: 50%
   color: #fff
+  display: flex
+  flex-direction: row
+  align-items center
+  justify-content: center
   .{prefix}-form-container
-    position absolute
-    left 50%
-    top: 50%
-    transform: translate(-50%, -10vh)
-    margin-top: -15%
+    // position absolute
+    // left 50%
+    // top: 50%
+    // transform: translate(-50%, -10vh)
+    // margin-top: -15%
     width 300px
+    margin-bottom 120px
+    .{prefix}-login-page-form-slot
+      background: #fff
+      padding: 20px
+      padding-top: 0
+      border-radius: 4px
+      .{prefix}-form-item
+        margin-bottom: 25px
+      > .{prefix}-container
+        justify-content: space-between
+        padding 0 0 10px
+        margin-top -8px
+        font-size 14px
+        
+        &:last-child
+          margin 0
+          padding 10px 0 0
+        > a
+          cursor pointer
+          color color-primary
+          text-decoration: none
+    .{prefix}-login-page-logo
+      max-width: 100%
+      + .{prefix}-login-page-form-slot
+        margin-top: 30px
     .{prefix}-login-page-logo-text
       margin: 20px 0
       text-align: center
       font-size: 30px
 
-    input
-      background: rgba(100,100,100,.3) !important
-      color: #fff
+    // input
+    //   background: rgba(100,100,100,.3) !important
+    //   color: #fff
      
   

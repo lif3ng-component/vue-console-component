@@ -25,6 +25,7 @@
         >
           <component
             v-if="item.type === 'input'"
+            v-bind="item.props || {}"
             :is="`${prefix}-input`"
             :attrs="item.attrs || item"
             v-model="value[item.prop]"
