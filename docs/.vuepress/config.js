@@ -123,7 +123,9 @@ module.exports = {
       .rule("docs-pkg-name")
       .test(/\.*$/)
       .pre()
-      .include.add(path.resolve(__dirname, ".."))
+      .include
+      .add(path.resolve(__dirname, ".."))
+      .add(path.resolve(__dirname, "../utils"))
       .end()
       .use("string-replace-loader")
       .loader("string-replace-loader")
@@ -132,6 +134,23 @@ module.exports = {
         replace: pkg.name,
         flags: "g"
       });
+
+    config.module
+      .rule("docs-pkg-version")
+      .test(/\.*$/)
+      .pre()
+      .include
+      .add(path.resolve(__dirname, ".."))
+      .add(path.resolve(__dirname, "../utils"))
+      .end()
+      .use("string-replace-loader")
+      .loader("string-replace-loader")
+      .options({
+        search: "pkgversion",
+        replace: pkg.version,
+        flags: "g"
+      });
+      
     config.module
       .rule("docs-mark-open")
       .test(/\.*$/)
