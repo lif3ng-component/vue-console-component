@@ -47,10 +47,8 @@ export default {
     }
   },
   data() {
-    console.log(JSON.stringify(this.$props), this.sizeOptions);
     const valueName = this.$default.selectValueName;
     const labelName = this.$default.selectLabelName;
-    console.log({ labelName, valueName });
     return {
       pageInputValue: "",
       sizeSelectValue: this.size,
@@ -135,7 +133,6 @@ export default {
       this.pageInputValue = "";
     },
     changeSize(size) {
-      console.log("changeSize", size);
       this.$emit("update:size", size);
     }
   },

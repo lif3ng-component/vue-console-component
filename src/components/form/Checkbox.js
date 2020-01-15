@@ -1,12 +1,8 @@
 export default {
   name: "Checkbox",
   props: ["value"],
-  // model:{
-  //   event:'changexx'
-  // },
   methods: {
     handleChange(e) {
-      console.log("checkbox change", e.target.checked);
       this.$emit("input", e.target.checked);
     }
   },

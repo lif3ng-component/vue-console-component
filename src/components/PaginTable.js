@@ -47,8 +47,6 @@ export default {
   },
   mounted() {
     this.doRequest();
-    console.log(this.$slots);
-    console.log(this.$scopedSlots);
   },
   methods: {
     doRequest(isQuery) {
