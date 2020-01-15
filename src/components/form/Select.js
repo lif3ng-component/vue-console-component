@@ -6,9 +6,9 @@ export default {
   },
   props: {
     value: {
-      // type: String,
       default: ""
     },
+    multiple: Boolean,
     optionList: {
       type: Array,
       default: () => []
@@ -34,6 +34,18 @@ export default {
       showText: ""
     };
   },
+  computed: {
+    valueLabelMap() {
+      const result = {};
+      const list = this.preset
+        ? this.$SELECT_OTPIONS_MAP[this.preset]
+        : this.optionList;
+      list.forEach(({ [this.valueName]: value, [this.labelName]: label }) => {
+        result[value] = label;
+      });
+      return result;
+    }
+  },
   watch: {
     optionList() {
       this.renderText();
@@ -44,6 +56,12 @@ export default {
   },
   methods: {
     renderText() {
+      if (this.multiple) {
+        return (this.showText = this.value
+          .map(v => this.valueLabelMap[v])
+          .join(", "));
+      }
+
       const list = this.preset
         ? this.$SELECT_OTPIONS_MAP[this.preset]
         : this.optionList;
@@ -55,15 +73,30 @@ export default {
       }
     },
 
-    handleSelect(id, label) {
+    handleSelect(value, label, e) {
+      if (this.multiple) {
+        e.stopPropagation();
+        if (this.value.indexOf(value) === -1) {
+          this.$emit("change", [...this.value, value]);
+        } else {
+          const valueCopy = [...this.value];
+          const index = valueCopy.indexOf(value);
+          valueCopy.splice(index, 1);
+          this.$emit("change", valueCopy);
+        }
+        return;
+      }
       this.showText = label;
-      if (this.value !== id) {
-        this.$emit("change", id);
+      if (this.value !== value) {
+        this.$emit("change", value);
       }
     }
   },
   mounted() {
-    this.renderText();
+    if (this.multiple && !this.value) {
+      this.$emit("change", []);
+    }
+    this.$nextTick(this.renderText);
   },
   render() {
     return (
@@ -82,8 +115,11 @@ export default {
             : this.optionList
           ).map(({ [this.labelName]: label, [this.valueName]: value }) => (
             <div
-              onClick={() => this.handleSelect(value, label)}
-              class={`${prefix}-select-options-item`}
+              onClick={$event => this.handleSelect(value, label, $event)}
+              class={[
+                `${prefix}-select-options-item`,
+                { selected: this.multiple && this.value.includes(value) }
+              ]}
             >
               {label}
             </div>

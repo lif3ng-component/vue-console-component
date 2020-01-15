@@ -37,7 +37,7 @@ const getSanboxParameters = vueContent =>
         content: {
           dependencies: {
             vue: "^2.6.10",
-            pkgname: "pkgversion"
+            "pkgname": "pkgversion"
           }
         }
       },
