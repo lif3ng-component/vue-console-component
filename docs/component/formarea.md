@@ -1,9 +1,15 @@
 # Form Area 表单区域
 
-:::demo formarea-basic
-:::
+Form Area 用于组织表单项，内部为 Form 组件，支持完整的 数据绑定 和 表单校验。
 
-:::demo formarea-noborder-mutil
+采用声明式调用，使用时在template中不必编写Form、FormItem、Input/Select... 层层嵌套，只需声明表单绑定对象（v-model)、表单项（items) 和 校验规则（rules)，即可完成业务编写，便于后续迭代升级。
+<!-- :::demo formarea-basic
+::: -->
+
+<!-- :::demo formarea-noborder-mutil
+::: -->
+
+:::demo formarea-all-item
 :::
 
 ## props
@@ -30,13 +36,28 @@
 - Type: `boolean`
 - Default: `false`
 
-回车键触发 `form 组件` 提交。
+回车键触发 `form 组件` 提交。提交方法为 [submitFn](#submitfn)
+
+### submitFn
+- Type: `function`
+- Default: `undefined`
+
+当 `enterSubmit` 为`true`时需要提供此方法。
+
+
+
+
 
 ### items
 - Type: `array`
 - Default: `[]`
 
 `form 组件` items
+
+#### items item
+-  
+  - s
+  - s
 
 ### rules
 - Type: `object`

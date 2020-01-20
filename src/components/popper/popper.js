@@ -71,12 +71,16 @@ export default {
       popEle.style.visibility = "hidden";
       document.body.removeEventListener("click", hide);
       setTimeout(() => {
-        refEle.addEventListener("click", show);
+        if (!refEle.getAttribute("disabled")) {
+          refEle.addEventListener("click", show);
+        }
       }, 10);
     };
 
     hide();
-    refEle.addEventListener("click", show);
+    // if (!refEle.getAttribute("disabled")) {
+    //   refEle.addEventListener("click", show);
+    // }
 
     // refEle.addEventListener("mouseenter", () => {
     //   refHover = 1;

@@ -27,18 +27,19 @@
             v-if="item.type === 'input'"
             v-bind="item.props || {}"
             :is="`${prefix}-input`"
-            :attrs="item.attrs || item"
+            :attrs="item.attrs"
             v-model="value[item.prop]"
           />
           <component
             v-else-if="item.type === 'select'"
             :is="`${prefix}-select`"
-            :attrs="item.attrs || item"
+            :attrs="item.attrs"
             v-model="value[item.prop]"
             :preset="item.preset"
             :optionList="item.optionList"
             :valueName="item.valueName"
             :labelName="item.labelName"
+            :multiple="item.multiple"
           />
           <component
             v-else-if="item.type === 'copyInput'"

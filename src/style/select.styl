@@ -1,8 +1,13 @@
 .{prefix}-select
   position: relative
+  .{prefix}-input[disabled]
+    > i
+      color: #888
   input 
     cursor: pointer
     user-select none
+    &[disabled]
+      cursor default
   & &-options
     background: second-background
     width: 100%
