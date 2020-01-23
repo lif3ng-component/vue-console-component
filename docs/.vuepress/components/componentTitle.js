@@ -6,7 +6,7 @@ const globalNameMap = {
 };
 const nameMap={
   formarea:{
-    'all-item':'item type 列举'
+    'all-item':'各种表单项'
   }
 }
 export default filename => {
@@ -16,5 +16,5 @@ export default filename => {
     const re = /^[a-zA-Z]/
     return re.test(str)?' ':''
   }
-  return `${(nameMap[type]||{})[name] || name}${spacePadding(typeMap[type] || type)[0]}${typeMap[type] || type}`;
+  return `${(nameMap[type]||{})[name] || globalNameMap[name]||name}${spacePadding(typeMap[type] || type)[0]}${typeMap[type] || type}`;
 };

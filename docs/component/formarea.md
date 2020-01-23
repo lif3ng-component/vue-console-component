@@ -3,8 +3,8 @@
 Form Area 用于组织表单项，内部为 Form 组件，支持完整的 数据绑定 和 表单校验。
 
 采用声明式调用，使用时在template中不必编写Form、FormItem、Input/Select... 层层嵌套，只需声明表单绑定对象（v-model)、表单项（items) 和 校验规则（rules)，即可完成业务编写，便于后续迭代升级。
-<!-- :::demo formarea-basic
-::: -->
+:::demo formarea-basic
+:::
 
 <!-- :::demo formarea-noborder-mutil
 ::: -->

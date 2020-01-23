@@ -3,17 +3,36 @@
 </template>
 <script>
 export default {
-  data(){
+  data() {
     return {
-      rules:{
-        name:['required']
+      rules: {
+        name: ["required"]
       },
-      form:{},
+      form: {},
       items: [
-        {type:'input',prop:'name',label:'name',attrs:{placeholder:'please input name',type:'number',min:1,max:10}},
-        {type:'select',prop:'prop2',label:'select label',placeholder:'please select',optionList:[{id:1,name:'111'},{id:2,name:'2222'}]}
+        {
+          type: "input",
+          prop: "name",
+          label: "name",
+          attrs: {
+            placeholder: "please input name",
+            type: "number",
+            min: 1,
+            max: 10
+          }
+        },
+        {
+          type: "select",
+          prop: "prop2",
+          label: "select label",
+          placeholder: "please select",
+          optionList: [
+            { id: 1, name: "111" },
+            { id: 2, name: "2222" }
+          ]
+        }
       ]
-    }
+    };
   }
-}
+};
 </script>

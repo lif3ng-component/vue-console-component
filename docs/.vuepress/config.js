@@ -25,11 +25,12 @@ module.exports = {
   title:pkg.name,
   description:'🛠️ Console 端组件库',
   themeConfig:{
+    version: pkg.version,
+    smoothScroll:true,
     nav: [
       { text: '指南', link: '/guide/' },
       { text: '组件', link: '/component/' },
       { text: '配置', link: '/config' },
-      // { text: '组件', link: 'https://google.com' },
     ],
     sidebarDepth: 2,
     sidebar: {
@@ -98,7 +99,7 @@ module.exports = {
         //   return false
         // }
       }
-    ]
+    ],
   ],
   alias:{
     '@':path.resolve(__dirname,'../../src'),

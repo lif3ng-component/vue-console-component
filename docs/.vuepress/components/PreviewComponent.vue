@@ -25,6 +25,7 @@ import getTitle from "./componentTitle";
 
 export default {
   props: ["src"],
+  inject: ["addDemo"],
   data() {
     return { srcMounted: false, showCode: false };
   },
@@ -32,6 +33,14 @@ export default {
     title() {
       return getTitle(this.src);
     }
+  },
+  watch:{
+    title(title,old){
+      console.log({title,old})
+    }
+  },
+  mounted(){
+    this.addDemo({title:getTitle(this.src),hash:`demo-${this.src}`})
   },
   updated() {
     if (this.srcMounted) return;
