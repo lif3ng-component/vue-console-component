@@ -22,6 +22,7 @@ fs.writeFileSync(path.join(__dirname,'demosComponents.json'),JSON.stringify(demo
 
 // process.exit(0)
 module.exports = {
+  base: process.env.base || '/',
   title:pkg.name,
   description:'🛠️ Console 端组件库',
   themeConfig:{
