@@ -42,6 +42,11 @@
             :multiple="item.multiple"
           />
           <component
+            v-else-if="item.type === 'switch'"
+            :is="`${prefix}-switch`"
+            v-model="value[item.prop]"
+          />
+          <component
             v-else-if="item.type === 'copyInput'"
             :is="`${prefix}-input`"
             readonly

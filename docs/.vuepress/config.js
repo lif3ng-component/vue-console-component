@@ -42,8 +42,10 @@ module.exports = {
           title: '表单',
           children: [
             'formarea',
+            'form',
             'input',
             'select',
+            'switch'
           ]
         },
         {

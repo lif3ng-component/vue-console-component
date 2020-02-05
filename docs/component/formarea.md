@@ -63,7 +63,16 @@ Form Area 用于组织表单项，内部为 Form 组件，支持完整的 数据
 - Type: `object`
 - Default: `{}`
 
-`form 组件` rules
+`form 组件` [rules](form.md#rules)
+
+单条规则除了常规对象写法外，还提供了字符串简写。
+
+简写：
+- `"required"` 必填项
+- `"email"` 邮箱
+- `"mobile"` 手机号
+
+简写方式提供了统一的中文提示，暂未处理 i18n 的场景。
 
 ### v-model
 - Type: `object`

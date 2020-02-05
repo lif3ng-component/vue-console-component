@@ -1,0 +1,34 @@
+.{prefix}-switch
+  display: inline-block
+  input[type=checkbox]
+    display none
+  & &-wrapper
+    cursor pointer
+    width: 3em
+    height: 1.5em
+    position: relative
+    background: second-background
+    box-shadow: 0 0 3px 3px rgba(0,0,0,.1)
+    border-radius: .75em
+    display: inline-block
+    transition-duration: 300ms
+    &:after
+      content:''
+      display: block
+      position: absolute
+      width:1.4em
+      height 1.4em
+      box-shadow: 0 0 3px 3px rgba(0,0,0,.05)
+      border-radius: 50%
+      transition-duration: 300ms
+      background: #fff
+      top: .05em
+      left: .05em
+    &.enable
+      background: color-primary
+      box-shadow: none
+      &:after
+        left: 1.5em
+        box-shadow: 0 0 1px 1px color-primary
+
+    
