@@ -210,13 +210,15 @@ export default {
     },
     visibleFormatItems() {
       return this.formatItems.filter(item => {
-        const { show, prop } = item;
+        const { show, prop, removePropWhenHide } = item;
         if (show && typeof show === "function") {
           if (show()) {
             return true;
           }
-          // clear hidden item prop value
-          delete this.value[prop];
+          // clear hidden item prop value when **need**
+          if (removePropWhenHide) {
+            delete this.value[prop];
+          }
           return false;
         } else {
           return true;
