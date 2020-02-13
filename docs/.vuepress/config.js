@@ -52,7 +52,8 @@ module.exports = {
           title: '表格',
           children:[
             'table',
-            'pagintable'
+            'pagintable',
+            'tableheader'
           ]
         },
         {
@@ -68,6 +69,7 @@ module.exports = {
           ]
         },
         'icon',
+        'button'
       ]
     }
   },
