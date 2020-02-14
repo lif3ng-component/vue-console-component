@@ -1,6 +1,7 @@
 import Pagination from "@/components/Pagination";
 import Icon from "@/components/Icon";
 import Button from "@/components/Button";
+import ButtonArea from "@/components/ButtonArea";
 import Container from "@/components/layout/Container.vue";
 import Header from "@/components/layout/Header.vue";
 import HeaderContainer from "@/components/layout/HeaderContainer.vue";
@@ -47,6 +48,7 @@ const directives = {
 };
 const components = [
   Button,
+  ButtonArea,
   Icon,
   Input,
   Select,
@@ -85,8 +87,8 @@ const install = (Vue, options = {}) => {
     paginSizeOptions,
     selectValueName,
     selectLabelName,
-    selectOptionsMap = {},
-    stringMap = {}
+    selectOptionsMap = defaultOptions.selectOptionsMap,
+    stringMap = defaultOptions.stringMap
   } = options;
   Vue.prototype.prefix = prefix;
   components.forEach(component => {
