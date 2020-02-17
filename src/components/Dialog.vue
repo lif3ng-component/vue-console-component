@@ -14,7 +14,7 @@
         <div :class="`${prefix}-dialog-body`">
           <slot />
         </div>
-        <div :class="`${prefix}-dialog-footer`">
+        <div :class="`${prefix}-dialog-footer`" v-if="!hideFooter">
           <slot name="btns" />
           <component
             :is="`${prefix}-button`"
@@ -41,6 +41,9 @@ export default {
     title: {
       type: String,
       default: ""
+    },
+    hideFooter: {
+      default: false
     }
   },
   data() {

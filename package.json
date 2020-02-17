@@ -1,6 +1,6 @@
 {
   "name": "lif3ng-console-vue-component",
-  "version": "0.1.39",
+  "version": "0.1.40",
   "author": "lif3ng<lif3ng@icloud.com>",
   "scripts": {
     "serve": "vue-cli-service serve --open",
@@ -14,8 +14,7 @@
   },
   "main": "lib/lib.umd.js",
   "files": [
-    "lib",
-    "src/style"
+    "lib"
   ],
   "dependencies": {
     "async-validator": "^3.2.2",

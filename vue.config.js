@@ -21,6 +21,7 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    config.devtool("source-map");
     config.plugin("define").tap(([args]) => {
       console.log({ args }, { prefix: JSON.stringify(prefix) });
       return [

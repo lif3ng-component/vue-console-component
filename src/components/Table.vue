@@ -10,7 +10,11 @@
         </th>
       </tr>
       <tr v-for="(row, rowIndex) in data" :key="rowIndex">
-        <td v-for="(column, index) in filteredColumns" :key="index">
+        <td
+          v-for="(column, index) in filteredColumns"
+          :key="index"
+          :style="getColStyles(column)"
+        >
           <template v-if="column.slot">
             <slot :name="`col-${column.prop}`" :row="row" :index="rowIndex" />
           </template>
@@ -33,6 +37,8 @@
         </td>
       </tr>
     </table>
+
+    <div class="empty-line" v-if="data.length === 0">{{ emptyText }}</div>
   </div>
 </template>
 
@@ -49,6 +55,9 @@ export default {
     data: {
       type: Array,
       default: () => []
+    },
+    emptyText: {
+      default: "暂无数据"
     }
   },
   computed: {
@@ -62,7 +71,17 @@ export default {
     }
   },
   methods: {
-    renderTpl
+    renderTpl,
+    getColStyles({ noWrap }) {
+      const styleMap = {
+        noWrap: {
+          whiteSpace: "nowrap"
+        }
+      };
+      return {
+        ...(noWrap ? styleMap.noWrap : {})
+      };
+    }
   }
 };
 </script>
