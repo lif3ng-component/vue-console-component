@@ -24,6 +24,7 @@ import Switch from "@/components/form/Switch";
 import Checkbox from "@/components/form/Checkbox";
 import CheckboxGroup from "@/components/form/CheckboxGroup";
 import Dialog from "@/components/Dialog";
+import Tree from "@/components/Tree";
 // page
 import LoginPage from "@/components/page/LoginPage";
 // directives
@@ -73,6 +74,7 @@ const components = [
   Checkbox,
   CheckboxGroup,
   Dialog,
+  Tree,
   LoginPage
 ];
 
