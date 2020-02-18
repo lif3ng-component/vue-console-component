@@ -1,0 +1,10 @@
+@keyframes circle
+{
+  from { transition: rotate(0) }
+  to { transition: rotate(360deg) }
+}
+
+.{prefix}-icons 
+  &.{prefix}-icon-loading
+    &:before
+      animation circle .5s infinite  

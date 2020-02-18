@@ -1,0 +1,21 @@
+.{prefix}-tree
+  &-icon-area
+    display inline-block
+    cursor pointer
+    padding 5px 3px
+    &:hover
+      color color-primary
+  &-node-name
+    cursor pointer
+    user-select none
+    padding 5px
+    border-radius 4px
+    &:hover
+      background color-primary + 80%
+    &.selected
+      background color-primary + 60%
+  &-node-children
+    margin-left 1em
+    display none
+    &.show
+      display block

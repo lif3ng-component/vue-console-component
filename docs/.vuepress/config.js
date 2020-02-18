@@ -69,7 +69,8 @@ module.exports = {
           ]
         },
         'icon',
-        'button'
+        'button',
+        'tree'
       ]
     }
   },

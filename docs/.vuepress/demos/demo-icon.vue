@@ -11,6 +11,9 @@ export default {
   data() {
     return {
       iconList: [
+        'edit',
+        'loading',
+        'swap',
         "server",
         "key",
         "mail",
