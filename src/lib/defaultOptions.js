@@ -7,5 +7,8 @@ export default {
   paginSize: 10,
 
   selectLabelName: "name",
-  selectValueName: "id"
+  selectValueName: "id",
+
+  stringMap: {},
+  selectOptionsMap: {}
 };
