@@ -4,6 +4,7 @@
     <p>selected node data: {{ selectedNode }}</p>
     <d-button @click="refreshSelectedChildren">刷新选中节点子节点</d-button>
     <d-button @click="refreshSelectedSibling">刷新选中节点兄弟节点</d-button>
+    <d-button @click="expandRootNode">展开根节点</d-button>
     <d-tree
       ref="tree"
       :selectedInit="2"
@@ -49,6 +50,9 @@ export default {
     },
     refreshSelectedSibling() {
       this.$refs.tree.refreshSelectedSibling();
+    },
+    expandRootNode(){
+      this.$refs.tree.expandRootNode();
     }
   }
 };

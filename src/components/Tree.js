@@ -187,8 +187,6 @@ const Tree = {
   },
   computed: {},
   methods: {
-    loadChildren() {},
-    refreshChildren() {},
     setSelectedValue(value) {
       this.selectedValue = value;
       this.$emit("selected", value);
@@ -207,6 +205,12 @@ const Tree = {
       if (parentInstance) {
         parentInstance.refreshChildren();
       }
+    },
+    expandRootNode() {
+      if (this.root instanceof Array) {
+        return;
+      }
+      this.$children[0].handleOpen();
     }
   },
   mounted() {

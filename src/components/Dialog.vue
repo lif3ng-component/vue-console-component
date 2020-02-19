@@ -20,7 +20,7 @@
             :is="`${prefix}-button`"
             type="primary"
             @click="$emit('submit', $parent.submitData || $parent.form)"
-            >确定</component
+            >{{ submitBtnText || "确定" }}</component
           >
           <component :is="`${prefix}-button`" @click="$emit('close')"
             >取消</component
@@ -43,7 +43,11 @@ export default {
       default: ""
     },
     hideFooter: {
+      type: Boolean,
       default: false
+    },
+    submitBtnText: {
+      default: ""
     }
   },
   data() {
