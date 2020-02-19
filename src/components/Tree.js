@@ -122,7 +122,7 @@ const Node = {
             onClick={this.handleClick}
             class={[`${prefix}-tree-node-name`, { selected: this.selected }]}
           >
-            {this.nodeData[this.labelName]} open{" "}
+            {this.nodeData[this.labelName]}
           </span>
         </div>
         {/* <transition> */}
@@ -141,7 +141,7 @@ const Tree = {
   name: "Tree",
   props: {
     root: {
-      default: () => ({ id: 1, name: "place set root" })
+      default: () => ({ id: 1, name: "please set prop: [root]" })
     },
     canSelect: {
       // todo multiple
@@ -206,6 +206,13 @@ const Tree = {
       const parentInstance = this.selectedNodeInstance.getParentInstance();
       if (parentInstance) {
         parentInstance.refreshChildren();
+      }
+    }
+  },
+  mounted() {
+    if (this.$el === this.$parent.$el) {
+      for (let methodName in this.$options.methods) {
+        this.$parent[methodName] = this[methodName];
       }
     }
   },
