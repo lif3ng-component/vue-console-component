@@ -72,10 +72,13 @@ export default {
   },
   methods: {
     renderTpl,
-    getColStyles({ noWrap }) {
+    getColStyles({ noWrap, align }) {
       const styleMap = {
         noWrap: {
           whiteSpace: "nowrap"
+        },
+        align: {
+          textAlign: align
         }
       };
       return {
