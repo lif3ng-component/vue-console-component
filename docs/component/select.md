@@ -6,6 +6,8 @@
 :::demo select-multiple
 :::
 
+:::demo select-async
+:::
 ## props
 
 ### optionList
