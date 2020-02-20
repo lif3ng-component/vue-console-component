@@ -10,7 +10,7 @@ export default {
     },
     multiple: Boolean,
     optionList: {
-      type: Array,
+      // type: Array,
       default: () => []
     },
     preset: {
@@ -35,14 +35,20 @@ export default {
     };
   },
   computed: {
+    list() {
+      return this.preset
+        ? this.$SELECT_OTPIONS_MAP[this.preset]
+        : this.optionList instanceof Array
+        ? this.optionList
+        : this.optionList();
+    },
     valueLabelMap() {
       const result = {};
-      const list = this.preset
-        ? this.$SELECT_OTPIONS_MAP[this.preset]
-        : this.optionList;
-      list.forEach(({ [this.valueName]: value, [this.labelName]: label }) => {
-        result[value] = label;
-      });
+      this.list.forEach(
+        ({ [this.valueName]: value, [this.labelName]: label }) => {
+          result[value] = label;
+        }
+      );
       return result;
     }
   },
@@ -62,10 +68,7 @@ export default {
           .join(", "));
       }
 
-      const list = this.preset
-        ? this.$SELECT_OTPIONS_MAP[this.preset]
-        : this.optionList;
-      const option = list.find(({ [this.valueName]: value }) => {
+      const option = this.list.find(({ [this.valueName]: value }) => {
         return value === this.value;
       });
       if (option) {
@@ -110,20 +113,19 @@ export default {
           iconAfter="caret-down"
         />
         <div class={`${prefix}-select-options`}>
-          {(this.preset
-            ? this.$SELECT_OTPIONS_MAP[this.preset]
-            : this.optionList
-          ).map(({ [this.labelName]: label, [this.valueName]: value }) => (
-            <div
-              onClick={$event => this.handleSelect(value, label, $event)}
-              class={[
-                `${prefix}-select-options-item`,
-                { selected: this.multiple && this.value.includes(value) }
-              ]}
-            >
-              {label}
-            </div>
-          ))}
+          {this.list.map(
+            ({ [this.labelName]: label, [this.valueName]: value }) => (
+              <div
+                onClick={$event => this.handleSelect(value, label, $event)}
+                class={[
+                  `${prefix}-select-options-item`,
+                  { selected: this.multiple && this.value.includes(value) }
+                ]}
+              >
+                {label}
+              </div>
+            )
+          )}
         </div>
       </div>
     );
