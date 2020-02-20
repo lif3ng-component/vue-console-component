@@ -187,6 +187,9 @@ const Tree = {
   },
   computed: {},
   methods: {
+    getSelectedTreeNode() {
+      return this.selectedNodeInstance;
+    },
     setSelectedValue(value) {
       this.selectedValue = value;
       this.$emit("selected", value);
