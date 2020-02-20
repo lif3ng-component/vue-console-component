@@ -110,6 +110,8 @@ export default {
     const popEle = refPopMap.get(el);
     if (popEle.isConnected) {
       document.body.removeChild(popEle);
+    } else {
+      popEle.style.display = "none";
     }
     const popperInstance = refPopperMap.get(el);
     popperInstance.destroy();
