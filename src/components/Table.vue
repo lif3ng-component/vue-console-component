@@ -82,7 +82,8 @@ export default {
         }
       };
       return {
-        ...(noWrap ? styleMap.noWrap : {})
+        ...(noWrap ? styleMap.noWrap : {}),
+        ...(align ? styleMap.align : {})
       };
     }
   }
