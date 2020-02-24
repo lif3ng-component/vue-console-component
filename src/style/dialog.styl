@@ -14,13 +14,19 @@
     bottom: 0;
     left 0
     right 0
-    overflow-y auto
-    padding 20% 0
+    display flex
+    flex-direction row
+    align-items center
+    justify-content center
+    overflow auto
+    // overflow-y auto
+    // padding 20% 0
   & &-container
     position relative
-    margin: 0 auto
     width: 500px
     background: #fff;
+    // max-height: calc(100vh - 50px)
+    // overflow: auto
     // left: 50%
     // top: 50%
     // transform: translate(-50%,-60%)
@@ -38,6 +44,8 @@
     font-size: 18px
   & &-body
     padding: 20px
+    max-height: calc(100vh - 210px)
+    overflow: auto
     >.{prefix}-form:last-child
       margin-bottom: -15px
   & &-footer
