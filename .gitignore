@@ -3,6 +3,8 @@ node_modules
 /dist
 /lib
 docs/.vuepress/dist
+docs/.vuepress/*.log
+docs/.vuepress/demosComponents.json
 # test coverage
 coverage
 

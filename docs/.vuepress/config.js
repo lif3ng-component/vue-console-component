@@ -12,15 +12,23 @@ fs.writeFileSync(prefixStyl, `prefix = ${prefix}`, {
   flag: "w+"
 });
 
-const demos = fs.readdirSync(path.resolve(__dirname,'demos'))
-const demoNames = demos.map((fileName)=>{
-  const demoName = fileName.split('.')[0]
-  return demoName
+const resolveDemos = ()=>{
+  const demos = fs.readdirSync(path.resolve(__dirname,'demos'))
+  const demoNames = demos.map((fileName)=>{
+    const demoName = fileName.split('.')[0]
+    return demoName
+  })
+  fs.writeFileSync(path.join(__dirname,'demosComponents.json'),JSON.stringify(demoNames),{flag:'w+'})
+}
+
+fs.watch(path.join(__dirname,'demos'),(...args)=>{
+  const t = new Date()
+  fs.writeFile(path.join(__dirname,'demosDir.log'),`${t.toLocaleDateString()} ${t.toLocaleTimeString()} ${args}\n`,{flag:'a'},function(){})
+  resolveDemos()
 })
 
-fs.writeFileSync(path.join(__dirname,'demosComponents.json'),JSON.stringify(demoNames),{flag:'w+'})
 
-// process.exit(0)
+
 module.exports = {
   base: process.env.base || '/',
   title:pkg.name,
@@ -70,7 +78,8 @@ module.exports = {
         },
         'icon',
         'button',
-        'tree'
+        'tree',
+        'datetime'
       ]
     }
   },
