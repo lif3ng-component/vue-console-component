@@ -10703,6 +10703,13 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.npm.taobao.org/tiny-emitter/download/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha1-HRpW7fxRxD6GPLtTgqcjMONVVCM=
 
+tippy.js@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.npm.taobao.org/tippy.js/download/tippy.js-5.2.1.tgz#e08d7332c103a15e427124d710d881fca82365d6"
+  integrity sha1-4I1zMsEDoV5CcSTXENiB/KgjZdY=
+  dependencies:
+    popper.js "^1.16.0"
+
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.npm.taobao.org/tmp/download/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
