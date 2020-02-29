@@ -9,6 +9,10 @@ export default {
     Pagination
   },
   props: {
+    preventInitRequest: {
+      type: Boolean,
+      default: false
+    },
     columns: {
       type: Array
     },
@@ -46,7 +50,9 @@ export default {
     };
   },
   mounted() {
-    this.doRequest();
+    if (!this.preventInitRequest) {
+      this.doRequest();
+    }
   },
   methods: {
     doRequest(isQuery) {
