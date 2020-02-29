@@ -23,6 +23,7 @@ import Select from "@/components/form/Select";
 import Switch from "@/components/form/Switch";
 import Checkbox from "@/components/form/Checkbox";
 import CheckboxGroup from "@/components/form/CheckboxGroup";
+import DatePicker from "@/components/form/DatePicker";
 import Dialog from "@/components/Dialog";
 import Tree from "@/components/Tree";
 // page
@@ -73,6 +74,7 @@ const components = [
   FormArea,
   Checkbox,
   CheckboxGroup,
+  DatePicker,
   Dialog,
   Tree,
   LoginPage

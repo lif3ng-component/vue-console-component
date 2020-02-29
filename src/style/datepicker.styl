@@ -1,0 +1,64 @@
+date-select-item()
+  cursor pointer
+  user-select none
+  &.disabled
+    cursor default
+    color #bbb
+  &:hover:not(.disabled):not(.selected)
+    color color-primary
+    background color-primary + 80%
+  &.selected
+    cursor default
+    background color-primary
+    color #fff
+
+.{prefix}-date-picker
+  &-popper
+    margin: 5px 0
+    padding: 10px
+    background #fff
+    default-border()
+    default-border-radius()
+    .data-container
+      width 240px
+    .header-nav
+      display flex
+      user-select none
+      height 24px
+      line-height 24px
+      margin-bottom 8px
+      .text
+        flex 1
+        text-align center
+      .text>span
+      >i
+        cursor pointer
+        &:hover
+          color color-primary
+      >i
+        margin 0 10px
+    .month-container
+      >div
+        display inline-block
+        width 60px
+        height 40px
+        // border 1px solid #ccc
+        text-align center
+        line-height 40px
+        date-select-item()
+    .year-container
+      >div
+        display inline-block
+        width 80px
+        height 40px
+        line-height 40px
+        text-align center
+        date-select-item()
+    .calendar-table
+      text-align center
+      width 100%
+      th,td
+        width 2em
+        height 1.5em
+      td
+        date-select-item()
