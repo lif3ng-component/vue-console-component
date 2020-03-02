@@ -6,7 +6,6 @@
     <div
       :class="`${prefix}-form-area-body ${$slots.default ? 'use-slot' : ''}`"
     >
-      <slot />
       <component
         :is="`${prefix}-form`"
         v-model="value"
@@ -90,6 +89,7 @@
           >
         </component>
       </component>
+      <slot />
     </div>
   </div>
 </template>

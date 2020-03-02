@@ -11,6 +11,7 @@ import Main from "@/components/layout/Main.vue";
 import Menu from "@/components/nav/Menu";
 import Breadcrumb from "@/components/nav/Breadcrumb";
 import TableHeader from "@/components/TableHeader";
+import TableSearchArea from "@/components/TableSearchArea";
 import Table from "@/components/Table.vue";
 import SearchInput from "@/components/SearchInput";
 import PaginTable from "@/components/PaginTable";
@@ -66,6 +67,7 @@ const components = [
   Breadcrumb,
   Table,
   TableHeader,
+  TableSearchArea,
   SearchInput,
   PaginTable,
   DropdownMenu,

@@ -72,7 +72,7 @@ module.exports = {
         },
         {
           title: "表格",
-          children: ["table", "pagintable", "tableheader"]
+          children: ["table", "pagintable", "tableheader", "tablesearcharea"]
         },
         {
           title: "页面",
