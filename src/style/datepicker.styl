@@ -19,8 +19,24 @@ date-select-item()
     background #fff
     default-border()
     default-border-radius()
+    display flex
+    .data-container
+    .time-container
+      display inline-block
     .data-container
       width 240px
+    .time-container
+      display flex
+      height 200px
+      > div
+        width 50px
+        text-align center
+        overflow auto
+        padding-bottom calc(200px - 20px)
+        > div
+          height 20px
+          date-select-item()
+
     .header-nav
       display flex
       user-select none

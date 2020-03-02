@@ -58,7 +58,14 @@ module.exports = {
         "",
         {
           title: "表单",
-          children: ["formarea", "form", "input", "select", "switch"]
+          children: [
+            "formarea",
+            "form",
+            "input",
+            "select",
+            "switch",
+            "datepicker"
+          ]
         },
         {
           title: "表格",
@@ -74,8 +81,7 @@ module.exports = {
         },
         "icon",
         "button",
-        "tree",
-        "datetime"
+        "tree"
       ]
     }
   },

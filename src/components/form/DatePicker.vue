@@ -34,7 +34,9 @@
             }}</span>
             <template v-else>
               <span @click="viewType = 'year'">{{ year }}年</span>
-              <span v-if="viewType !== 'month'">{{ month }}月</span>
+              <span @click="viewType = 'month'" v-if="viewType !== 'month'"
+                >{{ month }}月</span
+              >
             </template>
           </div>
           <!-- 下一月 -->
@@ -61,13 +63,20 @@
           <tbody>
             <tr v-for="(week, wIndex) in weeksDate" :key="wIndex">
               <td
-                v-for="({ text, value }, dIndex) in week"
+                v-for="({ text, value, value: { year, month, date } = {} },
+                dIndex) in week"
                 :key="dIndex"
                 :class="{
-                  disabled: !value,
-                  selected: $data.value === value
+                  disabled: !checkEnable(
+                    new Date(year, month - 1, date),
+                    'date'
+                  ),
+                  selected: `${year}-${month}-${date}` === selectedDate
                 }"
-                @click="handleClick('day', value)"
+                @click="
+                  checkEnable(new Date(year, month - 1, date), 'date') &&
+                    handleClick('date', value)
+                "
               >
                 {{ text }}
               </td>
@@ -108,7 +117,47 @@
           </div>
         </div>
       </div>
-      <div class="time-container"></div>
+      <div class="time-container" v-if="showTimeContainer">
+        <div class="hour-wrapper" ref="hour">
+          <div
+            v-for="({ text, enable, hash, value }, i) in hours"
+            :key="i"
+            @click="enable && handleClick('hour', value)"
+            :class="{
+              selected: hash === selectedHour,
+              disabled: !enable
+            }"
+          >
+            {{ text }}
+          </div>
+        </div>
+        <div class="min-wrapper" ref="min">
+          <div
+            v-for="({ text, enable, hash, value }, i) in mins"
+            :key="i"
+            @click="enable && handleClick('min', value)"
+            :class="{
+              selected: hash === selectedMin,
+              disabled: !enable
+            }"
+          >
+            {{ text }}
+          </div>
+        </div>
+        <div class="sec-wrapper" ref="sec">
+          <div
+            v-for="({ text, enable, hash, value }, i) in secs"
+            :key="i"
+            @click="enable && handleClick('sec', value)"
+            :class="{
+              selected: hash === selectedSec,
+              disabled: !enable
+            }"
+          >
+            {{ text }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -140,7 +189,14 @@ export default {
   },
   data() {
     const now = new Date();
-    let initSelected = {};
+    let initSelected = {
+      year: undefined,
+      month: undefined,
+      date: undefined,
+      hour: undefined,
+      min: undefined,
+      sec: undefined
+    };
     const enableRules = [];
     const { min, max, initValue } = this.$props;
     // if (type === "month") {
@@ -167,31 +223,47 @@ export default {
         sec: baseTime.getSeconds()
       });
     }
+    const viewTypeMap = {
+      min: "date",
+      sec: "date"
+    };
     return {
       enableRules,
       tippyInstance: null,
       value: "",
       year: now.getFullYear(),
       month: now.getMonth() + 1,
+      date: "",
+      hour: "",
+      minute: "",
       dayList: ["日", "一", "二", "三", "四", "五", "六"],
-      viewType: this.$props.type, // 'day','month',year
+      viewType: viewTypeMap[this.$props.type] || this.$props.type, // 'month','sec'
       hasTime: false,
       weeksDate: [], // render calendar days
       months: [], // render calendar months
       years: [], //render calendar years
+      hours: [], //render hour scroll selector
+      mins: [], //render min scroll selector
+      secs: [], //render sec scroll selector
       selected: initSelected, // { year: now.getFullYear(), month: now.getMonth() + 1 },
-      xxxxx: "x"
+      lastEmitDate: null
     };
   },
   computed: {
+    showTimeContainer() {
+      return this.date && ["hour", "min", "sec"].includes(this.type);
+    },
     formattedString: {
       get() {
+        if (Object.keys(this.selected).length === 0) return "";
+
         switch (this.type) {
           case "month":
-            if (Object.keys(this.selected).length === 0) return "";
             return `${this.selected.year}年${this.selected.month}月`;
+          case "sec":
+            return this.constructor.options.filters.datetime(this.lastEmitDate);
         }
-        return "abc";
+        return "---";
       },
       set() {}
     },
@@ -203,6 +275,22 @@ export default {
     },
     selectedMonth() {
       return `${this.selected.year}-${this.selected.month}`;
+    },
+    selectedDate() {
+      const { year, month, date } = this.selected;
+      return `${year}-${month}-${date}`;
+    },
+    selectedHour() {
+      const { year, month, date, hour } = this.selected;
+      return `${year}-${month}-${date}-${hour}`;
+    },
+    selectedMin() {
+      const { year, month, date, hour, min } = this.selected;
+      return `${year}-${month}-${date}-${hour}-${min}`;
+    },
+    selectedSec() {
+      const { year, month, date, hour, min, sec } = this.selected;
+      return `${year}-${month}-${date}-${hour}-${min}-${sec}`;
     },
     showPrevNextMonth() {
       return this.viewType === "date";
@@ -220,18 +308,72 @@ export default {
           this.renderYearView();
           this.renderMonthView();
           break;
+        case "month":
+          this.renderMonthView();
+          break;
       }
     },
     year() {
       this.renderMonthView();
+      this.renderCalendar();
+    },
+    month() {
+      this.renderCalendar();
+    },
+    date() {
+      this.renderTimeContainer();
+    },
+    hour() {
+      // console.log("hour change");
+
+      // const { year, month, date, hour = 0, min = 0 } = this.selected;
+
+      this.renderTimeContainer();
+    },
+    minute(min) {
+      // console.log("min change");
+      this.$refs.min.scrollTo({
+        left: 0,
+        top: min * 20,
+        behavior: "smooth"
+      });
+      this.renderTimeContainer();
+    },
+    sec(sec) {
+      this.$refs.sec.scrollTo({
+        left: 0,
+        top: sec * 20,
+        behavior: "smooth"
+      });
     }
   },
   mounted() {
     this.tippyInstance = this.$refs.input.$el._tippy;
     // this.tippyInstance.show();
     if (this.initValue) {
+      this.date =
+        this.initValue === "now"
+          ? new Date().getDate()
+          : this.initValue.getDate();
       this.$nextTick(this.handleSubmit);
     }
+    this.tippyInstance.setProps({
+      onShow: () => {
+        if (this.showTimeContainer) {
+          const { hour, min, sec } = this.selected;
+          this.$nextTick(() => {
+            this.$refs.hour.scrollTo(0, hour * 20);
+            this.$refs.min.scrollTo(0, min * 20);
+            this.$refs.sec.scrollTo(0, sec * 20);
+          });
+        }
+      },
+      onHide: () => {
+        // console.log("on hide");
+        // this.$message.error("xxx");
+        // return false;
+      }
+    });
     this.renderCalendar();
     this.renderMonthView();
     this.renderYearView();
@@ -266,14 +408,21 @@ export default {
             target.setMilliseconds(0);
           //falls through
         }
+
+        // if (leave === "sec")
         // console.log(
         //   date.toLocaleDateString(),
+        //   date.toLocaleTimeString(),
         //   oper,
-        //   target.toLocaleDateString()
+        //   target.toLocaleDateString(),
+        //   target.toLocaleTimeString()
         // );
         if (oper === ">=") {
+          // console.log(date >= target);
           return d => d >= target;
         } else if (oper === "<=") {
+          // console.log(date <= target);
+
           return d => d <= target;
         }
       });
@@ -283,28 +432,66 @@ export default {
       return true;
     },
     handleSubmit() {
-      const { year, month } = this.selected;
-      switch (this.type) {
-        case "month":
-          if (this.valueFormat === "timestamp") {
-            this.$emit("input", new Date(year, month - 1).valueOf());
-          }
-          break;
+      const {
+        year,
+        month,
+        date = 1,
+        hour = 0,
+        min = 0,
+        sec = 0
+      } = this.selected;
+      const emitDate = (() => {
+        switch (this.type) {
+          case "year":
+            return new Date(year, 0);
+          case "month":
+            return new Date(year, month - 1);
+          default:
+            return new Date(year, month - 1, date, hour, min, sec);
+        }
+      })();
+      this.lastEmitDate = emitDate;
+      if (this.valueFormat === "timestamp") {
+        this.$emit("input", emitDate.valueOf());
+      } //else todo
+      if (this.type === "month") {
+        this.tippyInstance.hide();
       }
-      this.tippyInstance.hide();
     },
     handleClick(type, v) {
       if (typeof v === "undefined") return;
-      const { year, month } = v;
+      const { year, month, date, min = 0 } = v;
       switch (type) {
-        case "day":
-          this.value = v;
+        case "hour":
+        case "min":
+        case "sec":
+          this.$refs[type].scrollTo({
+            left: 0,
+            top: v[type] * 20,
+            behavior: "smooth"
+          });
+
+          if (type === "min") {
+            this.minute = min;
+          } else {
+            this[type] = v[type];
+          }
+          this.selected[type] = v[type];
+          break;
+        case "date":
+          Object.assign(this.selected, { year, month, date });
+          // this.handleSubmit(); // todo enable to submit
+          this.date = date;
           break;
         case "month":
           // this.month = v;
           if (this.type === "month") {
             Object.assign(this.selected, { year, month });
             this.handleSubmit();
+          } else {
+            this.viewType = "date";
+            this.month = month;
+            this.renderCalendar();
           }
           break;
         case "year":
@@ -314,6 +501,48 @@ export default {
           } else {
             this.viewType = "month";
           }
+      }
+
+      const fulldate = new Date(
+        this.selected.year,
+        this.selected.month - 1,
+        this.selected.date,
+        this.selected.hour || 0,
+        this.selected.min || 0,
+        this.selected.sec || 0
+      );
+      if (this.checkEnable(fulldate)) {
+        this.handleSubmit();
+        if (!this.selected.hour) {
+          this.selected.hour = 0;
+        }
+        if (!this.selected.min) {
+          this.selected.min = 0;
+        }
+        if (!this.selected.sec) {
+          this.selected.sec = 0;
+        }
+      } else if (type === "date") {
+        Object.assign(this.selected, {
+          hour: undefined,
+          min: undefined,
+          sec: undefined
+        });
+        this.$refs.hour.scrollTo(0, 0);
+        this.$refs.min.scrollTo(0, 0);
+        this.$refs.sec.scrollTo(0, 0);
+      } else if (type === "hour") {
+        Object.assign(this.selected, {
+          min: undefined,
+          sec: undefined
+        });
+        this.$refs.min.scrollTo(0, 0);
+        this.$refs.sec.scrollTo(0, 0);
+      } else if (type === "min") {
+        Object.assign(this.selected, {
+          sec: undefined
+        });
+        this.$refs.sec.scrollTo(0, 0);
       }
     },
     prepYear() {
@@ -375,7 +604,12 @@ export default {
         }
         list.push({
           text: i + 1,
-          value: `${this.year}-${wrapperZero(this.month)}-${wrapperZero(i + 1)}`
+          // value: `${this.year}-${wrapperZero(this.month)}-${wrapperZero(i + 1)}`
+          value: {
+            year: this.year,
+            month: this.month,
+            date: i + 1
+          }
         });
       }
       const weeks = [];
@@ -383,6 +617,54 @@ export default {
         weeks.push(list.splice(0, 7));
       }
       this.weeksDate = weeks;
+    },
+    renderTimeContainer() {
+      if (!this.year || !this.date) {
+        return;
+      }
+      const { year, month, date, hour = 0, min = 0, sec = 0 } = this.selected;
+      this.hours = Array.from({ length: 24 }).map((_, i) => ({
+        text: wrapperZero(i),
+        enable: this.checkEnable(new Date(year, month - 1, date, i), "hour"),
+        hash: `${year}-${month}-${date}-${i}`,
+        value: {
+          year,
+          month,
+          date,
+          hour: i
+        }
+      }));
+      this.mins = Array.from({ length: 60 }).map((_, i) => ({
+        text: wrapperZero(i),
+        enable: this.checkEnable(
+          new Date(year, month - 1, date, hour, i),
+          "min"
+        ),
+        hash: `${year}-${month}-${date}-${hour}-${i}`,
+        value: {
+          year,
+          month,
+          date,
+          hour,
+          min: i
+        }
+      }));
+      this.secs = Array.from({ length: 60 }).map((_, i) => ({
+        text: wrapperZero(i),
+        enable: this.checkEnable(
+          new Date(year, month - 1, date, hour, min, sec),
+          "sec"
+        ),
+        hash: `${year}-${month}-${date}-${hour}-${min}-${i}`,
+        value: {
+          year,
+          month,
+          date,
+          hour,
+          min,
+          sec: i
+        }
+      }));
     }
   }
 };
