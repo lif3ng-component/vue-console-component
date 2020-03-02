@@ -47,6 +47,12 @@
             v-model="value[item.prop]"
           />
           <component
+            v-else-if="item.type === 'datepicker'"
+            :is="`${prefix}-date-picker`"
+            v-model="value[item.prop]"
+            v-bind="item.props || {}"
+          />
+          <component
             v-else-if="item.type === 'copyInput'"
             :is="`${prefix}-input`"
             readonly

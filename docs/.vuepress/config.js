@@ -28,16 +28,19 @@ const resolveDemos = () => {
 };
 
 resolveDemos();
-fs.watch(path.join(__dirname, "demos"), (...args) => {
-  const t = new Date();
-  fs.writeFile(
-    path.join(__dirname, "demosDir.log"),
-    `${t.toLocaleDateString()} ${t.toLocaleTimeString()} ${args}\n`,
-    { flag: "a" },
-    function() {}
-  );
-  resolveDemos();
-});
+
+if (process.argv.length >= 3 && process.argv[2] === "dev") {
+  fs.watch(path.join(__dirname, "demos"), (...args) => {
+    const t = new Date();
+    fs.writeFile(
+      path.join(__dirname, "demosDir.log"),
+      `${t.toLocaleDateString()} ${t.toLocaleTimeString()} ${args}\n`,
+      { flag: "a" },
+      function() {}
+    );
+    resolveDemos();
+  });
+}
 
 module.exports = {
   base: process.env.base || "/",
@@ -129,6 +132,7 @@ module.exports = {
   chainWebpack: config => {
     config.plugin("injections").tap(([args]) => {
       console.log({ args }, { prefix: JSON.stringify(prefix) });
+
       return [
         {
           ...(args ? args : {}),

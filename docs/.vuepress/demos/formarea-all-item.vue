@@ -93,6 +93,36 @@ export default {
           prop: "tpl",
           label: "template",
           template: "input--{{input}} select--{{select}} select2--{{select2}}"
+        },
+        {
+          type: "datepicker",
+          prop: "month",
+          label: "month",
+          props: {
+            min: "now",
+            initValue: "now",
+            type: "month"
+          }
+        },
+        {
+          type: "text",
+          prop: "month",
+          label: "value",
+          filter: "datetime"
+        },
+        {
+          type: "datepicker",
+          prop: "time2",
+          label: "time",
+          props: {
+            type: "sec"
+          }
+        },
+        {
+          type: "text",
+          prop: "time2",
+          label: "value",
+          filter: "datetime"
         }
       ]
     };

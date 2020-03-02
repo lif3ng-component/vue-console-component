@@ -174,7 +174,7 @@ export default {
     },
     type: {
       type: String,
-      default: "date"
+      default: "sec"
     },
     max: {
       default: ""
