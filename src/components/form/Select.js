@@ -59,8 +59,10 @@ export default {
     optionList() {
       this.renderText();
     },
-    value() {
-      this.renderText();
+    value(v) {
+      if (v !== "") {
+        this.renderText();
+      }
     }
   },
   methods: {

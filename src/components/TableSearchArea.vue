@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.doQueryFn();
+      this.doQueryFn(true);
     },
     handleReset() {
       this.$emit("change", {}); // todo: custom init empty value
