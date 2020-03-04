@@ -2,10 +2,12 @@
   <div>
     <d-button @click="visible = true">show</d-button>
     <d-login-page
-      v-if="visible" 
-      logoSrc="/logoplaceholder.png" 
+      v-if="visible"
+      logoSrc="/logoplaceholder.png"
       logoText="logo text"
-      bgSrc="/loginBg.png">
+      bgSrc="/loginBg.png"
+      :show-promise="showPromise"
+    >
       <d-form-area no-border hide-label :items="formItems" v-model="form" />
       <d-container reverse>
         <a>忘记密码</a>
@@ -19,32 +21,41 @@
 </template>
 <script>
 export default {
-  data(){
+  data() {
     return {
-      visible: true,
-      form:{},
+      visible: false,
+      form: {},
       formItems: [
         {
-          prop:'username',
+          prop: "username",
 
-          placeholder:'用户名',
-          props:{
-            iconBefore:'mail'
+          placeholder: "用户名",
+          props: {
+            iconBefore: "mail"
           }
         },
         {
-          prop:'password',
-          type:'input',
-          props:{
-            iconBefore:'key'
+          prop: "password",
+          type: "input",
+          props: {
+            iconBefore: "key"
           },
-          attrs:{
-            type:'password',
-            placeholder: '密码'
+          attrs: {
+            type: "password",
+            placeholder: "密码"
           }
         }
       ]
+    };
+  },
+  methods: {
+    showPromise() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve();
+        }, 1000);
+      });
     }
   }
-}
+};
 </script>

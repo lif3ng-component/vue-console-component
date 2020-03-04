@@ -29,6 +29,7 @@ import Dialog from "@/components/Dialog";
 import Tree from "@/components/Tree";
 // page
 import LoginPage from "@/components/page/LoginPage";
+import FullScreenPage from "@/components/page/FullScreenPage";
 // directives
 import popper from "@/components/popper/popper";
 import container from "@/components/layout/container";
@@ -79,7 +80,8 @@ const components = [
   DatePicker,
   Dialog,
   Tree,
-  LoginPage
+  LoginPage,
+  FullScreenPage
 ];
 
 const globalPrefix = prefix;

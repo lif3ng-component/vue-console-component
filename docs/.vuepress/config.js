@@ -76,7 +76,7 @@ module.exports = {
         },
         {
           title: "页面",
-          children: ["page-login"]
+          children: ["page-login",'page-fullscreen']
         },
         {
           title: "全局方法",

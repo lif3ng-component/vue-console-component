@@ -1,5 +1,11 @@
 <template>
-  <div :class="`${prefix}-login-page`">
+  <component
+    :is="`${prefix}-full-screen-page`"
+    :class="`${prefix}-login-page`"
+    :bgSrc="bgSrc"
+    :bgColor="bgColor"
+    :showPromise="showPromise"
+  >
     <div :class="`${prefix}-form-container`">
       <div v-if="logoSrc" :class="`${prefix}-login-page-logo`">
         <img :src="logoSrc" />
@@ -13,7 +19,7 @@
         <slot />
       </div>
     </div>
-  </div>
+  </component>
 </template>
 <script>
 export default {
@@ -22,13 +28,10 @@ export default {
     logoSrc: String,
     logoText: String,
     bgSrc: String,
-    bgColor: String
-  },
-  mounted() {
-    const bgImage = this.bgSrc ? `url(${this.bgSrc})` : "";
-    const bgColor = this.bgColor || "";
-    this.$el.style.backgroundImage = bgImage;
-    this.$el.style.backgroundColor = bgColor;
+    bgColor: String,
+    showPromise: {
+      default: null
+    }
   }
 };
 </script>
