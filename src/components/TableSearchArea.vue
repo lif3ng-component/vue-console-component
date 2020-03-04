@@ -15,8 +15,10 @@
   </component>
 </template>
 <script>
+import { formCollectMixin } from "@/mixins/formMixins";
 export default {
   name: "TableSearchArea",
+  mixins: [formCollectMixin],
   props: ["value", "items", "doQueryFn", "rules"],
   model: { prop: "value", event: "change" },
   data() {
@@ -24,7 +26,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.doQueryFn(true);
+      this.formValidate().then(() => {
+        this.doQueryFn(true);
+      });
     },
     handleReset() {
       this.$emit("change", {}); // todo: custom init empty value

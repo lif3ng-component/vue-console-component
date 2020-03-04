@@ -2,6 +2,7 @@
   <div>
     <d-table-search-area
       :items="items"
+      :rules="rules"
       v-model="queryObj"
       :doQueryFn="doQueryFn"
     />
@@ -18,6 +19,9 @@ export default {
   data() {
     return {
       queryObj: {},
+      rules:{
+        s1:['required']
+      },
       items: [
         { label: "s1", prop: "s1", type: "input" },
         { label: "time", prop: "time", type: "datepicker" }
