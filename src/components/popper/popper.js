@@ -25,6 +25,7 @@ export default {
       content: popEle,
       // distance: -10,
       duration: 0,
+      offset: 0,
       // offset: `0, -1`, //${refEleHeight}`,
       placement: "bottom-start",
       flipOnUpdate: true,
