@@ -1,11 +1,12 @@
 <template>
   <div :class="`${prefix}-form-area ${noBorder ? 'no-border' : ''}`">
-    <div :class="`${prefix}-form-area-header`" v-if="!noBorder">
+    <div :class="`${prefix}-form-area-header`" v-show="!noBorder">
       {{ title || "基本信息" }}
     </div>
     <div
       :class="`${prefix}-form-area-body ${$slots.default ? 'use-slot' : ''}`"
     >
+      <slot name="top" />
       <component
         :is="`${prefix}-form`"
         v-model="value"
