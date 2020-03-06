@@ -165,7 +165,7 @@ export default {
           return rule;
         }
         return {
-          ...rules,
+          ...rule,
           ...(required ? ruleMap.required : {})
         };
       });
