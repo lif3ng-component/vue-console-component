@@ -62,6 +62,13 @@ export default {
         this.$parent.formValidate = this.formValidate;
       }
     });
+  },
+  destroyed() {
+    this.$nextTick(() => {
+      if (this.$el && this.$el.parentNode) {
+        this.$el.parentNode.removeChild(this.$el);
+      }
+    });
   }
 };
 </script>
