@@ -11,6 +11,12 @@ export default {
   data() {
     return {
       iconList: [
+        "mac",
+        "earth",
+        "check-fill",
+        "android",
+        "apple",
+        "windows",
         "double-left",
         "double-right",
         "time",
@@ -72,6 +78,10 @@ export default {
   outline: 1px solid #ccc;
   text-align: center
   .{prefix}-icons
-    font-size: 20px
+    font-size: 22px
     display: block
+    transition .5s
+  &:hover
+    .{prefix}-icons
+      transform scale(1.5)
 </style>

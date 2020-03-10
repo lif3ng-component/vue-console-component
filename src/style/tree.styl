@@ -3,10 +3,11 @@
     white-space nowrap
   &-icon-area
     display inline-block
-    cursor pointer
     padding 5px 3px
-    &:hover
-      color color-primary
+    > i:not(.{prefix}-icon-loading)
+      cursor pointer
+      &:hover
+        color color-primary
   &-node-name
     cursor pointer
     user-select none
