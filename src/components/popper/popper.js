@@ -3,7 +3,12 @@ import tippy from "tippy.js";
 // import "tippy.js/dist/tippy.css";
 
 export default {
-  inserted(el) {
+  inserted(el, { value = {} }) {
+    const { preset, ...options } = value;
+    const presetMap = {
+      dropdown: { hideOnClick: true },
+      tooltip: {}
+    };
     const refEle = el.$el || el;
     const popEle = el.nextElementSibling;
 
@@ -33,7 +38,9 @@ export default {
       trigger: "click",
       hideOnClick: true,
       interactive: true,
-      appendTo: document.body
+      appendTo: document.body,
+      ...(preset ? presetMap[preset] : {}),
+      ...options
     });
   },
 

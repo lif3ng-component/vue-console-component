@@ -14,9 +14,15 @@ export default {
   mounted() {
     this.$el.style.margin = `${this.offset}px 0`;
   },
+  methods: {
+    handleHide() {
+      const tippyInstance = this.$el.closest("[data-tippy-root]")._tippy;
+      tippyInstance.hide();
+    }
+  },
   render() {
     return (
-      <div class={`${prefix}-dropdown-menu`}>
+      <div class={`${prefix}-dropdown-menu`} onClick={this.handleHide}>
         {this.items.map(({ split, text, fn }) =>
           split ? (
             <div class={`${prefix}-dropdown-menu-split`} />

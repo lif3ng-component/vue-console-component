@@ -84,7 +84,8 @@ module.exports = {
         },
         "icon",
         "button",
-        "tree"
+        "tree",
+        "popper"
       ]
     }
   },
@@ -215,6 +216,7 @@ module.exports = {
   stylus: {
     import: [prefixStyl, path.resolve(__dirname, "../../src/style/index.styl")]
   }
+
   // lib,
   // chainWebpack(config){
   //   console.log(config)
