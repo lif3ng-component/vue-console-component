@@ -61,6 +61,17 @@
       &-field 
         flex: 1
         position relative
+        > a
+        > span > a
+          color: color-primary
+          cursor: pointer
+          text-decoration: none
+          &[danger]
+          &.danger
+            color: color-error
+        > a + a
+        > span > a + a
+          margin-left: 10px
         [class$='errormsg']
           position absolute
           color color-error

@@ -4,14 +4,19 @@
     :items="items"
     v-model="form"
     :rules="rules"
-  />
+  >
+    <template #link="{data:{link}}">
+      <a :href="link" target="_blank">{{ link }}</a>
+      <a :href="link" target="_blank">{{ link }}</a>
+    </template>
+  </d-form-area>
 </template>
 <script>
 export default {
   data() {
     return {
       rules: {},
-      form: {},
+      form: { link: "http://baidu.com" },
       items: [
         {
           type: "input",
@@ -123,7 +128,8 @@ export default {
           prop: "time2",
           label: "value",
           filter: "datetime"
-        }
+        },
+        { type: "text", prop: "link", label: "link", slot: true }
       ]
     };
   }
