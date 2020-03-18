@@ -1,22 +1,29 @@
 <template>
   <div>
-    <d-pagin-table :columns="columns" :loadFn="loadFn"/>
+    <d-pagin-table :columns="columns" :loadFn="loadFn" />
   </div>
 </template>
 <script>
 export default {
-  data(){
+  data() {
     return {
-      columns:[
+      columns: [
         {
-          prop:'c1',
-          label:'c1'
+          prop: "c1",
+          label: "c1",
+          sort: true
+        },
+        {
+          prop: "c2",
+          label: "c2",
+          sort: true
         }
       ]
-    }
+    };
   },
-  methods:{
-    loadFn({page,size}){
+  methods: {
+    loadFn({ page, size, ...args }) {
+      console.log(args);
       let list;
       // mock data
       const total = 33;
@@ -33,5 +40,5 @@ export default {
       return Promise.resolve({ total, list });
     }
   }
-}
+};
 </script>

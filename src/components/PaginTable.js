@@ -46,7 +46,7 @@ export default {
       sizeOptions: this.paginSizeOptions,
       total: 0,
       tableData: [],
-      sortArgs: {}
+      sortArgs: []
     };
   },
   mounted() {
@@ -64,8 +64,9 @@ export default {
         ...this.$default.paginArgsHandler({
           page: isQuery ? 1 : this.page || 1,
           size: this.size
-        })
-        // 排序参数 todo
+        }),
+        // 排序参数
+        ...this.$default.sortArgsHandler(...this.sortArgs)
       })
         .then(({ total, list }) => {
           // 渲染表格
@@ -87,6 +88,10 @@ export default {
         this.page = 1;
         this.doRequest();
       }
+    },
+    doSort(prop, type) {
+      this.sortArgs = [prop, type];
+      this.doRequest(true);
     }
   },
   render() {
@@ -96,6 +101,7 @@ export default {
           columns={this.columns}
           data={this.tableData}
           scopedSlots={this.$scopedSlots}
+          on={{ "do-sort": this.doSort }}
         />
         <Pagination
           currentPage={this.page}

@@ -28,7 +28,27 @@
     background: header-background
     font-weight: normal
     color: color-font-primary
-  tr:nth-child(2n+1)
+    &.sort
+      cursor: pointer
+      &:hover
+        background header-background - 5%
+      &:focus
+        outline 1px solid color-primary
+      .sort-status
+        float right
+        margin 2px 0
+        width 10px
+        line-height 6px
+        i
+          font-size 12px
+          color #bbb
+        &.sort-up
+          .{prefix}-icon-caret-up
+            color: #333
+        &.sort-down
+          .{prefix}-icon-caret-down
+            color: #333
+  tr:nth-child(2n)
     background: second-background
 
       

@@ -14,8 +14,8 @@ export default {
   data() {
     return {
       columns: [
-        { prop: "c1", label: "column1" },
-        { prop: "c2", label: "column2", template: "--{{c1}}--" },
+        { prop: "c1", label: "column1", sort: true },
+        { prop: "c2", label: "column2", sort: true, template: "--{{c1}}--" },
         { prop: "oper", label: "oper", slot: true }
       ],
       data: [{ c1: 123 }, { c1: 456 }]

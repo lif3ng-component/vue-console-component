@@ -91,6 +91,7 @@ const install = (Vue, options = {}) => {
     prefix = globalPrefix,
     formareaItemType,
     paginArgsHandler,
+    sortArgsHandler,
     paginSize,
     paginSizeOptions,
     selectValueName,
@@ -148,6 +149,7 @@ const install = (Vue, options = {}) => {
   Vue.prototype.$default = {
     formarea: { type: formareaItemType || defaultOptions.formareaItemType },
     paginArgsHandler: paginArgsHandler || defaultOptions.paginArgsHandler,
+    sortArgsHandler: sortArgsHandler || defaultOptions.sortArgsHandler,
     paginSize: paginSize || defaultOptions.paginSize,
     paginSizeOptions: paginSizeOptions || defaultOptions.paginSizeOptions,
     selectLabelName: selectLabelName || defaultOptions.selectLabelName,
