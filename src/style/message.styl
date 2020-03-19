@@ -4,12 +4,15 @@ msgColorFn(color)
 
 .{prefix}-message
   position: fixed
+  z-index 1000
   top: 60px
   height: 60px
   line-height: 60px
   left: 0
   right 0
   text-align: center
+  &.top
+    top 0
   &&-success
     msgColorFn(color-primary)
   &&-error
