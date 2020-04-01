@@ -44,5 +44,9 @@
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.10",
     "vuepress": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=12",
+    "yarn": ">=1.22"
   }
 }
