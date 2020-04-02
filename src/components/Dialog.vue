@@ -1,5 +1,5 @@
 <template>
-  <div :class="`${prefix}-dialog`">
+  <div :class="{ [`${prefix}-dialog`]: true, isLast: lastDialogEl === $el }">
     <div :class="`${prefix}-dialog-mask`" />
     <div :class="`${prefix}-dialog-scroll-wrapper`">
       <div :class="`${prefix}-dialog-container`">
@@ -32,10 +32,10 @@
 </template>
 <script>
 import { formCollectMixin } from "@/mixins/formMixins";
-
+import dialogMixin from "@/mixins/dialogMixin";
 export default {
   name: "Dialog",
-  mixins: [formCollectMixin],
+  mixins: [formCollectMixin, dialogMixin],
 
   props: {
     title: {
@@ -52,7 +52,8 @@ export default {
   },
   data() {
     return {
-      prefix
+      prefix,
+      isLastDialog: false
     };
   },
   mounted() {
@@ -60,6 +61,11 @@ export default {
     this.$nextTick(() => {
       if (this.$el === this.$parent.$el) {
         this.$parent.formValidate = this.formValidate;
+      }
+
+      const dialogs = document.querySelectorAll(`body>.${prefix}-dialog`);
+      if (dialogs[dialogs.length - 1] === this.$el) {
+        this.isLastDialog = true;
       }
     });
   },
