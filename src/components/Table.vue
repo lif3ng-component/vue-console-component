@@ -20,8 +20,8 @@
               :class="[
                 'sort-status',
                 {
-                  'sort-up': sort[column.prop] === 'asc',
-                  'sort-down': sort[column.prop] === 'desc'
+                  'sort-up': sort[column.sortProp || column.prop] === 'asc',
+                  'sort-down': sort[column.sortProp || column.prop] === 'desc'
                 }
               ]"
             >
