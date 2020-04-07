@@ -11,14 +11,15 @@ export default {
         {
           prop: "c1",
           label: "c1",
-          sort: true
+          sort: true,
         },
         {
           prop: "c2",
           label: "c2",
-          sort: true
-        }
-      ]
+          sort: true,
+          sortProp: "c2.custom.name",
+        },
+      ],
     };
   },
   methods: {
@@ -30,15 +31,15 @@ export default {
       if (page * size < total) {
         // 有内容，不是末页
         list = Array.from({ length: size }).map((_, i) => ({
-          c1: (page - 1) * size + i + 1
+          c1: (page - 1) * size + i + 1,
         }));
       } else {
         list = Array.from({ length: total % size }).map((_, i) => ({
-          c1: (page - 1) * size + i + 1
+          c1: (page - 1) * size + i + 1,
         }));
       }
       return Promise.resolve({ total, list });
-    }
-  }
+    },
+  },
 };
 </script>

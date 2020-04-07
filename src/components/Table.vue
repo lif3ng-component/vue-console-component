@@ -9,7 +9,7 @@
           <th
             v-for="(column, index) in filteredColumns"
             :key="index"
-            @click="column.sort && handleSort(column.prop)"
+            @click="column.sort && handleSort(column.sortProp || column.prop)"
             :class="{
               sort: column.sort
             }"
