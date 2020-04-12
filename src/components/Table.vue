@@ -4,6 +4,16 @@
       <slot name="header" />
     </template>
     <table style="width:100%">
+      <colgroup>
+        <col
+          v-for="(column, index) in filteredColumns"
+          :key="index"
+          :ref="`col-${index}`"
+          :style="{
+            width: column.width || (column.noWrap && '10px') || '200px'
+          }"
+        />
+      </colgroup>
       <thead>
         <tr>
           <th
@@ -14,7 +24,7 @@
               sort: column.sort
             }"
           >
-            {{ column.label }}
+            <span>{{ column.label }}</span>
             <div
               v-if="column.sort"
               :class="[
@@ -31,12 +41,20 @@
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody ref="tbody">
         <tr v-for="(row, rowIndex) in data" :key="rowIndex">
           <td
             v-for="(column, index) in filteredColumns"
+            v-bind="{
+              ...(column.tooltip ? { tooltip: column.tooltip } : {})
+            }"
             :key="index"
             :style="getColStyles(column)"
+            :class="{
+              noWrap: column.noWrap,
+              multiLine: column.multiLine
+            }"
+            v-on="tdEvents"
           >
             <template v-if="column.slot">
               <slot :name="`col-${column.prop}`" :row="row" :index="rowIndex" />
@@ -68,7 +86,8 @@
 
 <script>
 import renderTpl from "@/utils/renderTpl";
-
+import { delegate } from "tippy.js";
+import "tippy.js/dist/tippy.css";
 export default {
   name: "Table",
   props: {
@@ -86,8 +105,38 @@ export default {
   },
   data() {
     return {
-      sort: {}
+      sort: {},
+      tdTooltipText: "",
+      tdEvents: {
+        mouseenter: ({ target: td }) => {
+          const customTooltipContent = td.getAttribute("tooltip");
+          if (customTooltipContent) {
+            this.tdTooltipText = customTooltipContent;
+          } else if (td.clientWidth < td.scrollWidth) {
+            this.tdTooltipText = td.innerText;
+          } else {
+            this.tdTooltipText = "";
+          }
+        }
+      },
+      tooltipInstance: null,
+      lastCalColWidthData: {}
     };
+  },
+  watch: {
+    // filteredColumns: "filteredColumns",
+    filteredColumns: {
+      // immediate: true,
+      handler() {
+        this.calculateNoWrapColumnWidth();
+      }
+    },
+    data: {
+      // immediate: true,
+      handler() {
+        this.calculateNoWrapColumnWidth();
+      }
+    }
   },
   computed: {
     filteredColumns() {
@@ -99,19 +148,36 @@ export default {
       });
     }
   },
+  mounted() {
+    this.tippyInstance = delegate(this.$refs.tbody, {
+      target: "td",
+      flipOnUpdate: true,
+      theme: "no",
+      delay: 100,
+
+      onShow: instance => {
+        if (this.tdTooltipText) {
+          instance.setContent(this.tdTooltipText);
+        } else {
+          return false;
+        }
+      }
+    });
+    this.calculateNoWrapColumnWidth();
+  },
   methods: {
     renderTpl,
     getColStyles({ noWrap, align }) {
       const styleMap = {
-        noWrap: {
-          whiteSpace: "nowrap"
-        },
+        // noWrap: {
+        //   whiteSpace: "nowrap"
+        // },
         align: {
           textAlign: align
         }
       };
       return {
-        ...(noWrap ? styleMap.noWrap : {}),
+        // ...(noWrap ? styleMap.noWrap : {}),
         ...(align ? styleMap.align : {})
       };
     },
@@ -126,6 +192,55 @@ export default {
         this.sort = { [prop]: "desc" };
       }
       this.$emit("do-sort", prop, this.sort[prop]);
+    },
+    calculateNoWrapColumnWidth() {
+      const noWrapColumnsIndexArr = [];
+      const noWrapColumnsWidth = {};
+      const data = this.data;
+      const columns = this.filteredColumns;
+      if (data.length === 0 || !this.$refs.tbody) {
+        return;
+      }
+      if (
+        this.lastCalColWidthData.data === data &&
+        this.lastCalColWidthData.columns === columns
+      ) {
+        // column and data no change
+        return;
+      }
+      this.lastCalColWidthData = {
+        columns: this.filteredColumns,
+        data: this.data
+      };
+
+      columns.forEach(({ noWrap }, index) => {
+        if (noWrap) {
+          noWrapColumnsIndexArr.push(index);
+          noWrapColumnsWidth[index] = 0;
+        }
+      });
+
+      if (noWrapColumnsIndexArr.length === 0) {
+        return;
+      }
+      for (let i = 0; i < data.length; i++) {
+        const tr = this.$refs.tbody.children[i];
+        noWrapColumnsIndexArr.forEach(colIndex => {
+          const td = tr.children[colIndex];
+          if (
+            td.clientWidth !== td.scrollWidth &&
+            td.scrollWidth > noWrapColumnsWidth[colIndex]
+          ) {
+            noWrapColumnsWidth[colIndex] = td.scrollWidth;
+          }
+        });
+      }
+
+      Object.entries(noWrapColumnsWidth).forEach(([colIndex, width]) => {
+        if (width) {
+          this.$refs[`col-${colIndex}`][0].style.width = `${width + 16}px`;
+        }
+      });
     }
   }
 };

@@ -8,10 +8,11 @@
     margin-top 10px
   table
     border-collapse: collapse
+    table-layout: fixed;
   td,th,.empty-line
     line-height: 1.4em
     color: color-font-second
-    padding: calc(20px - .7em)
+    padding: calc(20px - .7em) 8px
     a + a
       margin-left: 10px
     a
@@ -22,12 +23,25 @@
       &[danger]
       &.danger
         color: color-error
-      
+  td
+    &:not(.noWrap):not(.multiLine)
+      white-space: nowrap
+      text-overflow: ellipsis
+      overflow: hidden
+      word-break: break-all
+
+    &.noWrap
+      white-space: nowrap
+
+    &.multiLine
+      text-align left
 
   th
     background: header-background
     font-weight: normal
     color: color-font-primary
+    >span
+      white-space: pre;
     &.sort
       cursor: pointer
       &:hover
