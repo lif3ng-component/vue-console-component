@@ -85,7 +85,8 @@ module.exports = {
         "icon",
         "button",
         "tree",
-        "popper"
+        "popper",
+        "dialog"
       ]
     }
   },
