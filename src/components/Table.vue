@@ -88,7 +88,7 @@
 import renderTpl from "@/utils/renderTpl";
 import { delegate } from "tippy.js";
 import "tippy.js/dist/tippy.css";
-import "tippy.js/themes/light.css";
+
 export default {
   name: "Table",
   props: {
@@ -167,8 +167,6 @@ export default {
       flipOnUpdate: true,
       theme: "nq-tooltip",
       delay: 100,
-      // maxWidth: "80vw",
-
       onShow: instance => {
         if (this.tdTooltipText) {
           instance.setContent(this.tdTooltipText);
@@ -248,7 +246,6 @@ export default {
 
       Object.entries(noWrapColumnsWidth).forEach(([colIndex, width]) => {
         if (width) {
-          console.log(width);
           this.$refs[`col-${colIndex}`][0].style.width = `${width + 16}px`;
         }
       });
