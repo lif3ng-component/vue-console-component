@@ -1,5 +1,5 @@
 // import { throttle } from "lodash/fp";
-import tippy from "tippy.js";
+import tippy from "tippy.js/headless";
 // import "tippy.js/dist/tippy.css";
 
 export default {
@@ -39,6 +39,14 @@ export default {
       hideOnClick: true,
       interactive: true,
       appendTo: document.body,
+      render() {
+        const box = document.createElement("div");
+        box.append(popEle);
+        return {
+          popper: box
+        };
+      },
+
       ...(preset ? presetMap[preset] : {}),
       ...options
     });

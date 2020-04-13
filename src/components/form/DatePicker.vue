@@ -71,7 +71,9 @@
                     new Date(year, month - 1, date),
                     'date'
                   ),
-                  selected: `${year}-${month}-${date}` === selectedDate
+                  selected:
+                    typeof date !== 'undefined' &&
+                    `${year}-${month}-${date}` === selectedDate
                 }"
                 @click="
                   checkEnable(new Date(year, month - 1, date), 'date') &&

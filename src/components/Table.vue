@@ -3,7 +3,7 @@
     <template v-if="$slots.header">
       <slot name="header" />
     </template>
-    <table style="width:100%">
+    <table>
       <colgroup>
         <col
           v-for="(column, index) in filteredColumns"
@@ -54,7 +54,7 @@
               noWrap: column.noWrap,
               multiLine: column.multiLine
             }"
-            v-on="tdEvents"
+            v-on="tdEvents({ prop: column.prop, rowIndex })"
           >
             <template v-if="column.slot">
               <slot :name="`col-${column.prop}`" :row="row" :index="rowIndex" />
@@ -88,6 +88,7 @@
 import renderTpl from "@/utils/renderTpl";
 import { delegate } from "tippy.js";
 import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
 export default {
   name: "Table",
   props: {
@@ -107,18 +108,24 @@ export default {
     return {
       sort: {},
       tdTooltipText: "",
-      tdEvents: {
+      propTooltipFnMap: {},
+      tdEvents: ({ prop, rowIndex }) => ({
         mouseenter: ({ target: td }) => {
-          const customTooltipContent = td.getAttribute("tooltip");
-          if (customTooltipContent) {
-            this.tdTooltipText = customTooltipContent;
+          // const customTooltipContent = td.getAttribute("tooltip");
+          if (this.propTooltipFnMap[prop]) {
+            this.tdTooltipText = this.propTooltipFnMap[prop](
+              this.data[rowIndex]
+            );
+            // }
+            // if (customTooltipContent) {
+            //   this.tdTooltipText = customTooltipContent;
           } else if (td.clientWidth < td.scrollWidth) {
             this.tdTooltipText = td.innerText;
           } else {
             this.tdTooltipText = "";
           }
         }
-      },
+      }),
       tooltipInstance: null,
       lastCalColWidthData: {}
     };
@@ -126,7 +133,6 @@ export default {
   watch: {
     // filteredColumns: "filteredColumns",
     filteredColumns: {
-      // immediate: true,
       handler() {
         this.calculateNoWrapColumnWidth();
       }
@@ -149,10 +155,15 @@ export default {
     }
   },
   mounted() {
+    this.filteredColumns.forEach(({ prop, tooltip }) => {
+      if (tooltip) {
+        this.propTooltipFnMap[prop] = tooltip;
+      }
+    });
     this.tippyInstance = delegate(this.$refs.tbody, {
       target: "td",
       flipOnUpdate: true,
-      theme: "no",
+      theme: "nq-tooltip",
       delay: 100,
 
       onShow: instance => {
@@ -167,17 +178,13 @@ export default {
   },
   methods: {
     renderTpl,
-    getColStyles({ noWrap, align }) {
+    getColStyles({ align }) {
       const styleMap = {
-        // noWrap: {
-        //   whiteSpace: "nowrap"
-        // },
         align: {
           textAlign: align
         }
       };
       return {
-        // ...(noWrap ? styleMap.noWrap : {}),
         ...(align ? styleMap.align : {})
       };
     },
