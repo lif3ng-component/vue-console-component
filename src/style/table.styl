@@ -36,7 +36,7 @@
 
     &.multiLine
       text-align left
-
+      word-break break-all
   th
     background: header-background
     font-weight: normal
@@ -69,6 +69,7 @@
 .tippy-box[data-theme~='nq-tooltip']
   background color-primary
   color white
+  word-break break-all
   for placement in top bottom
     &[data-placement^={placement}] > .tippy-arrow::before 
       border-{placement}-color color-primary

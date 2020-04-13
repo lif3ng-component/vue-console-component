@@ -140,7 +140,9 @@ export default {
     data: {
       // immediate: true,
       handler() {
-        this.calculateNoWrapColumnWidth();
+        this.$nextTick(() => {
+          this.calculateNoWrapColumnWidth();
+        });
       }
     }
   },
@@ -165,6 +167,7 @@ export default {
       flipOnUpdate: true,
       theme: "nq-tooltip",
       delay: 100,
+      // maxWidth: "80vw",
 
       onShow: instance => {
         if (this.tdTooltipText) {
@@ -245,6 +248,7 @@ export default {
 
       Object.entries(noWrapColumnsWidth).forEach(([colIndex, width]) => {
         if (width) {
+          console.log(width);
           this.$refs[`col-${colIndex}`][0].style.width = `${width + 16}px`;
         }
       });
