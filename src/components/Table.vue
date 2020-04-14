@@ -164,7 +164,7 @@ export default {
     });
     this.tippyInstance = delegate(this.$refs.tbody, {
       target: "td",
-      flipOnUpdate: true,
+      // flipOnUpdate: true,
       theme: "nq-tooltip",
       delay: 100,
       onShow: instance => {
@@ -176,6 +176,9 @@ export default {
       }
     });
     this.calculateNoWrapColumnWidth();
+  },
+  beforeDestroy() {
+    this.tippyInstance.destroy();
   },
   methods: {
     renderTpl,

@@ -262,6 +262,8 @@ export default {
         switch (this.type) {
           case "month":
             return `${this.selected.year}年${this.selected.month}月`;
+          case "date":
+            return `${this.selected.year}年${this.selected.month}月${this.selected.date}日`;
           case "sec":
             return this.constructor.options.filters.datetime(this.lastEmitDate);
         }
@@ -448,6 +450,8 @@ export default {
             return new Date(year, 0);
           case "month":
             return new Date(year, month - 1);
+          case "date":
+            return new Date(year, month - 1, date);
           default:
             return new Date(year, month - 1, date, hour, min, sec);
         }
@@ -456,9 +460,6 @@ export default {
       if (this.valueFormat === "timestamp") {
         this.$emit("input", emitDate.valueOf());
       } //else todo
-      if (this.type === "month") {
-        this.tippyInstance.hide();
-      }
     },
     handleClick(type, v) {
       if (typeof v === "undefined") return;
@@ -482,14 +483,18 @@ export default {
           break;
         case "date":
           Object.assign(this.selected, { year, month, date });
-          // this.handleSubmit(); // todo enable to submit
+          this.handleSubmit(); // todo enable to submit
           this.date = date;
+          if (this.type === "date") {
+            this.tippyInstance.hide();
+          }
           break;
         case "month":
           // this.month = v;
           if (this.type === "month") {
             Object.assign(this.selected, { year, month });
             this.handleSubmit();
+            this.tippyInstance.hide();
           } else {
             this.viewType = "date";
             this.month = month;

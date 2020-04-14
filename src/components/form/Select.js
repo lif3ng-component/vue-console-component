@@ -136,7 +136,7 @@ export default {
       <div class={`${prefix}-select`}>
         <Input
           ref="input"
-          v-popper={{ a: 3 }}
+          v-popper
           attrs={this.$attrs ? this.$attrs.attrs || this.$attrs : {}}
           popper-class={this.$attrs["popper-class"] || ""}
           value={this.showText}

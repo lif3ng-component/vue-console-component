@@ -33,7 +33,6 @@ export default {
       offset: 0,
       // offset: `0, -1`, //${refEleHeight}`,
       placement: "bottom-start",
-      flipOnUpdate: true,
       maxWidth: 10000,
       trigger: "click",
       hideOnClick: true,

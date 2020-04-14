@@ -1,9 +1,8 @@
 <template>
   <div>
-    <!-- <d-time-picker /> -->
-
     <!-- 选择月 -->
     <d-table-header>
+      月：
       {{ valueMonth | datetime }}
       <d-date-picker
         type="month"
@@ -13,8 +12,24 @@
         right
       />
     </d-table-header>
-    
+
+    <!-- 选择日 -->
     <d-table-header>
+      日：
+      {{ valueDate | datetime }}
+      <d-date-picker
+        type="date"
+        :min="minDay"
+        max="now"
+        initValue="now"
+        v-model="valueDate"
+        right
+      />
+    </d-table-header>
+
+    <!-- 选择秒 -->
+    <d-table-header>
+      秒：
       {{ valueTime | datetime }}
       <d-date-picker
         type="sec"
@@ -29,14 +44,22 @@
 <script>
 export default {
   data() {
-    const next5min = new Date()
-    next5min.setMinutes(next5min.getMinutes()+5)
-    next5min.setSeconds(0)
-    next5min.setMilliseconds(0)
+    const next5min = new Date();
+    next5min.setMinutes(next5min.getMinutes() + 5);
+    next5min.setSeconds(0);
+    next5min.setMilliseconds(0);
+    const prev7day = new Date();
+    prev7day.setDate(prev7day.getDate() - 20);
+    prev7day.setHours(0);
+    prev7day.setMinutes(0);
+    prev7day.setSeconds(0);
+    prev7day.setMilliseconds(0);
     return {
-      valueMonth:'',
-      valueTime:'',
-      baseTime:next5min
+      valueMonth: "",
+      valueTime: "",
+      valueDate: "",
+      minDay: prev7day,
+      baseTime: next5min
     };
   },
   computed: {
@@ -44,8 +67,5 @@ export default {
       return this.valueMonth && new Date(this.valueMonth).toLocaleDateString();
     }
   },
-  mounted() {
-    console.log(this);
-  }
 };
 </script>
