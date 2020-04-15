@@ -1,6 +1,6 @@
 {
   "name": "lif3ng-console-vue-component",
-  "version": "0.1.71",
+  "version": "0.1.72",
   "author": "lif3ng<lif3ng@icloud.com>",
   "scripts": {
     "serve": "vue-cli-service serve --open",

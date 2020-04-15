@@ -8,6 +8,7 @@
     >
       <slot name="top" />
       <component
+        ref="form"
         :is="`${prefix}-form`"
         v-model="value"
         :rules="innerRules"
@@ -188,6 +189,7 @@ export default {
     };
   },
   mounted() {
+    this.validateField = this.$refs.form.validateField;
     this.clipboard = new Clipboard(this.$el.querySelectorAll(".copy-btn"), {
       target(btn) {
         return btn.previousSibling;
