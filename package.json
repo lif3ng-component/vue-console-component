@@ -1,14 +1,14 @@
 {
   "name": "lif3ng-console-vue-component",
-  "version": "0.1.72",
+  "version": "0.1.73",
   "author": "lif3ng<lif3ng@icloud.com>",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "lint": "vue-cli-service lint --fix",
+    "build:docs": "vuepress build docs --no-cache",
     "build:lib": "vue-cli-service build --target lib --name lib ./src/lib/index.js",
     "cov": "vue-cli-service test:unit --coverage",
     "docs": "vuepress dev docs --open",
-    "build:docs": "vuepress build docs --no-cache",
     "test": "vue-cli-service test:unit --watch",
     "test:util": "vue-cli-service test:unit"
   },
@@ -22,14 +22,13 @@
     "core-js": "^3.3.2",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "tippy.js": "^6.1.1",
-    "vue": "^2.6.10"
+    "tippy.js": "^6.2.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.1",
-    "@vue/cli-plugin-eslint": "^4.1.1",
-    "@vue/cli-plugin-unit-jest": "^4.1.1",
-    "@vue/cli-service": "^4.1.1",
+    "@vue/cli-plugin-babel": "~4.3.1",
+    "@vue/cli-plugin-eslint": "~4.3.1",
+    "@vue/cli-plugin-unit-jest": "~4.3.1",
+    "@vue/cli-service": "~4.3.1",
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.3",
@@ -42,8 +41,12 @@
     "string-replace-loader": "^2.2.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.10",
-    "vuepress": "^1.2.0"
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.4.1"
+  },
+  "peerDependencies": {
+    "vue": "^2.6"
   },
   "engines": {
     "node": ">=12",
