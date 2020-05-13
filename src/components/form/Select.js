@@ -2,39 +2,43 @@ import Input from "./Input";
 export default {
   name: "Select",
   model: {
-    event: "change"
+    event: "change",
   },
   props: {
     value: {
-      default: ""
+      default: "",
     },
     multiple: Boolean,
     optionList: {
       // type: Array,
-      default: () => []
+      default: () => [],
     },
     preset: {
-      type: String
+      type: String,
+    },
+    emptyText: {
+      type: String,
+      default: "暂无数据",
     },
     valueName: {
       type: String,
       default() {
         return this.$default.selectValueName;
-      }
+      },
     },
     labelName: {
       type: String,
       default() {
         return this.$default.selectLabelName;
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       showText: "",
       inputEl: null,
       optionsEl: null,
-      tippyInstance: null
+      tippyInstance: null,
     };
   },
   computed: {
@@ -53,7 +57,7 @@ export default {
         }
       );
       return result;
-    }
+    },
   },
   watch: {
     optionList() {
@@ -63,13 +67,13 @@ export default {
       if (v !== "") {
         this.renderText();
       }
-    }
+    },
   },
   methods: {
     renderText() {
       if (this.multiple) {
         return (this.showText = this.value
-          .map(v => this.valueLabelMap[v])
+          .map((v) => this.valueLabelMap[v])
           .join(", "));
       }
 
@@ -85,6 +89,10 @@ export default {
     },
 
     handleSelect(value, label, e) {
+      if (value instanceof Event) {
+        this.tippyInstance.hide();
+        return;
+      }
       if (this.multiple) {
         e.stopPropagation();
         if (this.value.indexOf(value) === -1) {
@@ -102,7 +110,7 @@ export default {
         this.$emit("change", value);
       }
       this.tippyInstance.hide();
-    }
+    },
   },
   mounted() {
     if (this.multiple && !this.value) {
@@ -120,7 +128,7 @@ export default {
       this.tippyInstance.setProps({
         onShow: () => {
           this.setOptionsAreaSameWidth();
-        }
+        },
       });
     });
     this.resizeFn = () => {
@@ -144,13 +152,21 @@ export default {
           iconAfter="caret-down"
         />
         <div class={`${prefix}-select-options`} ref="optionsArea">
+          {this.list.length === 0 && (
+            <div
+              class={`${prefix}-select-empty-text`}
+              onClick={this.handleSelect}
+            >
+              {this.$slots.empty || this.$props.emptyText}
+            </div>
+          )}
           {this.list.map(
             ({ [this.labelName]: label, [this.valueName]: value }) => (
               <div
-                onClick={$event => this.handleSelect(value, label, $event)}
+                onClick={($event) => this.handleSelect(value, label, $event)}
                 class={[
                   `${prefix}-select-options-item`,
-                  { selected: this.multiple && this.value.includes(value) }
+                  { selected: this.multiple && this.value.includes(value) },
                 ]}
               >
                 {label}
@@ -160,5 +176,5 @@ export default {
         </div>
       </div>
     );
-  }
+  },
 };

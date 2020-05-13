@@ -5,18 +5,18 @@ const dotenv = require("dotenv");
 const pkg = require("../../package");
 
 const { prefix } = dotenv.config({
-  path: path.resolve(__dirname, "../../.env")
+  path: path.resolve(__dirname, "../../.env"),
 }).parsed;
 
 const prefixStyl = path.join(os.tmpdir(), "prefix.styl");
 
 fs.writeFileSync(prefixStyl, `prefix = ${prefix}`, {
-  flag: "w+"
+  flag: "w+",
 });
 
 const resolveDemos = () => {
   const demos = fs.readdirSync(path.resolve(__dirname, "demos"));
-  const demoNames = demos.map(fileName => {
+  const demoNames = demos.map((fileName) => {
     const demoName = fileName.split(".")[0];
     return demoName;
   });
@@ -52,7 +52,7 @@ module.exports = {
     nav: [
       { text: "指南", link: "/guide/" },
       { text: "组件", link: "/component/" },
-      { text: "配置", link: "/config" }
+      { text: "配置", link: "/config" },
     ],
     sidebarDepth: 2,
     sidebar: {
@@ -67,28 +67,28 @@ module.exports = {
             "input",
             "select",
             "switch",
-            "datepicker"
-          ]
+            "datepicker",
+          ],
         },
         {
           title: "表格",
-          children: ["table", "pagintable", "tableheader", "tablesearcharea"]
+          children: ["table", "pagintable", "tableheader", "tablesearcharea"],
         },
         {
           title: "页面",
-          children: ["page-login",'page-fullscreen']
+          children: ["page-login", "page-fullscreen"],
         },
         {
           title: "全局方法",
-          children: ["confirm"]
+          children: ["confirm"],
         },
         "icon",
         "button",
         "tree",
         "popper",
-        "dialog"
-      ]
-    }
+        "dialog",
+      ],
+    },
   },
   plugins: [
     [
@@ -112,7 +112,7 @@ module.exports = {
           } else {
             return " ";
           }
-        }
+        },
 
         // after:''
 
@@ -120,26 +120,26 @@ module.exports = {
         //   console.log('validate',{params})
         //   return false
         // }
-      }
-    ]
+      },
+    ],
   ],
   alias: {
     "@": path.resolve(__dirname, "../../src"),
     "@demo": path.resolve(__dirname, "demos"),
-    vue: "vue/dist/vue.common.js"
+    vue: "vue/dist/vue.common.js",
   },
   // define:{
   //   prefix,
   // },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.plugin("injections").tap(([args]) => {
       console.log({ args }, { prefix: JSON.stringify(prefix) });
 
       return [
         {
           ...(args ? args : {}),
-          prefix: JSON.stringify(prefix)
-        }
+          prefix: JSON.stringify(prefix),
+        },
       ];
     });
 
@@ -155,7 +155,7 @@ module.exports = {
       .options({
         search: "pkgname",
         replace: pkg.name,
-        flags: "g"
+        flags: "g",
       });
 
     config.module
@@ -170,9 +170,22 @@ module.exports = {
       .options({
         search: "pkgversion",
         replace: pkg.version,
-        flags: "g"
+        flags: "g",
       });
 
+    config.module
+      .rule("css-selector")
+      .test(/\.*$/)
+      .pre()
+      .include.add(path.resolve(__dirname, "demos"))
+      .end()
+      .use("string-replace-loader")
+      .loader("string-replace-loader")
+      .options({
+        search: ".d-",
+        replace: `.${prefix}-`,
+        flags: "g",
+      });
     config.module
       .rule("docs-mark-open")
       .test(/\.*$/)
@@ -184,7 +197,7 @@ module.exports = {
       .options({
         search: "<d-",
         replace: `<${prefix}-`,
-        flags: "g"
+        flags: "g",
       });
 
     config.module
@@ -198,7 +211,7 @@ module.exports = {
       .options({
         search: "</d-",
         replace: `</${prefix}-`,
-        flags: "g"
+        flags: "g",
       });
 
     config.module
@@ -211,12 +224,12 @@ module.exports = {
       .options({
         search: "pre-icon",
         replace: `${prefix}-icon`,
-        flags: "g"
+        flags: "g",
       });
   },
   stylus: {
-    import: [prefixStyl, path.resolve(__dirname, "../../src/style/index.styl")]
-  }
+    import: [prefixStyl, path.resolve(__dirname, "../../src/style/index.styl")],
+  },
 
   // lib,
   // chainWebpack(config){

@@ -41,6 +41,12 @@
             :valueName="item.valueName"
             :labelName="item.labelName"
             :multiple="item.multiple"
+            :empty-text="
+              item.emptyText ||
+                `暂无可选择的${getSpacePaddingByFirstLetter(item.label)}${
+                  item.label
+                }`
+            "
           />
           <component
             v-else-if="item.type === 'switch'"
@@ -139,8 +145,9 @@ export default {
     const propLabelMap = {};
     const propTypeMap = {};
     const ruleWrapper = (rules, prop, type) => {
-      const isletterFirst = /^[a-zA-Z]/.test(propLabelMap[prop]);
-      const letterPadding = isletterFirst ? " " : "";
+      const letterPadding = this.getSpacePaddingByFirstLetter(
+        propLabelMap[prop]
+      );
       const ruleMap = {
         required: {
           required: true,
@@ -252,6 +259,10 @@ export default {
       } else {
         // const input = e.target.previousSibling;
       }
+    },
+    getSpacePaddingByFirstLetter(str) {
+      const isletterFirst = /^[a-zA-Z]/.test(str);
+      return isletterFirst ? " " : "";
     }
   }
   // render() {
