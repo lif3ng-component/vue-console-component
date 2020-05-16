@@ -1,12 +1,13 @@
 {
   "name": "lif3ng-console-vue-component",
-  "version": "0.1.75",
+  "version": "0.1.76",
   "author": "lif3ng<lif3ng@icloud.com>",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "lint": "vue-cli-service lint --fix",
     "build:docs": "vuepress build docs --no-cache",
     "build:lib": "vue-cli-service build --target lib --name lib ./src/lib/index.js",
+    "build:components": "node ./src/lib/components.js ",
     "cov": "vue-cli-service test:unit --coverage",
     "docs": "vuepress dev docs --open",
     "test": "vue-cli-service test:unit --watch",
