@@ -24,7 +24,7 @@ export default {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve();
-        }, 5000);
+        }, 2000);
       });
     }
   }

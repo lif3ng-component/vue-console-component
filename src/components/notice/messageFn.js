@@ -6,8 +6,10 @@ const MessageConstrunctor = Vue.extend(Message);
 const $msg = options => {
   const data = typeof options === "string" ? { message: options } : options;
   const instance = new MessageConstrunctor({ data });
-  instance.$mount();
-  document.body.append(instance.$el);
+  Vue.nextTick(() => {
+    instance.$mount();
+    document.body.append(instance.$el);
+  });
   return instance;
 };
 

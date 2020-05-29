@@ -80,7 +80,7 @@ module.exports = {
         },
         {
           title: "全局方法",
-          children: ["confirm"],
+          children: ["confirm", 'message'],
         },
         "icon",
         "button",
