@@ -14,7 +14,7 @@
           }"
         />
       </colgroup>
-      <thead>
+      <thead v-show="data.length !== 0">
         <tr>
           <th
             v-for="(column, index) in filteredColumns"
