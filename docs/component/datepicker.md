@@ -2,3 +2,6 @@
 
 :::demo datepicker-basic
 :::
+
+:::demo datepicker-in-form
+:::

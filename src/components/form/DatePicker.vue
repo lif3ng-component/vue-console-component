@@ -53,7 +53,6 @@
             @click="viewType === 'year' ? nextYears() : nextYear()"
           />
         </div>
-        {{ value }}
         <table class="calendar-table" v-if="viewType === 'date'">
           <thead>
             <tr>
@@ -165,12 +164,16 @@
 </template>
 <script>
 const wrapperZero = number => `${number < 10 ? 0 : ""}${number}`;
+const toDate = d => (d instanceof Date ? d : new Date(d));
 export default {
   name: "DatePicker",
   model: {
     event: "input"
   },
   props: {
+    value: {
+      default: ""
+    },
     initValue: {
       default: ""
     },
@@ -200,7 +203,7 @@ export default {
       sec: undefined
     };
     const enableRules = [];
-    const { min, max, initValue } = this.$props;
+    const { min, max, initValue, value } = this.$props;
     // if (type === "month") {
     //   now.setDate(1);
     //   now.setHours(0);
@@ -209,13 +212,14 @@ export default {
     //   now.setMilliseconds(0);
     // }
     if (max) {
-      enableRules.push(["<=", max === "now" ? now : max]);
+      enableRules.push(["<=", max === "now" ? now : toDate(max)]);
     }
     if (min) {
-      enableRules.push([">=", min === "now" ? now : min]);
+      enableRules.push([">=", min === "now" ? now : toDate(min)]);
     }
-    if (initValue) {
-      const baseTime = initValue === "now" ? now : initValue;
+    const customValue = value || initValue;
+    if (customValue) {
+      const baseTime = customValue === "now" ? now : toDate(customValue);
       Object.assign(initSelected, {
         year: baseTime.getFullYear(),
         month: baseTime.getMonth() + 1,
@@ -232,7 +236,7 @@ export default {
     return {
       enableRules,
       tippyInstance: null,
-      value: "",
+
       year: now.getFullYear(),
       month: now.getMonth() + 1,
       date: "",
@@ -275,7 +279,7 @@ export default {
       return true;
     },
     monthFirstDayWeekIndex() {
-      return new Date(`${this.year}-${this.month}`).getDay();
+      return new Date(`${this.year}/${this.month}/1`).getDay();
     },
     selectedMonth() {
       return `${this.selected.year}-${this.selected.month}`;
@@ -301,6 +305,28 @@ export default {
     }
   },
   watch: {
+    // if (max) {
+    //   enableRules.push(["<=", max === "now" ? now : toDate(max)]);
+    // }
+    // if (min) {
+    //   enableRules.push([">=", min === "now" ? now : toDate(min)]);
+    // }
+    min(min) {
+      const rule = this.enableRules.find(([oper]) => oper === ">=");
+      if (rule) {
+        rule[1] = toDate(min);
+      } else {
+        this.enableRules.push([">=", toDate(min)]);
+      }
+    },
+    max(max) {
+      const rule = this.enableRules.find(([oper]) => oper === "<=");
+      if (rule) {
+        rule[1] = toDate(max);
+      } else {
+        this.enableRules.push(["<=", toDate(max)]);
+      }
+    },
     type(type) {
       if (this.viewType !== type) {
         this.viewType = type;
@@ -349,6 +375,19 @@ export default {
         top: sec * 20,
         behavior: "smooth"
       });
+    },
+    value(value) {
+      const date = value === "now" ? new Date() : toDate(value);
+      this.date = date.getDate();
+      Object.assign(this.selected, {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        date: date.getDate(),
+        hour: date.getHours(),
+        min: date.getMinutes(),
+        sec: date.getSeconds()
+      });
+      this.$nextTick(this.handleSubmit);
     }
   },
   mounted() {
@@ -358,7 +397,7 @@ export default {
       this.date =
         this.initValue === "now"
           ? new Date().getDate()
-          : this.initValue.getDate();
+          : toDate(this.initValue).getDate();
       this.$nextTick(this.handleSubmit);
     }
     this.tippyInstance.setProps({
@@ -383,10 +422,10 @@ export default {
     this.renderYearView();
   },
   methods: {
-    checkEnable(date, leave) {
+    checkEnable(date, level) {
       const rules = this.enableRules.map(([oper, t]) => {
         const target = new Date(t);
-        switch (leave) {
+        switch (level) {
           case "year":
             date.setMonth(0);
             target.setMonth(0);
@@ -483,7 +522,7 @@ export default {
           break;
         case "date":
           Object.assign(this.selected, { year, month, date });
-          this.handleSubmit(); // todo enable to submit
+          // this.handleSubmit(); // todo enable to submit
           this.date = date;
           if (this.type === "date") {
             this.tippyInstance.hide();
@@ -535,9 +574,11 @@ export default {
           min: undefined,
           sec: undefined
         });
-        this.$refs.hour.scrollTo(0, 0);
-        this.$refs.min.scrollTo(0, 0);
-        this.$refs.sec.scrollTo(0, 0);
+        if (this.$refs.hour) {
+          this.$refs.hour.scrollTo(0, 0);
+          this.$refs.min.scrollTo(0, 0);
+          this.$refs.sec.scrollTo(0, 0);
+        }
       } else if (type === "hour") {
         Object.assign(this.selected, {
           min: undefined,
@@ -659,7 +700,7 @@ export default {
       this.secs = Array.from({ length: 60 }).map((_, i) => ({
         text: wrapperZero(i),
         enable: this.checkEnable(
-          new Date(year, month - 1, date, hour, min, sec),
+          new Date(year, month - 1, date, hour, min, i),
           "sec"
         ),
         hash: `${year}-${month}-${date}-${hour}-${min}-${i}`,
