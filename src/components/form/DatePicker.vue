@@ -670,7 +670,7 @@ export default {
       if (!this.year || !this.date) {
         return;
       }
-      const { year, month, date, hour = 0, min = 0, sec = 0 } = this.selected;
+      const { year, month, date, hour = 0, min = 0 } = this.selected;
       this.hours = Array.from({ length: 24 }).map((_, i) => ({
         text: wrapperZero(i),
         enable: this.checkEnable(new Date(year, month - 1, date, i), "hour"),
