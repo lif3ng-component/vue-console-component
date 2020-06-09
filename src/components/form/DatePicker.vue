@@ -393,11 +393,10 @@ export default {
   mounted() {
     this.tippyInstance = this.$refs.input.$el._tippy;
     // this.tippyInstance.show();
-    if (this.initValue) {
+    const value = this.value || this.initValue;
+    if (value) {
       this.date =
-        this.initValue === "now"
-          ? new Date().getDate()
-          : toDate(this.initValue).getDate();
+        value === "now" ? new Date().getDate() : toDate(value).getDate();
       this.$nextTick(this.handleSubmit);
     }
     this.tippyInstance.setProps({
