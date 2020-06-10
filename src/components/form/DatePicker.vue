@@ -261,6 +261,7 @@ export default {
     },
     formattedString: {
       get() {
+        if (!this.value) return "";
         if (Object.keys(this.selected).length === 0) return "";
 
         switch (this.type) {
