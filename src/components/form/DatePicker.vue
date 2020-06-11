@@ -167,6 +167,11 @@ const wrapperZero = number => `${number < 10 ? 0 : ""}${number}`;
 const toDate = d => (d instanceof Date ? d : new Date(d));
 export default {
   name: "DatePicker",
+  inject: {
+    formAreaEmit: {
+      default: ""
+    }
+  },
   model: {
     event: "input"
   },
@@ -412,9 +417,7 @@ export default {
         }
       },
       onHide: () => {
-        // console.log("on hide");
-        // this.$message.error("xxx");
-        // return false;
+        this.formAreaEmit && this.formAreaEmit("tippy-hide");
       }
     });
     this.renderCalendar();

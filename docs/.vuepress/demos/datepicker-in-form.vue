@@ -1,6 +1,6 @@
 <template>
   <div>
-    <d-form-area title="空表单(add)" :items="items1" v-model="form1" />
+    <d-form-area :key="key1" @tippy-hide="key1++" title="空表单(add)" :items="items1" v-model="form1" />
     <d-form-area
       title="有回填数据的表单(edit)"
       :items="items2"
@@ -12,6 +12,7 @@
 export default {
   data() {
     return {
+      key1:0,
       items1: [
         {
           label: "start",
@@ -32,7 +33,8 @@ export default {
         { label: "end", prop: "end", type: "datepicker", props: {} },
       ],
       form1: {},
-      form2: {}, //{ start: 1591610278108,end:1591672290910 },
+      // form2: { start: 1591610278108, end: 1591672290910 },
+      form2: {},
     };
   },
   watch: {

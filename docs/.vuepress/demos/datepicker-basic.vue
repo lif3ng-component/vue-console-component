@@ -27,6 +27,17 @@
       />
     </d-table-header>
 
+    <d-table-header>
+      日：
+      
+      <d-date-picker
+        type="date"
+        max="now"
+        v-model="valueUndefined"
+        right
+      />
+    </d-table-header>
+
     <!-- 选择秒 -->
     <d-table-header>
       秒：
@@ -58,6 +69,7 @@ export default {
       valueMonth: "",
       valueTime: "",
       valueDate: "",
+      valueUndefined:undefined,
       minDay: prev7day,
       baseTime: next5min
     };

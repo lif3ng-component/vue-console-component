@@ -108,7 +108,8 @@ export default {
   name: "FormArea",
   provide() {
     return {
-      getVisibleItemProps: () => this.visibleItemProps
+      getVisibleItemProps: () => this.visibleItemProps,
+      formAreaEmit: (...args) => this.$emit(...args)
     };
   },
   props: {
