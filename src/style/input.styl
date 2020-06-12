@@ -13,11 +13,19 @@
       right: 10px
     &-before
       left: 10px
+  & &-inner-text
+    &-after
+      default-border()
+      default-border-radius()
+      color #666
+      line-height 34px
+      padding 0 10px
+      background: input-background
+      clean-border(left)
+
   button
     &:last-child
-      border-left: none
-      border-top-left-radius: 0
-      border-bottom-left-radius: 0
+      clean-border(left)
   & &-inner   // input
     flex: 1
     line-height 38px
@@ -33,9 +41,7 @@
       padding-left: 34px
 
     &:not(:last-child)
-      // background:#ccc
-      border-top-right-radius: 0
-      border-bottom-right-radius: 0
+      clean-border(right)
     
     &:focus
       outline none

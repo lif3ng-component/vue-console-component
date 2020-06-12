@@ -6,7 +6,14 @@ export default {
   //   prop:'value',
   //   event:'input'
   // },
-  props: ["value", "iconBefore", "iconAfter", "iconAfterCanClick"],
+  props: [
+    "value",
+    "iconBefore",
+    "iconAfter",
+    "iconAfterCanClick",
+    "textPrepend",
+    "textAppend"
+  ],
   // inject: ["emitBlur", "emitChange"],
   inject: {
     emitBlur: {
@@ -70,10 +77,15 @@ export default {
           class={{
             [`${prefix}-input-inner`]: true,
             "has-after-icon": this.iconAfter,
-            "has-before-icon": this.iconBefore
+            "has-before-icon": this.iconBefore,
+            "has-append-text": this.textAppend
           }}
         ></input>
-
+        {this.textAppend && (
+          <span class={`${prefix}-input-inner-text-after`}>
+            {this.textAppend}
+          </span>
+        )}
         {this.$slots.append}
       </div>
     );

@@ -20,7 +20,16 @@ default-border()
 
 default-border-radius()
   border-radius: 4px
-  
+
+clean-border(direction)
+  if direction == 'left'
+    border-left none
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+  else if direction = 'right'
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+
 default-dir-border(dir)
   border-{dir} 1px solid #dae3ec
 
