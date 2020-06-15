@@ -36,7 +36,7 @@ describe("pagination 分页", () => {
           </input-stub>
         </div>
         <div class="t-pagination-total">共0页/0条数据</div>
-        <div class="t-pagination-size">每页显示<select-stub value="10" optionlist="[object Object],[object Object],[object Object]" popper-class="pagin-select-popper"></select-stub>
+        <div class="t-pagination-size">每页显示<select-stub value="10" optionlist="[object Object],[object Object],[object Object]" emptytext="暂无数据" popper-class="pagin-select-popper"></select-stub>
         </div>
       </div>
     `);
