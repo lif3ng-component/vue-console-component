@@ -186,6 +186,9 @@ export default {
       type: String,
       default: "sec"
     },
+    boundary: {
+      default: "start"
+    },
     max: {
       default: ""
     },
@@ -493,7 +496,10 @@ export default {
           case "month":
             return new Date(year, month - 1);
           case "date":
-            return new Date(year, month - 1, date);
+            if (this.boundary === "start") {
+              return new Date(year, month - 1, date);
+            }
+            return new Date(year, month - 1, date, 23, 59, 59, 999);
           default:
             return new Date(year, month - 1, date, hour, min, sec);
         }

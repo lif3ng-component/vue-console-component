@@ -29,13 +29,21 @@
 
     <d-table-header>
       日：
-      
+      {{ valueDate2 | datetime }} (end)
       <d-date-picker
         type="date"
+        :min="minDay"
         max="now"
-        v-model="valueUndefined"
+        boundary="end"
+        initValue="now"
+        v-model="valueDate2"
         right
       />
+    </d-table-header>
+    <d-table-header>
+      日：
+
+      <d-date-picker type="date" max="now" v-model="valueUndefined" right />
     </d-table-header>
 
     <!-- 选择秒 -->
@@ -69,15 +77,21 @@ export default {
       valueMonth: "",
       valueTime: "",
       valueDate: "",
-      valueUndefined:undefined,
+      valueDate2:'',
+      valueUndefined: undefined,
       minDay: prev7day,
-      baseTime: next5min
+      baseTime: next5min,
     };
   },
   computed: {
     formattedMonth() {
       return this.valueMonth && new Date(this.valueMonth).toLocaleDateString();
-    }
+    },
   },
+  watch:{
+    // valueDate2(d){
+    //   console.log(d)
+    // }
+  }
 };
 </script>
