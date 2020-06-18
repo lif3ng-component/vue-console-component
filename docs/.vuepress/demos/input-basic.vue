@@ -19,8 +19,25 @@ export default {
           type: "input",
           props: { textAppend: "@qq.com" },
         },
+        {
+          label: "distance",
+          prop: "distance",
+          type: "input",
+          props: { textAppend: "km" },
+          attrs: {
+            type: "number",
+          },
+        },
       ],
     };
+  },
+  watch: {
+    "form.distance": {
+      immediate: true,
+      handler(number) {
+        console.log(typeof number, number);
+      },
+    },
   },
 };
 </script>

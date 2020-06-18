@@ -35,10 +35,21 @@ export default {
   //   }
   // },
   mounted() {},
+  computed: {
+    attrs() {
+      return this.$attrs ? this.$attrs.attrs || this.$attrs : {};
+    }
+  },
   methods: {
     handleInput(e) {
       // v-model
-      this.$emit("input", e.target.value);
+      const { type } = this.attrs;
+      this.$emit(
+        "input",
+        type === "number" && !isNaN(parseFloat(e.target.value))
+          ? parseFloat(e.target.value)
+          : e.target.value
+      );
       this.emitChange && this.emitChange();
     },
     handleBlur() {
@@ -68,7 +79,7 @@ export default {
           />
         )}
         <input
-          attrs={this.$attrs ? this.$attrs.attrs || this.$attrs : {}}
+          attrs={this.attrs}
           spellcheck="false"
           onInput={this.handleInput}
           onBlur={this.handleBlur}
