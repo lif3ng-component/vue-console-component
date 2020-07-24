@@ -60,6 +60,10 @@ module.exports = {
       "/component/": [
         "",
         {
+          title: "布局",
+          children: ["headercontainer"],
+        },
+        {
           title: "表单",
           children: [
             "formarea",
@@ -80,7 +84,7 @@ module.exports = {
         },
         {
           title: "全局方法",
-          children: ["confirm", 'message'],
+          children: ["confirm", "message"],
         },
         "icon",
         "button",
@@ -96,8 +100,8 @@ module.exports = {
       {
         type: "demo",
         // before(name){
-        //   console.log('before',{name})
-        //   return `<!-- before --><preview-component src="${name}" />`
+        // console.log('before',{name})
+        // return `<!-- before --><preview-component src="${name}" />`
         // },
         // after:'',
 
@@ -117,8 +121,8 @@ module.exports = {
         // after:''
 
         // validate(...params){
-        //   console.log('validate',{params})
-        //   return false
+        // console.log('validate',{params})
+        // return false
         // }
       },
     ],
@@ -129,7 +133,7 @@ module.exports = {
     vue: "vue/dist/vue.common.js",
   },
   // define:{
-  //   prefix,
+  // prefix,
   // },
   chainWebpack: (config) => {
     config.plugin("injections").tap(([args]) => {
@@ -233,9 +237,9 @@ module.exports = {
 
   // lib,
   // chainWebpack(config){
-  //   console.log(config)
-  //   // console.log(path.resolve(__dirname,'../../src'))
-  //   // config.resolve.alias.set('@',path.resolve(__dirname,'../../src'))
+  // console.log(config)
+  // // console.log(path.resolve(__dirname,'../../src'))
+  // // config.resolve.alias.set('@',path.resolve(__dirname,'../../src'))
   // },
   // ...vueconfig
 };
