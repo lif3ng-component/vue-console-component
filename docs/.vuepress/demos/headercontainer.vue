@@ -3,7 +3,7 @@
     <d-header>
       <d-header-container top>
         <template #logo>
-          <img src="/logoplaceholder.png" @click="()=>{}"/>
+          <img src="/logoplaceholder.png" @click="handleLogoClick" />
           <template v-if="state === 0">文字0</template>
           <template v-else>文字1</template>
         </template>
@@ -24,13 +24,16 @@ export default {
   data() {
     return {
       state: 0,
-      items: [{ text: "11", fn: () => {} }],
+      items: [{ text: "11", fn: () => {} }]
     };
   },
   methods: {
     toggleState() {
       this.state = this.state ? 0 : 1;
     },
-  },
+    handleLogoClick() {
+      console.log("handle logo click");
+    }
+  }
 };
 </script>
