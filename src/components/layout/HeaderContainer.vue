@@ -47,7 +47,6 @@ export default {
       logoPlace.style.fontSize = `${parentHeight / 2}px`;
       const fragment = document.createDocumentFragment();
       let handleClick = null;
-      let imgElement = null;
       imgVnodes.forEach(
         ({
           data: {
@@ -59,7 +58,6 @@ export default {
           img.setAttribute("src", src);
           fragment.appendChild(img);
 
-          imgElement = img;
           if (on && on.click) {
             handleClick = on.click;
           }

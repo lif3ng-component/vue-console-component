@@ -1,6 +1,7 @@
 const typeMap = {
-  // formarea: "表单"
+  formarea: "表单",
   dialog: "弹窗",
+  headercontainer: "头部容器",
 };
 const globalNameMap = {
   basic: "基础",
