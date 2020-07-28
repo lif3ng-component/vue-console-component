@@ -5,7 +5,8 @@ export const formCollectMixin = {
   // },
   provide() {
     return {
-      reportFormComponent: this.pushFormComponents
+      reportFormComponent: this.pushFormComponents,
+      removeFormComponents: this.removeFormComponents
     };
   },
   data() {
@@ -22,6 +23,11 @@ export const formCollectMixin = {
   methods: {
     pushFormComponents(component) {
       this.formComponents.push(component);
+    },
+    removeFormComponents(component) {
+      const index = this.formComponents.indexOf(component);
+      if (index === -1) return;
+      this.formComponents.splice(index, 1);
     }
   }
 };
@@ -29,11 +35,17 @@ export const formCollectMixin = {
 // 上报 form component(this)
 export const formReportMixin = {
   inject: {
-    reportFormComponent: { default: null }
+    reportFormComponent: { default: null },
+    removeFormComponents: { default: null }
   },
   mounted() {
     if (this.reportFormComponent) {
       this.reportFormComponent(this);
+    }
+  },
+  beforeDestroy() {
+    if (this.removeFormComponents) {
+      this.removeFormComponents(this);
     }
   }
 };
