@@ -2,6 +2,10 @@ const typeMap = {
   formarea: "表单",
   dialog: "弹窗",
   headercontainer: "头部容器",
+  datepicker: "日期时间选择器",
+  tree: "树形控件",
+  popper: "弹出层",
+  dropdownmenu:'下拉菜单'
 };
 const globalNameMap = {
   basic: "基础",
@@ -17,6 +21,9 @@ const nameMap = {
   },
   dialog: {
     nested: "嵌套",
+  },
+  datepicker: {
+    "in-form": "表单中的",
   },
 };
 export default (filename) => {

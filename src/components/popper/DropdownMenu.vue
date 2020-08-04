@@ -16,8 +16,11 @@ export default {
   },
   methods: {
     handleHide() {
-      const tippyInstance = this.$el.closest("[data-tippy-root]")._tippy;
-      tippyInstance.hide();
+      const tippyRoot = this.$el.closest("[data-tippy-root]");
+      if (tippyRoot && tippyRoot._tippy) {
+        const tippyInstance = tippyRoot._tippy;
+        tippyInstance.hide();
+      }
     }
   },
   render() {

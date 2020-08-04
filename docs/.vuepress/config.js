@@ -90,6 +90,7 @@ module.exports = {
         "button",
         "tree",
         "popper",
+        "dropdownmenu",
         "dialog",
       ],
     },
