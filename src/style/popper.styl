@@ -11,13 +11,15 @@
     border-bottom: 1px solid #dae3ec
     &:first-child,&:last-child
       border none
+  & &-custom-block
   & &-item
     color: color-font-primary
     padding 0 20px
-    height 30px
     line-height 30px
-    text-align center
+  & &-item
     cursor pointer
+    >.{prefix}-icons
+      margin-right 5px
     &:hover
       color: color-primary
       background: color-primary + 90%
