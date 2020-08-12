@@ -42,18 +42,39 @@
         </tr>
       </thead>
       <tbody ref="tbody">
-        <tr v-for="(row, rowIndex) in data" :key="rowIndex">
+        <tr
+          v-for="(row, rowIndex) in data"
+          :key="rowIndex"
+          :class="calRowClass({ row, rowIndex })"
+          :style="calRowStyle({ row, rowIndex })"
+        >
           <td
             v-for="(column, index) in filteredColumns"
             v-bind="{
               ...(column.tooltip ? { tooltip: column.tooltip } : {})
             }"
             :key="index"
-            :style="getColStyles(column)"
-            :class="{
-              noWrap: column.noWrap,
-              multiLine: column.multiLine
+            :style="{
+              ...getColStyles(column),
+              ...calCellStyle({
+                row,
+                rowIndex,
+                columnIndex: index,
+                prop: column.prop
+              })
             }"
+            :class="[
+              {
+                noWrap: column.noWrap,
+                multiLine: column.multiLine
+              },
+              calCellClass({
+                row,
+                rowIndex,
+                columnIndex: index,
+                prop: column.prop
+              })
+            ]"
             v-on="tdEvents({ prop: column.prop, rowIndex })"
           >
             <template v-if="column.slot">
@@ -61,7 +82,7 @@
             </template>
             <template v-else-if="column.template">
               <!-- utils fn -->
-              {{ renderTpl(row, column.template) }}
+              {{ renderTpl({ index: rowIndex, ...row }, column.template) }}
               <!-- filter -->
               <!-- {{ row | renderTpl(column.template) }} -->
             </template>
@@ -102,7 +123,11 @@ export default {
     },
     emptyText: {
       default: "暂无数据"
-    }
+    },
+    rowClassName: [Function, String],
+    rowStyle: [Function, Object],
+    cellClassName: [Function, String],
+    cellStyle: [Function, Object]
   },
   data() {
     return {
@@ -182,6 +207,42 @@ export default {
   },
   methods: {
     renderTpl,
+    calRowClass({ row, rowIndex }) {
+      if (this.rowClassName) {
+        if (typeof this.rowClassName === "string") {
+          return this.rowClassName;
+        }
+        return this.rowClassName({ row, rowIndex });
+      }
+      return "";
+    },
+    calRowStyle({ row, rowIndex }) {
+      if (this.rowStyle) {
+        if (typeof this.rowStyle === "object") {
+          return this.rowStyle;
+        }
+        return this.rowStyle({ row, rowIndex });
+      }
+      return {};
+    },
+    calCellClass({ row, rowIndex, prop, columnIndex }) {
+      if (this.cellClassName) {
+        if (typeof this.cellClassName === "string") {
+          return this.cellClassName;
+        }
+        return this.cellClassName({ row, rowIndex, columnIndex, prop });
+      }
+      return "";
+    },
+    calCellStyle({ row, rowIndex, columnIndex, prop }) {
+      if (this.cellStyle) {
+        if (typeof this.cellStyle === "object") {
+          return this.cellStyle;
+        }
+        return this.cellStyle({ row, rowIndex, columnIndex, prop });
+      }
+      return {};
+    },
     getColStyles({ align }) {
       const styleMap = {
         align: {

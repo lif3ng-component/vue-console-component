@@ -102,6 +102,7 @@ export default {
           data={this.tableData}
           scopedSlots={this.$scopedSlots}
           on={{ "do-sort": this.doSort }}
+          {...{ attrs: this.$attrs }}
         />
         <Pagination
           currentPage={this.page}

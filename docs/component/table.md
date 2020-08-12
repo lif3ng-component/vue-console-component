@@ -56,35 +56,53 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ### emptyText
 - Type: `String`
 - Default: `'暂无数据'`
 
 没有数据时的显示文字。
 
+### row-class-name
+- Type: `String` | `Function`
 
+设置行 className。
 
+类型为函数时，参数为 `{ row, rowIndex }`.
 
+### row-style
+- Type: `Object` | `Function`
+
+设置行样式。
+
+类型为函数时，参数为 `{ row, rowIndex }`.
+
+### cell-class-name
+- Type: `String` | `Function`
+
+设置单元格 className。
+
+类型为函数时，参数为 `{ row, rowIndex, prop, columnIndex }`.
+
+### cell-style
+- Type: `Object` | `Function`
+
+设置单元格样式。
+
+类型为函数时，参数为 `{ row, rowIndex, prop, columnIndex }`.
 
 
 
 :::demo table-column-style
 :::
 
-:::demo demo-table
+:::demo table-sort
 :::
 
 :::demo table-toggle-column
+:::
+
+:::demo table-row-style
+:::
+
+:::demo table-cell-style
 :::

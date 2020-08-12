@@ -1,6 +1,10 @@
 <template>
   <div>
-    <d-pagin-table :columns="columns" :loadFn="loadFn" />
+    <d-pagin-table
+      :columns="columns"
+      :loadFn="loadFn"
+      :cell-style="calCellStyle"
+    />
   </div>
 </template>
 <script>
@@ -23,6 +27,9 @@ export default {
     };
   },
   methods: {
+    calCellStyle({prop}) {
+      return prop==='c1'?{borderRight:'5px solid #333'}:{}
+    },
     loadFn({ page, size, ...args }) {
       console.log(args);
       let list;
