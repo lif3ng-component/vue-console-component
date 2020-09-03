@@ -106,3 +106,8 @@
 
 :::demo table-cell-style
 :::
+
+noWrap 列初始会根据标题宽度展示，加载数据后按照表头和所有数据的最大宽度展示。
+
+:::demo table-nowrap
+:::

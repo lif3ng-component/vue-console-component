@@ -14,11 +14,12 @@
           }"
         />
       </colgroup>
-      <thead v-show="data.length !== 0">
+      <thead>
         <tr>
           <th
             v-for="(column, index) in filteredColumns"
             :key="index"
+            :ref="`th-${index}`"
             @click="column.sort && handleSort(column.sortProp || column.prop)"
             :class="{
               sort: column.sort
@@ -270,31 +271,37 @@ export default {
       const noWrapColumnsWidth = {};
       const data = this.data;
       const columns = this.filteredColumns;
-      if (data.length === 0 || !this.$refs.tbody) {
+      const refreshRenderWidth = () => {
+        Object.entries(noWrapColumnsWidth).forEach(([colIndex, width]) => {
+          if (width) {
+            this.$refs[`col-${colIndex}`][0].style.width = `${width + 20}px`;
+          }
+        });
+      };
+      // if (data.length === 0 || !this.$refs.tbody) {
+      //   return;
+      // }
+
+      // 筛选 noWrap 列，设置初始宽度
+      columns.forEach(({ noWrap }, index) => {
+        if (noWrap) {
+          noWrapColumnsIndexArr.push(index);
+          this.$refs[`col-${index}`][0].style.width = 0;
+          noWrapColumnsWidth[index] = this.$refs[`th-${index}`][0].scrollWidth;
+        }
+      });
+      // 没有 noWrap 列，不需要处理宽度
+      if (noWrapColumnsIndexArr.length === 0) {
         return;
       }
-      if (
-        this.lastCalColWidthData.data === data &&
-        this.lastCalColWidthData.columns === columns
-      ) {
-        // column and data no change
-        return;
-      }
+      // only th width
+      // refreshRenderWidth();
+
       this.lastCalColWidthData = {
         columns: this.filteredColumns,
         data: this.data
       };
 
-      columns.forEach(({ noWrap }, index) => {
-        if (noWrap) {
-          noWrapColumnsIndexArr.push(index);
-          noWrapColumnsWidth[index] = 0;
-        }
-      });
-
-      if (noWrapColumnsIndexArr.length === 0) {
-        return;
-      }
       for (let i = 0; i < data.length; i++) {
         const tr = this.$refs.tbody.children[i];
         noWrapColumnsIndexArr.forEach(colIndex => {
@@ -308,11 +315,7 @@ export default {
         });
       }
 
-      Object.entries(noWrapColumnsWidth).forEach(([colIndex, width]) => {
-        if (width) {
-          this.$refs[`col-${colIndex}`][0].style.width = `${width + 16}px`;
-        }
-      });
+      refreshRenderWidth();
     }
   }
 };
