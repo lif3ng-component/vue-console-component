@@ -1,5 +1,7 @@
 <template>
   <div>
+    <d-input style="width:100px" />
+    <d-input style="width:100px" textAppend="M" />
     <d-input placeholder="placeholder text" />
     <d-input iconBefore="mail" />
     <d-input iconAfter="search" />
