@@ -2,6 +2,9 @@
   <div :class="`${prefix}-form-area ${noBorder ? 'no-border' : ''}`">
     <div :class="`${prefix}-form-area-header`" v-show="!noBorder">
       {{ title || "基本信息" }}
+      <div class="extra" v-if="$slots.headerExtra">
+        <slot name="headerExtra"></slot>
+      </div>
     </div>
     <div
       :class="`${prefix}-form-area-body ${$slots.default ? 'use-slot' : ''}`"
@@ -109,38 +112,38 @@ export default {
   provide() {
     return {
       getVisibleItemProps: () => this.visibleItemProps,
-      formAreaEmit: (...args) => this.$emit(...args)
+      formAreaEmit: (...args) => this.$emit(...args),
     };
   },
   props: {
     hideLabel: {
       type: Boolean,
-      default: false
+      default: false,
     },
     noBorder: {
       type: Boolean,
-      default: false
+      default: false,
     },
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     rules: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     value: Object,
     enterSubmit: {
       type: Boolean,
-      default: false
+      default: false,
     },
     submitFn: {
-      type: Function
-    }
+      type: Function,
+    },
   },
   data() {
     const propLabelMap = {};
@@ -154,18 +157,18 @@ export default {
           required: true,
           message: `请${type === "select" ? "选择" : "输入"}${letterPadding}${
             propLabelMap[prop]
-          }`
+          }`,
         },
         email: {
           pattern: /^.+@.+\..+/,
-          message: "请输入合法邮箱"
+          message: "请输入合法邮箱",
         },
         mobile: {
           pattern: /^1(3|4|5|6|7|8|9)\d{9}$/,
-          message: "请输入合法手机号"
-        }
+          message: "请输入合法手机号",
+        },
       };
-      return rules.map(rule => {
+      return rules.map((rule) => {
         if (typeof rule === "string") {
           return ruleMap[rule];
         }
@@ -175,7 +178,7 @@ export default {
         }
         return {
           ...rule,
-          ...(required ? ruleMap.required : {})
+          ...(required ? ruleMap.required : {}),
         };
       });
     };
@@ -187,13 +190,13 @@ export default {
     });
 
     const innerRules = {};
-    Object.keys(this.rules).forEach(prop => {
+    Object.keys(this.rules).forEach((prop) => {
       innerRules[prop] = ruleWrapper(this.rules[prop], prop, propTypeMap[prop]);
     });
 
     return {
       clipboard: null,
-      innerRules
+      innerRules,
     };
   },
   mounted() {
@@ -201,9 +204,9 @@ export default {
     this.clipboard = new Clipboard(this.$el.querySelectorAll(".copy-btn"), {
       target(btn) {
         return btn.previousSibling;
-      }
+      },
     });
-    this.clipboard.on("success", e => {
+    this.clipboard.on("success", (e) => {
       e.clearSelection();
       if (this.$message) {
         this.$message("已复制到剪切板");
@@ -217,16 +220,16 @@ export default {
   },
   computed: {
     formatItems() {
-      return this.items.map(item => {
+      return this.items.map((item) => {
         const { type } = item;
         return {
           ...item,
-          ...(type ? {} : { type: this.$default.formarea.type })
+          ...(type ? {} : { type: this.$default.formarea.type }),
         };
       });
     },
     visibleFormatItems() {
-      return this.formatItems.filter(item => {
+      return this.formatItems.filter((item) => {
         const { show, prop, removePropWhenHide } = item;
         if (show && typeof show === "function") {
           if (show()) {
@@ -244,7 +247,7 @@ export default {
     },
     visibleItemProps() {
       return this.visibleFormatItems.map(({ prop }) => prop);
-    }
+    },
   },
   methods: {
     renderTpl,
@@ -264,8 +267,8 @@ export default {
     getSpacePaddingByFirstLetter(str) {
       const isletterFirst = /^[a-zA-Z]/.test(str);
       return isletterFirst ? " " : "";
-    }
-  }
+    },
+  },
   // render() {
   //   return (
   //     <div class={`${prefix}-form-area`}>

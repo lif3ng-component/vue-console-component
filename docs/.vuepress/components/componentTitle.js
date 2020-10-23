@@ -21,6 +21,7 @@ const nameMap = {
   },
   formarea: {
     "all-item": "各种表单项",
+    "header-extra": "头部扩展",
   },
   select: {
     "empty-text": "空值",
