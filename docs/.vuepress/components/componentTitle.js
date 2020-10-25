@@ -7,6 +7,7 @@ const typeMap = {
   tree: "树形控件",
   popper: "弹出层",
   dropdownmenu: "下拉菜单",
+  switch: "开关",
 };
 const globalNameMap = {
   basic: "基础",
@@ -33,6 +34,9 @@ const nameMap = {
   },
   datepicker: {
     "in-form": "表单中的",
+  },
+  switch: {
+    "loading-promise": "Promise 控制的",
   },
 };
 export default (filename) => {
