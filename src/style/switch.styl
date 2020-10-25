@@ -1,9 +1,18 @@
 .{prefix}-switch
   display: inline-block
+  position: relative
+  cursor pointer
+  &.disabled
+    cursor not-allowed
   input[type=checkbox]
     display none
+  >.{prefix}-icon-loading
+    position: absolute
+    left: .1em
+    top: .1em
+    font-size: 1.2em
+    color: #bbb
   & &-wrapper
-    cursor pointer
     width: 3em
     height: 1.5em
     position: relative
@@ -24,11 +33,24 @@
       background: #fff
       top: .05em
       left: .05em
-    &.enable
+        
+    &.on
       background: color-primary
       box-shadow: none
       &:after
         left: 1.5em
         box-shadow: 0 0 1px 1px color-primary
+      +.{prefix}-icon-loading
+        left: 1.35em
+        color: color-primary + 50%
+    &.disabled
+      background second-background + 20%
+      &:after
+        background second-background + 60%
+      &.on
+        background color-primary + 60%
+        &:after
+          box-shadow: 0 0 1px 1px (color-primary + 40%)
+      
 
     

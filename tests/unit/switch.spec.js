@@ -14,16 +14,16 @@ it("render", () => {
 
 it("render on", () => {
   const wrapper = shallowMount(Switch, {
-    propsData: { value: true }
+    propsData: { value: true },
   });
-  expect(wrapper.find("div").classes("enable")).toBe(true);
+  expect(wrapper.find("div").classes("on")).toBe(true);
 });
 
 it("render off", () => {
   const wrapper = shallowMount(Switch, {
-    propsData: { value: false }
+    propsData: { value: false },
   });
-  expect(wrapper.find("div").classes("enable")).toBe(false);
+  expect(wrapper.find("div").classes("on")).toBe(false);
 });
 
 // it("on -> off", () => {
