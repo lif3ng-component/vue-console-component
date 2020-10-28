@@ -10,7 +10,10 @@
     </d-form-area>
     <d-form-area>
       <template #headerExtra>
-        <d-switch v-model="show" />
+        xx &nbsp;&nbsp;<d-switch
+          v-model="show"
+          :togglePromiseFn="handleTogglePromise"
+        />
       </template>
     </d-form-area>
   </div>
@@ -28,6 +31,15 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleTogglePromise() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000);
+      });
+    },
   },
 };
 </script>

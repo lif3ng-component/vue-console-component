@@ -3,15 +3,15 @@ export default {
   name: "Switch",
   props: {
     value: { default: false },
-    disabled: { default: false },
-    loading: { default: false },
-    togglePromiseFn: { default: null }
+    disabled: { default: false, type: Boolean },
+    loading: { default: false, type: Boolean },
+    togglePromiseFn: { default: null },
   },
   data() {
     return { loadingByPromise: false };
   },
   model: {
-    event: "change"
+    event: "change",
   },
   computed: {
     innerDisabled() {
@@ -19,7 +19,7 @@ export default {
     },
     innerLoading() {
       return this.loadingByPromise || this.loading;
-    }
+    },
   },
   methods: {
     handleChange({ target }) {
@@ -35,7 +35,7 @@ export default {
         .finally(() => {
           this.loadingByPromise = false;
         });
-    }
+    },
   },
   render() {
     return (
@@ -54,12 +54,12 @@ export default {
             `${prefix}-switch-wrapper`,
             {
               on: this.value,
-              disabled: this.innerDisabled
-            }
+              disabled: this.innerDisabled,
+            },
           ]}
         />
         {this.innerLoading && <Icon type="loading" />}
       </label>
     );
-  }
+  },
 };
