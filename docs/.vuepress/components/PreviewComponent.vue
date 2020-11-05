@@ -3,8 +3,9 @@
     <h3 class="title" v-if="title" :id="`demo-${src}`">
       <a class="header-anchor" :href="`#demo-${src}`">#</a>
       {{ title }}
+      <a @click="previewKey++">refresh</a>
     </h3>
-    <div class="preview">
+    <div class="preview" :key="previewKey">
       <component :is="src" />
     </div>
     <div class="oper">
@@ -27,20 +28,20 @@ export default {
   props: ["src"],
   inject: ["addDemo"],
   data() {
-    return { srcMounted: false, showCode: false };
+    return { srcMounted: false, showCode: false, previewKey: 0 };
   },
   computed: {
     title() {
       return getTitle(this.src);
-    }
+    },
   },
-  watch:{
-    title(title,old){
-      console.log({title,old})
-    }
+  watch: {
+    title(title, old) {
+      console.log({ title, old });
+    },
   },
-  mounted(){
-    this.addDemo({title:getTitle(this.src),hash:`demo-${this.src}`})
+  mounted() {
+    this.addDemo({ title: getTitle(this.src), hash: `demo-${this.src}` });
   },
   updated() {
     if (this.srcMounted) return;
@@ -64,7 +65,7 @@ export default {
       const result = {
         html: resultHtml && resultHtml[0],
         script: resultScript && resultScript[0],
-        style: resultStyle && resultStyle[0]
+        style: resultStyle && resultStyle[0],
       };
       return result;
     },
@@ -103,15 +104,15 @@ export default {
       srcEle.children[0].innerHTML = [
         ...(templateHTML ? [templateHTML] : []),
         ...(scriptHTML ? [scriptHTML] : []),
-        ...(styleHTML ? [styleHTML] : [])
+        ...(styleHTML ? [styleHTML] : []),
       ].join("\n");
     },
     getSandbox() {
       if (this.srcContent) {
         getSandboxUrl(this.srcContent);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="stylus">
@@ -132,6 +133,14 @@ export default {
     padding-top 4.6rem
     .header-anchor
       color color-primary
+    a:last-child
+      float right
+      cursor pointer
+      font-size .8em
+      color #bbb
+      &:hover
+        color color-primary
+
   .oper
     text-align center
     margin 16px 0
