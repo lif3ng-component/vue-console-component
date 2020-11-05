@@ -10,7 +10,7 @@ export default {
     },
     multiple: Boolean,
     optionList: {
-      // type: Array,
+      type: [Array, Function],
       default: () => [],
     },
     preset: {
@@ -60,7 +60,7 @@ export default {
     },
   },
   watch: {
-    optionList() {
+    list() {
       this.renderText();
     },
     value(v) {

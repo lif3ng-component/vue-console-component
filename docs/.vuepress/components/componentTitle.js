@@ -27,6 +27,7 @@ const nameMap = {
   select: {
     "empty-text": "空值",
     async: "异步",
+    "async-with-value": "异步回填",
     multiple: "多选",
   },
   dialog: {
