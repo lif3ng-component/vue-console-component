@@ -1,3 +1,17 @@
+## [0.1.95](https://e.coding.net/lif3ng/lif3ng-console-vue-component/compare/v0.1.94...v0.1.95) (2020-11-05)
+
+
+### Bug Fixes
+
+* async select render text ([f164cb6](https://e.coding.net/lif3ng/lif3ng-console-vue-component/commits/f164cb64c0d75fd1153aa5dda758d3b148da0ed4))
+
+
+### Features
+
+* add demo refresh ([1b9b52d](https://e.coding.net/lif3ng/lif3ng-console-vue-component/commits/1b9b52db48085cfe26fda76692aa9e77a6052b85))
+
+
+
 ## 0.1.94 (2020-10-28)
 
 
