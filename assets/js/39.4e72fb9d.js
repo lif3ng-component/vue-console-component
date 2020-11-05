@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[39],{336:function(n,t,a){"use strict";a.r(t),t.default="<template>\n  <nq-button-area>\n    <nq-button>a</nq-button>\n  </nq-button-area>\n</template>"}}]);

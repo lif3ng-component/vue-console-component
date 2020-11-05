@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[45],{342:function(n,e,d){"use strict";d.r(e),e.default="export default {\n  render(){\n    return <div>demo 3</div>\n  }\n}"}}]);

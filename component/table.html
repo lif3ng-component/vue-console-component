@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Table 表格 | lif3ng-console-vue-component</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="🛠️ Console 端组件库">
+    <link rel="preload" href="/vue-console-component/assets/css/0.styles.b3c5e611.css" as="style"><link rel="preload" href="/vue-console-component/assets/js/app.76f461a5.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/79.329ac26b.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/78.d5b8b57a.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/81.9a7c7559.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/103.a97ff82d.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/82.1b90b7f9.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/32.26370be7.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/34.4c45b900.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/35.42076470.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/7.8cefa07e.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/6.0865d647.js" as="script"><link rel="preload" href="/vue-console-component/assets/js/33.31a50e58.js" as="script"><link rel="prefetch" href="/vue-console-component/assets/js/1.34a2e663.js"><link rel="prefetch" href="/vue-console-component/assets/js/10.17cb19c2.js"><link rel="prefetch" href="/vue-console-component/assets/js/100.0907c23f.js"><link rel="prefetch" href="/vue-console-component/assets/js/101.567d3852.js"><link rel="prefetch" href="/vue-console-component/assets/js/102.45169a46.js"><link rel="prefetch" href="/vue-console-component/assets/js/104.bf5a7330.js"><link rel="prefetch" href="/vue-console-component/assets/js/105.135fd535.js"><link rel="prefetch" href="/vue-console-component/assets/js/106.e7c266c2.js"><link rel="prefetch" href="/vue-console-component/assets/js/107.e0852a9a.js"><link rel="prefetch" href="/vue-console-component/assets/js/108.1850c228.js"><link rel="prefetch" href="/vue-console-component/assets/js/109.c92a178e.js"><link rel="prefetch" href="/vue-console-component/assets/js/11.144d39e1.js"><link rel="prefetch" href="/vue-console-component/assets/js/12.ce42157c.js"><link rel="prefetch" href="/vue-console-component/assets/js/13.19354af9.js"><link rel="prefetch" href="/vue-console-component/assets/js/14.8c5d1b1d.js"><link rel="prefetch" href="/vue-console-component/assets/js/15.0baeafb4.js"><link rel="prefetch" href="/vue-console-component/assets/js/16.9a9607a6.js"><link rel="prefetch" href="/vue-console-component/assets/js/17.96df7874.js"><link rel="prefetch" href="/vue-console-component/assets/js/18.090325ae.js"><link rel="prefetch" href="/vue-console-component/assets/js/19.028b6a29.js"><link rel="prefetch" href="/vue-console-component/assets/js/2.5e73fd02.js"><link rel="prefetch" href="/vue-console-component/assets/js/20.a4316564.js"><link rel="prefetch" href="/vue-console-component/assets/js/21.c2931f8b.js"><link rel="prefetch" href="/vue-console-component/assets/js/22.edbdbc9f.js"><link rel="prefetch" href="/vue-console-component/assets/js/23.e4a37fcb.js"><link rel="prefetch" href="/vue-console-component/assets/js/24.08232384.js"><link rel="prefetch" href="/vue-console-component/assets/js/25.394df742.js"><link rel="prefetch" href="/vue-console-component/assets/js/26.bb7ac29d.js"><link rel="prefetch" href="/vue-console-component/assets/js/27.8e6b2e4b.js"><link rel="prefetch" href="/vue-console-component/assets/js/28.698e1334.js"><link rel="prefetch" href="/vue-console-component/assets/js/29.77d9af34.js"><link rel="prefetch" href="/vue-console-component/assets/js/3.2cd9cb83.js"><link rel="prefetch" href="/vue-console-component/assets/js/30.c8d7eeca.js"><link rel="prefetch" href="/vue-console-component/assets/js/31.2dd72922.js"><link rel="prefetch" href="/vue-console-component/assets/js/36.faac0a62.js"><link rel="prefetch" href="/vue-console-component/assets/js/37.47f99a80.js"><link rel="prefetch" href="/vue-console-component/assets/js/38.2a06a265.js"><link rel="prefetch" href="/vue-console-component/assets/js/39.4e72fb9d.js"><link rel="prefetch" href="/vue-console-component/assets/js/4.8689045e.js"><link rel="prefetch" href="/vue-console-component/assets/js/40.e898a4e6.js"><link rel="prefetch" href="/vue-console-component/assets/js/41.baeee7b6.js"><link rel="prefetch" href="/vue-console-component/assets/js/42.4fcdf00a.js"><link rel="prefetch" href="/vue-console-component/assets/js/43.ed378cbf.js"><link rel="prefetch" href="/vue-console-component/assets/js/44.f8ddd841.js"><link rel="prefetch" href="/vue-console-component/assets/js/45.044de3f9.js"><link rel="prefetch" href="/vue-console-component/assets/js/46.5e837762.js"><link rel="prefetch" href="/vue-console-component/assets/js/47.a0d7b835.js"><link rel="prefetch" href="/vue-console-component/assets/js/48.26a21334.js"><link rel="prefetch" href="/vue-console-component/assets/js/49.03bddeae.js"><link rel="prefetch" href="/vue-console-component/assets/js/5.dd2103b5.js"><link rel="prefetch" href="/vue-console-component/assets/js/50.175b8e3f.js"><link rel="prefetch" href="/vue-console-component/assets/js/51.371f2208.js"><link rel="prefetch" href="/vue-console-component/assets/js/52.8bbfec31.js"><link rel="prefetch" href="/vue-console-component/assets/js/53.f0a9ae9f.js"><link rel="prefetch" href="/vue-console-component/assets/js/54.4c7c1d2a.js"><link rel="prefetch" href="/vue-console-component/assets/js/55.178dada3.js"><link rel="prefetch" href="/vue-console-component/assets/js/56.6d1c67e5.js"><link rel="prefetch" href="/vue-console-component/assets/js/57.a86b074c.js"><link rel="prefetch" href="/vue-console-component/assets/js/58.e0b37eed.js"><link rel="prefetch" href="/vue-console-component/assets/js/59.e40b79b4.js"><link rel="prefetch" href="/vue-console-component/assets/js/60.d02fc6fc.js"><link rel="prefetch" href="/vue-console-component/assets/js/61.5f8d37ab.js"><link rel="prefetch" href="/vue-console-component/assets/js/62.99f966ee.js"><link rel="prefetch" href="/vue-console-component/assets/js/63.1595a1eb.js"><link rel="prefetch" href="/vue-console-component/assets/js/64.6d61f455.js"><link rel="prefetch" href="/vue-console-component/assets/js/65.4dba925d.js"><link rel="prefetch" href="/vue-console-component/assets/js/66.4db370e4.js"><link rel="prefetch" href="/vue-console-component/assets/js/67.32508543.js"><link rel="prefetch" href="/vue-console-component/assets/js/68.0d3f5887.js"><link rel="prefetch" href="/vue-console-component/assets/js/69.1c57dbc8.js"><link rel="prefetch" href="/vue-console-component/assets/js/70.9b509875.js"><link rel="prefetch" href="/vue-console-component/assets/js/71.b07f4808.js"><link rel="prefetch" href="/vue-console-component/assets/js/72.72283e29.js"><link rel="prefetch" href="/vue-console-component/assets/js/73.aceba103.js"><link rel="prefetch" href="/vue-console-component/assets/js/74.a06fb993.js"><link rel="prefetch" href="/vue-console-component/assets/js/75.4c886441.js"><link rel="prefetch" href="/vue-console-component/assets/js/76.506ffd8b.js"><link rel="prefetch" href="/vue-console-component/assets/js/8.f6905d65.js"><link rel="prefetch" href="/vue-console-component/assets/js/80.24c8317d.js"><link rel="prefetch" href="/vue-console-component/assets/js/83.0f44b09e.js"><link rel="prefetch" href="/vue-console-component/assets/js/84.b7bfc771.js"><link rel="prefetch" href="/vue-console-component/assets/js/85.5a0e0565.js"><link rel="prefetch" href="/vue-console-component/assets/js/86.2684c61e.js"><link rel="prefetch" href="/vue-console-component/assets/js/87.e6d1394d.js"><link rel="prefetch" href="/vue-console-component/assets/js/88.cf9ade54.js"><link rel="prefetch" href="/vue-console-component/assets/js/89.1c438d68.js"><link rel="prefetch" href="/vue-console-component/assets/js/9.1011f5cc.js"><link rel="prefetch" href="/vue-console-component/assets/js/90.d00b1a86.js"><link rel="prefetch" href="/vue-console-component/assets/js/91.fb18f946.js"><link rel="prefetch" href="/vue-console-component/assets/js/92.f1612b66.js"><link rel="prefetch" href="/vue-console-component/assets/js/93.10053218.js"><link rel="prefetch" href="/vue-console-component/assets/js/94.9c910e91.js"><link rel="prefetch" href="/vue-console-component/assets/js/95.7ab0aa33.js"><link rel="prefetch" href="/vue-console-component/assets/js/96.b8c38f62.js"><link rel="prefetch" href="/vue-console-component/assets/js/97.d9a4a72a.js"><link rel="prefetch" href="/vue-console-component/assets/js/98.2169e256.js"><link rel="prefetch" href="/vue-console-component/assets/js/99.60e5d5b7.js">
+    <link rel="stylesheet" href="/vue-console-component/assets/css/0.styles.b3c5e611.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue-console-component/" class="home-link router-link-active"><!----> <span class="site-name">lif3ng-console-vue-component</span> <span class="badge tip" style="vertical-align:top;" data-v-15b7b770>0.1.95</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue-console-component/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><a href="/vue-console-component/component/" class="nav-link router-link-active">
+  组件
+</a></div><div class="nav-item"><a href="/vue-console-component/config.html" class="nav-link">
+  配置
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue-console-component/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><a href="/vue-console-component/component/" class="nav-link router-link-active">
+  组件
+</a></div><div class="nav-item"><a href="/vue-console-component/config.html" class="nav-link">
+  配置
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/vue-console-component/component/" class="sidebar-link">概览</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>布局</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>表单</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>表格</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue-console-component/component/table.html" class="active sidebar-link">Table 表格</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#props" class="sidebar-link">props</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#data" class="sidebar-link">data</a></li><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#columns" class="sidebar-link">columns</a></li><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#emptytext" class="sidebar-link">emptyText</a></li><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#row-class-name" class="sidebar-link">row-class-name</a></li><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#row-style" class="sidebar-link">row-style</a></li><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#cell-class-name" class="sidebar-link">cell-class-name</a></li><li class="sidebar-sub-header"><a href="/vue-console-component/component/table.html#cell-style" class="sidebar-link">cell-style</a></li></ul></li><div class="demo-area" data-v-372bb035><span class="badge tip" style="vertical-align:middle;" data-v-372bb035 data-v-15b7b770>Demos</span> </div></ul></li><li><a href="/vue-console-component/component/pagintable.html" class="sidebar-link">Pagin Table 分页表格</a></li><li><a href="/vue-console-component/component/tableheader.html" class="sidebar-link">Table Header 表格头部</a></li><li><a href="/vue-console-component/component/tablesearcharea.html" class="sidebar-link">Table Search Area 表格搜索区</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>页面</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>全局方法</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/vue-console-component/component/icon.html" class="sidebar-link">Icon 图标</a></li><li><a href="/vue-console-component/component/button.html" class="sidebar-link">Button 按钮</a></li><li><a href="/vue-console-component/component/tree.html" class="sidebar-link">Tree 树形控件</a></li><li><a href="/vue-console-component/component/popper.html" class="sidebar-link">Popper 弹出层</a></li><li><a href="/vue-console-component/component/dropdownmenu.html" class="sidebar-link">Dropdown Menu 下拉菜单</a></li><li><a href="/vue-console-component/component/dialog.html" class="sidebar-link">Dialog 弹窗</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="table-表格"><a href="#table-表格" class="header-anchor">#</a> Table 表格</h1> <p>表格用于显示列表数据，一行显示不开的内容自动在鼠标悬停 tooltip 中显示，某一列可配置条件显示，提供异步列排序功能，提供插槽可显示操作列或自定义render。</p> <h2 id="props"><a href="#props" class="header-anchor">#</a> props</h2> <h3 id="data"><a href="#data" class="header-anchor">#</a> data</h3> <ul><li>Type: <code>Array</code></li> <li>Default: <code>[]</code></li></ul> <p>表格数据，数组长的和表格行数一致。</p> <h3 id="columns"><a href="#columns" class="header-anchor">#</a> columns</h3> <ul><li>Type: <code>Array</code></li> <li>Default: <code>[]</code></li></ul> <p>列描述，每一项包含以下属性：</p> <h4 id="label"><a href="#label" class="header-anchor">#</a> label</h4> <ul><li>Type: <code>String</code></li></ul> <p>表头显示内容</p> <h4 id="prop"><a href="#prop" class="header-anchor">#</a> prop</h4> <ul><li>Type: <code>String</code></li></ul> <p>不使用插槽时，代表数据中的字段名。</p> <p>使用插槽时，插槽名为 <code>col-[prop]</code>.</p> <p>此项必填项，会用作key，不可重复。</p> <h4 id="show"><a href="#show" class="header-anchor">#</a> show</h4> <ul><li>Type: <code>function</code></li></ul> <p>函数包裹的可观察对象，例如： <code>show: () =&gt; this.foo !== 'bar'</code>.</p> <h4 id="align"><a href="#align" class="header-anchor">#</a> align</h4> <ul><li>Type: <code>String</code></li> <li>Default: <code>'left'|'right'</code></li></ul> <p>控制单元格对齐方式，不设置默认居中显示单元格内容。</p> <h4 id="sort"><a href="#sort" class="header-anchor">#</a> sort</h4> <ul><li>Type: <code>Boolean</code></li> <li>Default: <code>false</code></li></ul> <p>该列是否可排序。设置为 <code>true</code> 后，表头显示升序降序的只是按钮。</p> <p>排序为异步排序，目前只在 <a href="/vue-console-component/component/pagintable.html">分页表格</a> 中可用。</p> <h4 id="tooltip"><a href="#tooltip" class="header-anchor">#</a> tooltip</h4> <ul><li>Type: <code>function</code></li></ul> <p>传入 tooltip 文本的渲染函数。例如：显示图标，悬停时显示 tooltip 文字。</p> <h3 id="emptytext"><a href="#emptytext" class="header-anchor">#</a> emptyText</h3> <ul><li>Type: <code>String</code></li> <li>Default: <code>'暂无数据'</code></li></ul> <p>没有数据时的显示文字。</p> <h3 id="row-class-name"><a href="#row-class-name" class="header-anchor">#</a> row-class-name</h3> <ul><li>Type: <code>String</code> | <code>Function</code></li></ul> <p>设置行 className。</p> <p>类型为函数时，参数为 <code>{ row, rowIndex }</code>.</p> <h3 id="row-style"><a href="#row-style" class="header-anchor">#</a> row-style</h3> <ul><li>Type: <code>Object</code> | <code>Function</code></li></ul> <p>设置行样式。</p> <p>类型为函数时，参数为 <code>{ row, rowIndex }</code>.</p> <h3 id="cell-class-name"><a href="#cell-class-name" class="header-anchor">#</a> cell-class-name</h3> <ul><li>Type: <code>String</code> | <code>Function</code></li></ul> <p>设置单元格 className。</p> <p>类型为函数时，参数为 <code>{ row, rowIndex, prop, columnIndex }</code>.</p> <h3 id="cell-style"><a href="#cell-style" class="header-anchor">#</a> cell-style</h3> <ul><li>Type: <code>Object</code> | <code>Function</code></li></ul> <p>设置单元格样式。</p> <p>类型为函数时，参数为 <code>{ row, rowIndex, prop, columnIndex }</code>.</p> <div class="component-preview"><h3 id="demo-table-column-style" class="title"><a href="#demo-table-column-style" class="header-anchor">#</a>
+    列文字溢出表格
+    <a>refresh</a></h3> <div class="preview"><div><button class="nq-button"><span>mock data</span></button> <div class="nq-table"><!----> <table><colgroup><col style="width:200px;"><col style="width:200px;"></colgroup> <thead><tr><th><span>xx</span> <!----></th><th><span>xx</span> <!----></th></tr></thead> <tbody><tr><td>abcd abcd abcd abcd abcd abcd abcd abcd abcd</td><td>asdf asdf asdf asdf asdf asdf asdf</td></tr></tbody></table> <!----></div></div></div> <div class="oper"><a>在线调试</a> <a>查看代码</a></div> <pre style="display:none;"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;nq-button @click=&quot;mockAsyncData&quot;&gt;mock data&lt;/nq-button&gt;
+    &lt;nq-table :columns=&quot;columns&quot; :data=&quot;data&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      data: [
+        {
+          c1: &quot;abcd abcd abcd abcd abcd abcd abcd abcd abcd&quot;,
+          c2: &quot;asdf asdf asdf asdf asdf asdf asdf&quot;
+        }
+      ],
+      columns: [
+        {
+          label: &quot;xx&quot;,
+          prop: &quot;c1&quot;,
+          // noWrap: true,
+          // tooltip: ({ c1 }) =&gt; `--${c1}--`
+        },
+        {
+          label: &quot;xx&quot;,
+          prop: &quot;c2&quot;
+          // tooltip: row =&gt; row.c1
+          // tooltip: &quot;abc&quot;,
+        }
+      ]
+    };
+  },
+  methods: {
+    mockAsyncData() {
+      this.data = [
+        {
+          c1:
+            &quot;asdf jkl; asdf asdf asdf jkl; asdf asdf asdf asdf aaa bbb ccc ddd eee fff ggg hhh iii jjj kkk lll mmm nnn 123&quot;,
+          c2:
+            &quot;qqq www eee rrr tt tyy uuu iii oooo pp aa ss d fff gggg hhh jjj kkkk llll ;;;&quot;
+        },
+        {
+          c1:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          c2:'123'
+        }
+      ];
+    }
+  }
+};
+&lt;/script&gt;
+</code></pre> <div class="oper" style="display:none;"><a>在线调试</a> <a>查看代码</a></div></div> <div class="component-preview"><h3 id="demo-table-sort" class="title"><a href="#demo-table-sort" class="header-anchor">#</a>
+    列排序表格
+    <a>refresh</a></h3> <div class="preview"><div><div class="nq-table"><!----> <table><colgroup><col style="width:200px;"><col style="width:200px;"><col style="width:10px;"></colgroup> <thead><tr><th class="sort"><span>column1</span> <div class="sort-status"><i class="nq-icons nq-icon-caret-up"></i> <i class="nq-icons nq-icon-caret-down"></i></div></th><th class="sort"><span>column2</span> <div class="sort-status"><i class="nq-icons nq-icon-caret-up"></i> <i class="nq-icons nq-icon-caret-down"></i></div></th><th><span>oper</span> <!----></th></tr></thead> <tbody><tr><td>123</td><td>
+            --123--
+            </td><td class="noWrap"><a>edit</a> <a danger="">delete</a> <a class="danger">delete</a></td></tr><tr><td>456</td><td>
+            --456--
+            </td><td class="noWrap"><a>edit</a> <a danger="">delete</a> <a class="danger">delete</a></td></tr></tbody></table> <!----></div></div></div> <div class="oper"><a>在线调试</a> <a>查看代码</a></div> <pre style="display:none;"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;nq-table :columns=&quot;columns&quot; :data=&quot;data&quot;&gt;
+      &lt;template #col-oper=&quot;{row}&quot;&gt;
+        &lt;a @click=&quot;handleEdit(row)&quot;&gt;edit&lt;/a&gt;
+        &lt;a danger @click=&quot;handleDelete(row)&quot;&gt;delete&lt;/a&gt;
+        &lt;a class=&quot;danger&quot;&gt;delete&lt;/a&gt;
+      &lt;/template&gt;
+    &lt;/nq-table&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      columns: [
+        { prop: &quot;c1&quot;, label: &quot;column1&quot;, sort: true },
+        { prop: &quot;c2&quot;, label: &quot;column2&quot;, sort: true, template: &quot;--{{c1}}--&quot; },
+        { prop: &quot;oper&quot;, label: &quot;oper&quot;, slot: true, noWrap: true }
+      ],
+      data: [{ c1: 123 }, { c1: 456 }]
+    };
+  },
+  methods: {
+    handleEdit(row) {
+      console.log(&quot;edit&quot;, row);
+    }
+  }
+};
+&lt;/script&gt;
+</code></pre> <div class="oper" style="display:none;"><a>在线调试</a> <a>查看代码</a></div></div> <div class="component-preview"><h3 id="demo-table-toggle-column" class="title"><a href="#demo-table-toggle-column" class="header-anchor">#</a>
+    显示隐藏列表格
+    <a>refresh</a></h3> <div class="preview"><div><button class="nq-button"><span>toggle</span></button> <div class="nq-table"><!----> <table><colgroup><col style="width:200px;"><col style="width:200px;"></colgroup> <thead><tr><th><span>label 1</span> <!----></th><th><span>label 2</span> <!----></th></tr></thead> <tbody><tr><td>aaa</td><td>bbb</td></tr></tbody></table> <!----></div></div></div> <div class="oper"><a>在线调试</a> <a>查看代码</a></div> <pre style="display:none;"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;nq-button @click=&quot;toggle&quot;&gt;toggle&lt;/nq-button&gt;
+  &lt;nq-table :columns=&quot;columns&quot; :data=&quot;data&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data(){
+    return {
+      v1:1,
+      v2:1,
+      data:[{prop1:'aaa',prop2:'bbb'}],
+      columns:[
+        {
+          prop:'prop1',
+          label:'label 1',
+        },
+        {
+          show:()=&gt;this.v1===this.v2,
+          prop:'prop2',
+          label:'label 2'
+        }
+      ]
+    }
+  },
+  watch:{
+    // v1(v){
+    //   console.log(v)
+    // }
+  },
+  methods:{
+    toggle(){
+      console.log('toggle',this.v1 ===1 ? 0 : 1)
+      this.v1 = (this.v1 ===1 ? 0 : 1)
+    }
+  }
+}
+&lt;/script&gt;</code></pre> <div class="oper" style="display:none;"><a>在线调试</a> <a>查看代码</a></div></div> <div class="component-preview"><h3 id="demo-table-row-style" class="title"><a href="#demo-table-row-style" class="header-anchor">#</a>
+    行样式设置表格
+    <a>refresh</a></h3> <div class="preview"><div data-v-7d352e72>
+  通过 <strong data-v-7d352e72>函数</strong> 设置 className, style
+  <div class="nq-table" data-v-7d352e72><!----> <table><colgroup><col style="width:200px;"></colgroup> <thead><tr><th><span>行样式</span> <!----></th></tr></thead> <tbody><tr><td>没样式</td></tr><tr style="color:red;"><td>通过 row-style 传入 函数 设置红字</td></tr><tr class="row-color-blue"><td>通过 row-class-name 传入 函数 设置蓝字</td></tr></tbody></table> <!----></div>
+  通过 <strong data-v-7d352e72>常量值</strong> 设置 className, style
+  <div class="nq-table" data-v-7d352e72><!----> <table><colgroup><col style="width:200px;"></colgroup> <thead><tr><th><span>行样式</span> <!----></th></tr></thead> <tbody><tr class="row-color-blue" style="background:lightgray;"><td>每行相同行样式</td></tr><tr class="row-color-blue" style="background:lightgray;"><td>每行相同行样式</td></tr><tr class="row-color-blue" style="background:lightgray;"><td>每行相同行样式</td></tr></tbody></table> <!----></div></div></div> <div class="oper"><a>在线调试</a> <a>查看代码</a></div> <pre style="display:none;"><code>&lt;template&gt;
+  &lt;div&gt;
+    通过 &lt;strong&gt;函数&lt;/strong&gt; 设置 className, style
+    &lt;nq-table
+      :columns=&quot;columns&quot;
+      :data=&quot;data1&quot;
+      :row-class-name=&quot;rowClassFn1&quot;
+      :row-style=&quot;rowStyleFn1&quot;
+    /&gt;
+    通过 &lt;strong&gt;常量值&lt;/strong&gt; 设置 className, style
+    &lt;nq-table
+      :columns=&quot;columns&quot;
+      :data=&quot;data2&quot;
+      row-class-name=&quot;row-color-blue&quot;
+      :row-style=&quot;{ background: 'lightgray' }&quot;
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      columns: [{ prop: &quot;text&quot;, label: &quot;行样式&quot; }],
+      data1: [
+        { text: &quot;没样式&quot; },
+        { text: &quot;通过 row-style 传入 函数 设置红字&quot;, styleTargetColumn: true },
+        {
+          text: &quot;通过 row-class-name 传入 函数 设置蓝字&quot;,
+          classTargetColumn: true,
+        },
+      ],
+      data2: [
+        { text: &quot;每行相同行样式&quot; },
+        { text: &quot;每行相同行样式&quot; },
+        { text: &quot;每行相同行样式&quot; },
+      ],
+    };
+  },
+  methods: {
+    rowClassFn1({ row: { classTargetColumn }, rowIndex }) {
+      console.log({ rowIndex, classTargetColumn });
+      return classTargetColumn ? &quot;row-color-blue&quot; : &quot;&quot;;
+    },
+    rowStyleFn1({ row: { styleTargetColumn }, rowIndex }) {
+      console.log({ rowIndex, styleTargetColumn });
+      return styleTargetColumn ? { color: &quot;red&quot; } : {};
+    },
+  },
+};
+&lt;/script&gt;
+&lt;style lang=&quot;stylus&quot; scoped&gt;
+div
+  &gt;&gt;&gt; .row-color-blue
+    color blue
+&lt;/style&gt;
+</code></pre> <div class="oper" style="display:none;"><a>在线调试</a> <a>查看代码</a></div></div> <div class="component-preview"><h3 id="demo-table-cell-style" class="title"><a href="#demo-table-cell-style" class="header-anchor">#</a>
+    列样式设置表格
+    <a>refresh</a></h3> <div class="preview"><div data-v-769baebd>
+  通过 <strong data-v-769baebd>函数</strong> 设置 className, style
+  <div class="nq-table" data-v-769baebd><!----> <table><colgroup><col style="width:50px;"><col style="width:200px;"><col style="width:200px;"></colgroup> <thead><tr><th><span>index</span> <!----></th><th><span>灰色列</span> <!----></th><th><span>根据值显示</span> <!----></th></tr></thead> <tbody><tr><td>
+            0
+            </td><td class="row-color-gray">
+            这列是灰色
+            </td><td style="background:green;color:#fff;font-size:30px;">6</td></tr><tr><td>
+            1
+            </td><td class="row-color-gray">
+            这列是灰色
+            </td><td></td></tr><tr><td>
+            2
+            </td><td class="row-color-gray">
+            这列是灰色
+            </td><td></td></tr><tr><td>
+            3
+            </td><td class="row-color-gray">
+            这列是灰色
+            </td><td style="background:green;color:#fff;font-size:30px;">3</td></tr></tbody></table> <!----></div>
+  通过 <strong data-v-769baebd>常量值</strong> 设置 className, style
+  可以使用，目前没有想到必要的业务场景，不在 Demo 中演示。
+</div></div> <div class="oper"><a>在线调试</a> <a>查看代码</a></div> <pre style="display:none;"><code>&lt;template&gt;
+  &lt;div&gt;
+    通过 &lt;strong&gt;函数&lt;/strong&gt; 设置 className, style
+    &lt;nq-table
+      :columns=&quot;columns&quot;
+      :data=&quot;data&quot;
+      :cell-class-name=&quot;cellClassFn&quot;
+      :cell-style=&quot;cellStyleFn&quot;
+    /&gt;
+    通过 &lt;strong&gt;常量值&lt;/strong&gt; 设置 className, style
+    可以使用，目前没有想到必要的业务场景，不在 Demo 中演示。
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      columns: [
+        { prop: &quot;index&quot;, label: &quot;index&quot;, template: &quot;{{index}}&quot;, width: &quot;50px&quot; },
+        { prop: &quot;gray&quot;, label: &quot;灰色列&quot;, template: &quot;这列是灰色&quot; },
+        { prop: &quot;count&quot;, label: &quot;根据值显示&quot; },
+      ],
+
+      data: [
+        { text: &quot;每行相同行样式&quot;, count: 6 },
+        { text: &quot;每行相同行样式&quot; },
+        { text: &quot;每行相同行样式&quot; },
+        { text: &quot;每行相同行样式&quot;, count: 3 },
+      ],
+    };
+  },
+  methods: {
+    cellClassFn({ prop, ...args }) {
+      console.log({ prop, ...args });
+      return prop === &quot;gray&quot; ? &quot;row-color-gray&quot; : &quot;&quot;;
+    },
+    cellStyleFn({ row: { count }, prop, ...args }) {
+      console.log({ args });
+      return prop === &quot;count&quot; &amp;&amp; count
+        ? {
+            background: &quot;green&quot;,
+            color: &quot;#fff&quot;,
+            fontSize: &quot;30px&quot;,
+            fontWidth: 600,
+          }
+        : {};
+    },
+  },
+};
+&lt;/script&gt;
+&lt;style lang=&quot;stylus&quot; scoped&gt;
+div
+  &gt;&gt;&gt; .row-color-gray
+    background gray
+    color #eee
+    border-right 10px solid #abc
+&lt;/style&gt;
+</code></pre> <div class="oper" style="display:none;"><a>在线调试</a> <a>查看代码</a></div></div> <p>noWrap 列初始会根据标题宽度展示，加载数据后按照表头和所有数据的最大宽度展示。</p> <div class="component-preview"><h3 id="demo-table-nowrap" class="title"><a href="#demo-table-nowrap" class="header-anchor">#</a>
+    nowrap表格
+    <a>refresh</a></h3> <div class="preview"><div><button class="nq-button"><span>加载数据</span></button> <div class="nq-table"><!----> <table><colgroup><col style="width:10px;"><col style="width:10px;"><col style="width:200px;"><col style="width:10px;"></colgroup> <thead><tr><th class="sort"><span>nowrap1</span> <div class="sort-status"><i class="nq-icons nq-icon-caret-up"></i> <i class="nq-icons nq-icon-caret-down"></i></div></th><th><span>noWrap2</span> <!----></th><th><span>normal1</span> <!----></th><th><span>noWrap last</span> <!----></th></tr></thead> <tbody></tbody></table> <div class="empty-line">暂无数据</div></div></div></div> <div class="oper"><a>在线调试</a> <a>查看代码</a></div> <pre style="display:none;"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;nq-button @click=&quot;cycleData&quot;&gt;{{ toggleDataBtnText }}&lt;/nq-button&gt;
+    &lt;nq-table :key=&quot;key&quot; :columns=&quot;columns&quot; :data=&quot;data&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+// RowDataCycle 自定义迭代器，用于模拟表格数据状态轮转
+// index
+// 0: []
+// 1: [{short item}]
+//    asc -&gt; 2
+//    desc -&gt; 0
+// 2: [{long item}]
+
+class RowDataCycle {
+  constructor() {
+    this.dir = &quot;asc&quot;;
+    this.data = [];
+    this.index = 0;
+  }
+  next() {
+    const done = false;
+    if (this.index === 0) {
+      this.data = [
+        { col1: &quot;abc&quot; },
+        { col2: &quot;456&quot; },
+        {
+          col3:
+            &quot;too long text content. aaa bbb ccc ddd eee fff ggg hhh iii jjj.&quot;,
+        },
+        { col4: &quot;short&quot; },
+      ];
+      this.index++; // 1
+    } else if (this.index === 1 &amp;&amp; this.dir === &quot;asc&quot;) {
+      Object.assign(this.data, {
+        0: { col1: &quot;123 abc def xxx&quot; },
+        1: { col2: &quot;456 ghi kl; xxx&quot; },
+      });
+      this.index++; //2
+    } else if (this.index === 1 &amp;&amp; this.dir === &quot;desc&quot;) {
+      this.data = [];
+      this.index--; //0
+    } else if (this.index === 2) {
+      Object.assign(this.data, { 0: { col1: &quot;123&quot; }, 1: { col2: &quot;456&quot; } });
+      this.index--;
+    }
+
+    if (this.index === 0) {
+      this.dir = &quot;asc&quot;;
+    } else if (this.index === 2) {
+      this.dir = &quot;desc&quot;;
+    }
+
+    return {
+      done,
+      value: { dir: this.dir, data: this.data, index: this.index },
+    };
+  }
+  [Symbol.iterator]() {
+    return this;
+  }
+}
+export default {
+  data() {
+    const dataCycle = new RowDataCycle();
+    const { data, dir, index } = dataCycle;
+    return {
+      key: 0,
+      data,
+      dataCycleDir: dir,
+      dataCycleIndex: index,
+      dataCycle,
+      columns: [
+        { prop: &quot;col1&quot;, label: &quot;nowrap1&quot;, sort: true, noWrap: true },
+        { prop: &quot;col2&quot;, label: &quot;noWrap2&quot;, noWrap: true },
+        { prop: &quot;col3&quot;, label: &quot;normal1&quot; },
+        { prop: &quot;col4&quot;, label: &quot;noWrap last&quot;, noWrap: true },
+      ],
+    };
+  },
+  methods: {
+    cycleData() {
+      const {
+        value: { data, dir, index },
+      } = this.dataCycle.next();
+      this.data.splice(0, 4, ...data);
+      this.dataCycleDir = dir;
+      this.dataCycleIndex = index;
+    },
+  },
+  computed: {
+    toggleDataBtnText() {
+      switch (this.dataCycleIndex) {
+        case 0:
+          return &quot;加载数据&quot;;
+        case 1:
+          if (this.dataCycleDir === &quot;asc&quot;) {
+            return &quot;noWrap 列变宽&quot;;
+          }
+          return &quot;清空数据&quot;;
+        case 2:
+          return &quot;noWrap 列变窄&quot;;
+        default:
+          return &quot;error&quot;;
+      }
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre> <div class="oper" style="display:none;"><a>在线调试</a> <a>查看代码</a></div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue-console-component/component/datepicker.html" class="prev">
+        Datepicker 日期时间选择器
+      </a></span> <span class="next"><a href="/vue-console-component/component/pagintable.html">
+        Pagin Table 分页表格
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vue-console-component/assets/js/app.76f461a5.js" defer></script><script src="/vue-console-component/assets/js/79.329ac26b.js" defer></script><script src="/vue-console-component/assets/js/78.d5b8b57a.js" defer></script><script src="/vue-console-component/assets/js/81.9a7c7559.js" defer></script><script src="/vue-console-component/assets/js/103.a97ff82d.js" defer></script><script src="/vue-console-component/assets/js/82.1b90b7f9.js" defer></script><script src="/vue-console-component/assets/js/32.26370be7.js" defer></script><script src="/vue-console-component/assets/js/34.4c45b900.js" defer></script><script src="/vue-console-component/assets/js/35.42076470.js" defer></script><script src="/vue-console-component/assets/js/7.8cefa07e.js" defer></script><script src="/vue-console-component/assets/js/6.0865d647.js" defer></script><script src="/vue-console-component/assets/js/33.31a50e58.js" defer></script>
+  </body>
+</html>

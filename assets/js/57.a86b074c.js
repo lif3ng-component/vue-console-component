@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[57],{354:function(e,s,n){"use strict";n.r(s),s.default='<template>\n  <div>\n    <nq-button type="primary" @click="$message(\'success msg\')">show success message</nq-button>\n    <nq-button type="error" @click="$message.error(\'error msg\')">show error message</nq-button>\n  </div>\n</template>'}}]);
