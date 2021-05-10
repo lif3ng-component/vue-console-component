@@ -22,7 +22,7 @@
     "async-validator": "^3.2.2",
     "clipboard": "^2.0.4",
     "core-js": "^3.3.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "tippy.js": "^6.2.3"
   },
